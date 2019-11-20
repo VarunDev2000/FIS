@@ -55,20 +55,21 @@ class qualification(models.Model):
     def __str__(self):
         return self.staff.username+"'s Qualification"
 
-"""
+
 class area_of_spec_and_mem(models.Model):
-    staff = models.ForeignKey(User, on_delete=models.CASCADE)
+    staff = models.ForeignKey(User, on_delete=models.CASCADE,related_name = "area_of_spec_and_mem",null=True)
     area_name = models.CharField(max_length=500, null=True, default=None)
     mem = models.CharField(max_length=500, null=True, default=None)
     spec_mem_type = models.CharField(max_length=200, null=False)
 
     class Meta:
-        verbose_name_plural = "Specializations and Membership"
+        verbose_name_plural = "Specialization and Membership"
 
     def __str__(self):
-        return self.staff.username+"'s Specializations and Membership"
+        return self.staff.username+"'s Specialization and Membership"
 
 
+"""
 class employment(models.Model):
     staff = models.ForeignKey(User, on_delete=models.CASCADE)
     designation = models.CharField(max_length=400)
