@@ -1,0 +1,14 @@
+Install this : pip install django-phone-field
+
+
+SUPERUSER:
+
+USERNAME :  admin 
+EMAIL    :  admin@ceg.com	
+PASSWORD :  itdep123
+
+python manage.py flush 
+
+pip install django-cors-headers
+pip install djangorestframework
+pip install django-rest-knox
