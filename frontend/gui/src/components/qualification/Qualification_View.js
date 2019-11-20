@@ -1,19 +1,19 @@
 import React from 'react';
 import { Descriptions,Button } from 'antd';
 import { Redirect } from 'react-router-dom';
-import CustomLayout from '../containers/Layout';
+import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
-import { getStaffinfo } from '../actions/generalinfo';
+import { getQualification } from '../../actions/qualification';
 
-class Generalinfo extends React.Component{
+class Qualification_view extends React.Component{
 
   static propTypes = {
-    generalinfo: PropTypes.array.isRequired
+    qualification: PropTypes.array.isRequired
   }
 
   state = {
-    generalinfo:{},
+    qualification:{},
     length : -1,
     redirect : false
 }
@@ -27,24 +27,24 @@ class Generalinfo extends React.Component{
 
     renderRedirect = (type) => {
       if (this.state.redirect && type === 'edit') {
-        return <Redirect to = '/edit' />
+        return <Redirect to = '/qualification/edit' />
       }
 
       else if (this.state.redirect && type === 'add') {
-        return <Redirect to = '/add' />
+        return <Redirect to = '/qualification/add' />
       }
     }
 
     
       componentDidMount() {
-        this.props.getStaffinfo();
-        this.setState({ length: Object.keys(this.props.generalinfo).length });
+        this.props.getQualification();
+        this.setState({ length: Object.keys(this.props.qualification).length });
       }
       
 
     render(){
       var numRows = 0;
-      const render = this.props.generalinfo.map(ginfo => 
+      const render = this.props.qualification.map(ginfo => 
         (numRows++)
         );
     return (
@@ -52,15 +52,15 @@ class Generalinfo extends React.Component{
                   <div>
                   <CustomLayout>
                   {this.renderRedirect('add')}
-                  <Button type="primary" onClick={this.setRedirect}>Add Details</Button>
+                  <Button type="primary" onClick={this.setRedirect}>Add Qualifications</Button>
                   </CustomLayout>
                   </div>
       ) : (
 
-      this.props.generalinfo.map(ginfo => (
+      this.props.qualification.map(ginfo => (
               <div>
               <CustomLayout>
-              <Descriptions title="INFORMATION" bordered>
+              <Descriptions title="QUALIFICATIONS" bordered>
               <Descriptions.Item label="NAME" span={3}>{ ginfo.name }</Descriptions.Item>   
               <Descriptions.Item label="GENDER" span={3}>{ ginfo.gender }</Descriptions.Item>
               <Descriptions.Item label="DOB" span={3}>{ ginfo.dob }</Descriptions.Item>
@@ -81,8 +81,8 @@ class Generalinfo extends React.Component{
                     
             <br /><br/>
 
-            {this.renderRedirect('edit')}
-            <Button type="primary" onClick={this.setRedirect}>EDIT</Button>
+            {this.renderRedirect('add')}
+            <Button type="primary" onClick={this.setRedirect}>Add Qualifications</Button>
             </CustomLayout>
             </div>
       ))
@@ -93,8 +93,8 @@ class Generalinfo extends React.Component{
 }
 
 const mapStateToProps = state => ({
-  generalinfo: state.generalinfo.generalinfo
+  qualification: state.qualification.qualification
 });
 
 
-export default connect(mapStateToProps,{ getStaffinfo })(Generalinfo);
+export default connect(mapStateToProps,{ getQualification })(Qualification_view);

@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import { Link,Redirect } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CustomLayout from '../../containers/Layout';
+import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
 import { login } from '../../actions/auth';

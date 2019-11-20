@@ -32,9 +32,9 @@ class staff_detail(models.Model):
         return self.name
 
 
-"""
+
 class qualification(models.Model):
-    staff = models.ForeignKey(User, on_delete=models.CASCADE)
+    staff = models.ForeignKey(User, on_delete=models.CASCADE,related_name = "qualification",null=True)
     level = models.CharField(max_length=200, default=None, null=True)
     degree = models.CharField(max_length=200)
     branch = models.CharField(max_length=200, default=None, null=True)
@@ -55,7 +55,7 @@ class qualification(models.Model):
     def __str__(self):
         return self.staff.username+"'s Qualification"
 
-
+"""
 class area_of_spec_and_mem(models.Model):
     staff = models.ForeignKey(User, on_delete=models.CASCADE)
     area_name = models.CharField(max_length=500, null=True, default=None)
@@ -123,7 +123,7 @@ class project(models.Model):
     pro_title = models.CharField(max_length=800, null=False)
     funding_agent = models.CharField(max_length=400, null=False)
     amt = models.IntegerField(null=False)
-    pro_type = models.CharField(max_length=400, null=False)
+    pro_type = models.ForeignKey(csw, on_delete=models.CASCADE, default=None)
 
     class Meta:
         verbose_name_plural = "Projects"

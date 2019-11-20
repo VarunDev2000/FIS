@@ -1,10 +1,9 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { Form, Input, Button } from 'antd';
-import CustomLayout from '../containers/Layout';
+import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
-import { addStaffinfo } from '../actions/generalinfo';
+import { addStaffinfo } from '../../actions/generalinfo';
 
 class CustomForm extends React.Component {
 
@@ -40,7 +39,7 @@ onChange = e => {
 
 onSubmit = e => {
   
-  e.preventDefault();
+  //e.preventDefault();
   if(this.props.type == 'add')
   {
   const {name,gender,dob,fath_hus_name,official_mail,personal_mail,aadhar,
@@ -51,6 +50,7 @@ onSubmit = e => {
     pan,mobile_no,residence_ph_no,caste,community,res_address,perm_address,
     website_url};
     
+    console.log(s_info);
     this.props.addStaffinfo(s_info);
   }
 

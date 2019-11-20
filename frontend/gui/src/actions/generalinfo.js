@@ -8,7 +8,7 @@ import{
 //GET STAFF INFO
 export const getStaffinfo = () => (dispatch,getState) => {
 
-    axios.get('http://127.0.0.1:8000/api/staffinfo',tokenConfig(getState))
+    axios.get('http://127.0.0.1:8000/api/staffinfo/',tokenConfig(getState))
     .then(res => {
             dispatch({
                 type: GET_STAFFINFO,
@@ -23,7 +23,7 @@ export const getStaffinfo = () => (dispatch,getState) => {
 //ADD STAFF INFO
 export const addStaffinfo = staffinfo => (dispatch,getState) => {
 
-    axios.post('http://127.0.0.1:8000/api/staffinfo',staffinfo,tokenConfig(getState))
+    axios.post('http://127.0.0.1:8000/api/staffinfo/',staffinfo,tokenConfig(getState))
     .then(res => {
             dispatch({
                 type: ADD_STAFFINFO,

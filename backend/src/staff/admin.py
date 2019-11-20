@@ -1,8 +1,8 @@
 from django.contrib import admin
-from . models import staff_detail
+from . models import staff_detail,qualification
 admin.site.register(staff_detail)
-"""
 admin.site.register(qualification)
+"""
 admin.site.register(area_of_spec_and_mem)
 admin.site.register(employment)
 admin.site.register(publication)

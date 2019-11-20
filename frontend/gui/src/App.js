@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import { HashRouter as Router,Route,Switch,Redirect } from 'react-router-dom'; 
-import BaseRouter from './routes';
+import { BrowserRouter as Router,Route,Switch,Redirect } from 'react-router-dom'; 
 import PrivateRoute from './components/common/PrivateRoute';
 import 'antd/dist/antd.css';
 import { Provider } from 'react-redux';
 import store from './store'
-import Generalinfo from './containers/Generalinfo';
-import Add from './containers/Add';
-import Edit from './containers/Edit';
 import Login from './components/accounts/Login';
 import Register from './components/accounts/Register';
+import Generalinfo from './components/staffinfo/Generalinfo';
+import Add from './components/staffinfo/Add';
+import Edit from './components/staffinfo/Edit';
+//--------------------------------
+import Qualification_View from './components/qualification/Qualification_View';
+import QualiAdd from './components/qualification/Add';
+import QualiEdit from './components/qualification/Edit';
+//--------------------------------
 import { LoadUser } from './actions/auth';
 
 
@@ -25,9 +29,14 @@ class App extends Component {
         <Switch>
         <Route exact path ='/register' component = {Register}/>
         <Route exact path ='/login' component = {Login}/>
+
         <PrivateRoute exact path ='/' component = {Generalinfo}/>
         <PrivateRoute exact path ='/edit' component = {Edit}/>
         <PrivateRoute exact path ='/add' component = {Add}/>
+
+        <PrivateRoute exact path ='/qualification' component = {Qualification_View}/>
+        <PrivateRoute exact path ='/qualification/edit' component = {QualiEdit}/>
+        <PrivateRoute exact path ='/qualification/add' component = {QualiAdd}/>
         </Switch>
         </Router>
       </Provider>

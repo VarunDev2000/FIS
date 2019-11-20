@@ -1,8 +1,9 @@
 from rest_framework.routers import DefaultRouter
-from staff.api.views import StaffinfoViewSet
+from staff.api.views import StaffinfoViewSet,QualificationinfoViewSet
 
 router = DefaultRouter()
-router.register(r'', StaffinfoViewSet, basename='staffinfo')
+router.register(r'staffinfo', StaffinfoViewSet, basename='staffinfo')
+router.register(r'qualification', QualificationinfoViewSet, basename='qualifications')
 urlpatterns = router.urls
 
 
