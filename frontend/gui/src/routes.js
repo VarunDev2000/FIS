@@ -9,6 +9,9 @@ import QualiEdit from './components/qualification/Edit';
 import Specialization_view from './components/area_of_spec/Spec_Mem_view';
 import SpecAdd from './components/area_of_spec/Add';
 import SpecEdit from './components/area_of_spec/Edit';
+import Employment_view from './components/employment/Employment_View';
+import EmpAdd from './components/employment/Add';
+import EmpEdit from './components/employment/Edit';
 
 const BaseRouter = () => (
     <div>
@@ -23,6 +26,10 @@ const BaseRouter = () => (
         <Route exact path ='specialization' component = {Specialization_view}/>
         <Route exact path ='specialization/edit' component = {SpecAdd}/>
         <Route exact path ='specialization/add' component = {SpecEdit}/>
+
+        <Route exact path ='/employment' component = {Employment_view}/>
+        <Route exact path ='/employment/edit' component = {EmpEdit}/>
+        <Route exact path ='/employment/add' component = {EmpAdd}/>
     </div>
 );
 

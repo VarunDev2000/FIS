@@ -1,6 +1,6 @@
 from rest_framework import viewsets,permissions
-from .serializers import staff_detail_serializer,qualification_serializer,spec_and_mem_serializer
-from staff.models import staff_detail,qualification,area_of_spec_and_mem
+from .serializers import staff_detail_serializer,qualification_serializer,spec_and_mem_serializer,employment_serializer
+from staff.models import staff_detail,qualification,area_of_spec_and_mem,employment
 
 class StaffinfoViewSet(viewsets.ModelViewSet):
     
@@ -53,7 +53,21 @@ class Area_of_spec_and_mem_ViewSet(viewsets.ModelViewSet):
         serializer.save(staff = self.request.user)
 
 
+class Employment_ViewSet(viewsets.ModelViewSet):
+    
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    
 
+    serializer_class = employment_serializer
+    
+    def get_queryset(self):
+        return employment.objects.filter(staff = self.request.user)
+        #return staff_detail.objects.all()
+
+    def perform_create(self,serializer):
+        serializer.save(staff = self.request.user)
 
 
 

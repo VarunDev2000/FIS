@@ -196,8 +196,8 @@ onSubmit = e => {
         <div>
           <Form.Item label="EXPERIENCE TYPE">
           <select name="exp_type" required onChange = {this.onChange}>
-            <option value="present">INDUSTRY EXPERIENCE</option>
-            <option value="prev">ACADEMICS/RESEARCH EXPERIENCE</option>
+            <option value="industry">INDUSTRY EXPERIENCE</option>
+            <option value="academics">ACADEMICS/RESEARCH EXPERIENCE</option>
           </select>
           </Form.Item>
           <Form.Item label="DESIGNATION">

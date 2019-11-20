@@ -69,20 +69,20 @@ class area_of_spec_and_mem(models.Model):
         return self.staff.username+"'s Specialization and Membership"
 
 
-"""
+
 class employment(models.Model):
-    staff = models.ForeignKey(User, on_delete=models.CASCADE)
-    designation = models.CharField(max_length=400)
-    from_date = models.DateField()
-    department = models.CharField(max_length=400, default=None)
-    campus = models.CharField(max_length=400, default=None)
-    present_pay = models.IntegerField(default=None)
-    nature_of_app = models.CharField(max_length=400, default=None)
-    position = models.CharField(max_length=400, default=None)
-    position_type = models.CharField(max_length=400, default=None, null=False)
-    institution = models.CharField(max_length=400, default=None)
-    years = models.CharField(max_length=400, default=None)
-    exp_type = models.CharField(max_length=400, default=None, null=False)
+    staff = models.ForeignKey(User, on_delete=models.CASCADE,related_name = "employment",null=True)
+    designation = models.CharField(max_length=400,null=True)
+    from_date = models.DateField( default=None,null=True)
+    department = models.CharField(max_length=400, default=None,null=True)
+    campus = models.CharField(max_length=400, default=None,null=True)
+    present_pay = models.IntegerField(default=None,null=True)
+    nature_of_app = models.CharField(max_length=400, default=None,null=True)
+    position = models.CharField(max_length=400, default=None,null=True)
+    position_type = models.CharField(max_length=400, default=None, null=True)
+    institution = models.CharField(max_length=400, default=None,null=True)
+    years = models.CharField(max_length=400, default=None,null=True)
+    exp_type = models.CharField(max_length=400, default=None, null=True)
     emp_type = models.CharField(max_length=200, default=None, null=False)
 
     class Meta:
@@ -91,7 +91,7 @@ class employment(models.Model):
     def __str__(self):
         return self.staff.username+"'s Emp Details"
 
-
+"""
 class publication(models.Model):
     staff = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=800, null=False)

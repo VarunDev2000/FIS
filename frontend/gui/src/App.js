@@ -18,6 +18,10 @@ import Specialization_view from './components/area_of_spec/Spec_Mem_view';
 import SpecAdd from './components/area_of_spec/Add';
 import SpecEdit from './components/area_of_spec/Edit';
 //--------------------------------
+import Employment_view from './components/employment/Employment_View';
+import EmpAdd from './components/employment/Add';
+import EmpEdit from './components/employment/Edit';
+//--------------------------------
 import { LoadUser } from './actions/auth';
 
 
@@ -45,6 +49,11 @@ class App extends Component {
         <PrivateRoute exact path ='/specialization' component = {Specialization_view}/>
         <PrivateRoute exact path ='/specialization/edit' component = {SpecEdit}/>
         <PrivateRoute exact path ='/specialization/add' component = {SpecAdd}/>
+
+        <PrivateRoute exact path ='/employment' component = {Employment_view}/>
+        <PrivateRoute exact path ='/employment/edit' component = {EmpEdit}/>
+        <PrivateRoute exact path ='/employment/add' component = {EmpAdd}/>
+        
         </Switch>
         </Router>
       </Provider>

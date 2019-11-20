@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from staff.models import staff_detail,qualification,area_of_spec_and_mem
+from staff.models import staff_detail,qualification,area_of_spec_and_mem,employment
 
 
 class staff_detail_serializer(serializers.ModelSerializer):
@@ -16,3 +16,9 @@ class spec_and_mem_serializer(serializers.ModelSerializer):
     class Meta:
         model = area_of_spec_and_mem
         fields = '__all__'
+
+class employment_serializer(serializers.ModelSerializer):
+    class Meta:
+        model = employment
+        fields = '__all__'
+

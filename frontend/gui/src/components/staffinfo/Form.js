@@ -39,7 +39,7 @@ onChange = e => {
 
 onSubmit = e => {
   
-  //e.preventDefault();
+  e.preventDefault();
   if(this.props.type == 'add')
   {
   const {name,gender,dob,fath_hus_name,official_mail,personal_mail,aadhar,
