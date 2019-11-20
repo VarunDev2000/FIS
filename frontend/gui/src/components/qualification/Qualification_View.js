@@ -16,7 +16,7 @@ class Qualification_view extends React.Component{
     qualification:{},
     length : -1,
     redirect : false
-}
+  }
 
 
     setRedirect = () => {
@@ -44,49 +44,60 @@ class Qualification_view extends React.Component{
 
     render(){
       var numRows = 0;
-      const render = this.props.qualification.map(ginfo => 
-        (numRows++)
-        );
+      const render = this.props.qualification.map(quali => 
+        (numRows++) );
+
     return (
-       numRows == 0 ? (
+      <div>
+      <CustomLayout>
+
+      {
+      numRows == 0 ? (
                   <div>
-                  <CustomLayout>
-                  {this.renderRedirect('add')}
-                  <Button type="primary" onClick={this.setRedirect}>Add Qualifications</Button>
-                  </CustomLayout>
                   </div>
       ) : (
-
-      this.props.qualification.map(ginfo => (
-              <div>
-              <CustomLayout>
-              <Descriptions title="QUALIFICATIONS" bordered>
-              <Descriptions.Item label="NAME" span={3}>{ ginfo.name }</Descriptions.Item>   
-              <Descriptions.Item label="GENDER" span={3}>{ ginfo.gender }</Descriptions.Item>
-              <Descriptions.Item label="DOB" span={3}>{ ginfo.dob }</Descriptions.Item>
-              <Descriptions.Item label="FATHER/HUSBAND NAME" span={3}>{ginfo.fath_hus_name}</Descriptions.Item>
-              <Descriptions.Item label="OFFICIAL MAIL" span={3}>{ginfo.official_mail}</Descriptions.Item>
-              <Descriptions.Item label="PERSONAL MAIL" span={3}>{ginfo.personal_mail}</Descriptions.Item>
-              <Descriptions.Item label="AADHAR NO" span={3}>{ginfo.aadhar}</Descriptions.Item>
-              <Descriptions.Item label="PAN" span={3}>{ginfo.pan}</Descriptions.Item>
-              <Descriptions.Item label="MOBILE NO" span={3}>{ginfo.mobile_no}</Descriptions.Item>
-              <Descriptions.Item label="RESIDENCE PHONE NO" span={3}>{ginfo.residence_ph_no}</Descriptions.Item>
-              <Descriptions.Item label="CASTE" span={3}>{ginfo.caste}</Descriptions.Item>
-              <Descriptions.Item label="COMMUNITY" span={3}>{ginfo.community}</Descriptions.Item>
-              <Descriptions.Item label="RESIDENTIAL ADDRESS" span={3}>{ginfo.res_address}</Descriptions.Item>               
-              <Descriptions.Item label="PERMANENT ADDRESS" span={3}>{ginfo.perm_address}</Descriptions.Item>
-              <Descriptions.Item label="WEBSITE" span={3}>{ginfo.website_url}</Descriptions.Item>
-           
-              </Descriptions>
-                    
-            <br /><br/>
-
-            {this.renderRedirect('add')}
-            <Button type="primary" onClick={this.setRedirect}>Add Qualifications</Button>
-            </CustomLayout>
+        this.props.qualification.map(quali => (
+          quali.degree_type == "ug_pg" ? ( 
+          <div>
+            <Descriptions title="UG/PG" bordered>
+            <Descriptions.Item label="LEVEL" span={3}>{ quali.level }</Descriptions.Item>   
+            <Descriptions.Item label="DEGREE" span={3}>{ quali.degree }</Descriptions.Item>
+            <Descriptions.Item label="BRANCH" span={3}>{ quali.branch }</Descriptions.Item>
+            <Descriptions.Item label="INSTITUTION" span={3}>{quali.institution}</Descriptions.Item>
+            <Descriptions.Item label="UNIVERSITY" span={3}>{quali.university}</Descriptions.Item>
+            <Descriptions.Item label="DURATION" span={3}>{quali.duration}</Descriptions.Item>
+            <Descriptions.Item label="CLASS OBTAINED" span={3}>{quali.class_obtained}</Descriptions.Item>
+            </Descriptions>
+          <br /><br/>
+          </div>
+          )  :  ( 
+          <div>
+                <Descriptions title="RESEARCH" bordered>
+                <Descriptions.Item label="DEGREE" span={3}>{ quali.degree }</Descriptions.Item>   
+                <Descriptions.Item label="TITLE OF THESIS" span={3}>{ quali.title_of_thesis }</Descriptions.Item>
+                <Descriptions.Item label="RESEARCH AREA" span={3}>{ quali.research_area }</Descriptions.Item>
+                <Descriptions.Item label="FACULTY" span={3}>{quali.faculty}</Descriptions.Item>
+                <Descriptions.Item label="DEPARTMENT" span={3}>{quali.department}</Descriptions.Item>
+                <Descriptions.Item label="INSTITUTION" span={3}>{quali.institution}</Descriptions.Item>
+                <Descriptions.Item label="UNIVERSITY" span={3}>{quali.university}</Descriptions.Item>
+                <Descriptions.Item label="DURATION" span={3}>{quali.duration}</Descriptions.Item>
+                <Descriptions.Item label="VIVA" span={3}>{quali.viva}</Descriptions.Item>       
+                </Descriptions>
+                      
+              <br /><br/>
             </div>
-      ))
+          )
+               
+        )
       )
+      )
+
+      }
+
+      {this.renderRedirect('add')}
+      <Button type="primary" onClick={this.setRedirect}>Add Qualifications</Button>
+      </CustomLayout>
+      </div>
     );
       
     }

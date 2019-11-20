@@ -30,13 +30,15 @@ export class CustomLayout extends React.Component{
                         <Menu.Item key="1" onClick=""><strong>{ user ? `Welcome ${user.username}`:"" }</strong></Menu.Item>
                         <Menu.Item key="2"><Link to="/">PERSONAL INFO</Link></Menu.Item>
                         <Menu.Item key="3"><Link to="/qualification">QUALIFICATION</Link></Menu.Item>
-                        <Menu.Item key="4" style={{float: 'right'}} onClick= {this.props.logout} >Logout</Menu.Item>
+                        <Menu.Item key="4"><Link to="/specialization">SPECIALIZATION & MEMBERSHIPS</Link></Menu.Item>
+                        <Menu.Item key="5" style={{float: 'right'}} onClick= {this.props.logout} >Logout</Menu.Item>
                     </Menu>
                 </Header>
                 <Content style={{ padding: '0 50px' }}>
                 <Breadcrumb style={{ margin: '16px 0' }}>
                     <Breadcrumb.Item><Link to ='/'>Home</Link></Breadcrumb.Item>
                     <Breadcrumb.Item><Link to ='/qualification'>Qualifications</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to ='/specialization'>Specialization & Memberships</Link></Breadcrumb.Item>
                 </Breadcrumb>
                     <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
                         {this.props.children} 
