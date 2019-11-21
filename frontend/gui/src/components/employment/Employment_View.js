@@ -45,109 +45,217 @@ class Employment_view extends React.Component{
     render(){
       var n = 0;
 
-      var spec_count = 0;
-      this.props.employment.map(s_m =>
+      var present_count = 0;
+      var prev_count = 0;
+      var present_add_count = 0;
+      var prev_add_count = 0;
+
+      var oth_count = 0;
+      var industry_count = 0;
+      var academics_count = 0;
+
+      this.props.employment.map(emp =>
         (
-          s_m.spec_mem_type == "spec" ? (spec_count++) : (spec_count = spec_count)
+          emp.emp_type == "univ" ? (emp.position_type == "present" ? (present_count++,n++) 
+          : (emp.position_type == "prev" ? (prev_count++,n++) : 
+            (emp.position_type == "present_add" ? (present_add_count++,n++) : 
+            (emp.position_type == "prev_add" ? (prev_add_count++,n++):(n = n))))) : 
+            (emp.exp_type == "industry" ? (industry_count++,oth_count++) : (emp.exp_type == "academics") ? 
+            (academics_count++,oth_count++) : (n = n))
         )
         );
-
-      spec_count > 0 ? (n++):(n = n);
-
-      var mem_count = 0;
-      this.props.employment.map(s_m =>
-        (
-          s_m.spec_mem_type == "mem" ? (mem_count++) : (mem_count = mem_count)
-        )
-        );
-
-      mem_count > 0 ? (n++):(n = n);
-      console.log(n);
 
     return (
       <div>
       <CustomLayout>
 
       {
-      n == 0 ? (
-                  <div>
-                  </div>
-      ) : (
-        n == 1 ? (
-        spec_count > 0 ? (
-          <div>
-            <Descriptions title="AREA OF SPECIALIZATION" bordered></Descriptions>
-            <br/>
-            {
-            this.props.employment.map(s_m => (
-              s_m.spec_mem_type == "spec" ?(
-              <div>
-              <Descriptions.Item span={3}>{ s_m.area_name }</Descriptions.Item>
-              <br/><br/>
-              </div>) : (null)
-              ))
-            }
-            <br/><br/>   
-          </div>
-               
-        ) : (
-          <div>
-          <Descriptions title="MEMBERSHIP OF PROFESSIONAL BODIES" bordered></Descriptions>
-          <br/>
-          {
-          this.props.employment.map(s_m => (
-            s_m.spec_mem_type == "mem" ?(
-            <div>
-            <Descriptions.Item span={3}>{ s_m.mem }</Descriptions.Item>
-            <br/><br/>
-            </div>) : (null)
-            ))
-          }
-          <br/><br/>   
+      n > 0 ? (
+        <div> 
+        <hr/>
+        <u><h2>UNIVERSITY EMPLOYMENT DETAILS</h2></u>
+        <hr/> 
+      {  
+      present_count > 0 ? (
+        <div>
+        <h4>PRESENT POSITIONS</h4>
+        <br/>
+        {
+        this.props.employment.map(emp => (
+        emp.position_type == "present" ? ( 
+        <div>
+        <Descriptions bordered>
+        <Descriptions.Item label="DESIGNATION" span={3}>{ emp.designation }</Descriptions.Item>   
+        <Descriptions.Item label="FROM" span={3}>{ emp.from_date }</Descriptions.Item>
+        <Descriptions.Item label="DEPARTMENT/CENTRE" span={3}>{ emp.department }</Descriptions.Item>
+        <Descriptions.Item label="CAMPUS" span={3}>{emp.campus}</Descriptions.Item>
+        <Descriptions.Item label="PRESENT PAY" span={3}>{emp.present_pay}</Descriptions.Item>
+        <Descriptions.Item label="NATURE OF APPOINTMENT" span={3}>{emp.nature_of_app}</Descriptions.Item>       
+        </Descriptions>
+        <br/>
         </div>
-        )) :
-
-        (
-          <div>
-          <Descriptions title="AREA OF SPECIALIZATION" bordered></Descriptions>
-          <br/>
-          {
-          this.props.employment.map(s_m => (
-            s_m.spec_mem_type == "spec" ?(
-            <div>
-            <Descriptions.Item span={3}>{ s_m.area_name }</Descriptions.Item>
-            <br/><br/>
-            </div>) : (null)
-            ))
-          }
-          <br/><br/>   
-          <Descriptions title="MEMBERSHIP OF PROFESSIONAL BODIES" bordered></Descriptions>
-          <br/>
-          {
-          this.props.employment.map(s_m => (
-            s_m.spec_mem_type == "mem" ?(
-            <div>
-            <Descriptions.Item span={3}>{ s_m.mem }</Descriptions.Item>
-            <br/><br/>
-            </div>) : (null)
-            ))
-          }
-          <br/><br/>   
-        </div>
+        ) : (null)
+        ))
+        }
         
-        )
-      )
+        <hr/>
+        <br/>
+        </div>
+        ) : (null)  
       }
+      
+      {
+      prev_count > 0 ? (
+        <div>
+        <h4>PREVIOUS POSITIONS</h4>
+        <br/>
+        {
+        this.props.employment.map(emp => (
+        emp.position_type == "prev" ? ( 
+        <div>
+        <Descriptions bordered>
+        <Descriptions.Item label="DESIGNATION" span={3}>{ emp.designation }</Descriptions.Item>   
+        <Descriptions.Item label="FROM" span={3}>{ emp.from_date }</Descriptions.Item>
+        <Descriptions.Item label="TO" span={3}>{ emp.to_date }</Descriptions.Item>
+        <Descriptions.Item label="DEPARTMENT/CENTRE" span={3}>{ emp.department }</Descriptions.Item>
+        <Descriptions.Item label="CAMPUS" span={3}>{emp.campus}</Descriptions.Item>
+        <Descriptions.Item label="PRESENT PAY" span={3}>{emp.present_pay}</Descriptions.Item>
+        <Descriptions.Item label="NATURE OF APPOINTMENT" span={3}>{emp.nature_of_app}</Descriptions.Item>       
+        </Descriptions>
+        <br/>
+        </div>
+        ) : (null)
+        ))
+        }
 
+        <hr/>
+        <br/>
+        </div>
+      
+      ) : (null)  
+      }
+      {
+      present_add_count > 0 ? (
+
+       <div>
+        <h4>PRESENT ADDITIONAL POSITIONS</h4>
+        <br/>
+        {
+        this.props.employment.map(emp => (
+        emp.position_type == "present_add" ? ( 
+        <div>
+        <Descriptions bordered>
+        <Descriptions.Item label="POSITION" span={3}>{ emp.position }</Descriptions.Item>   
+        <Descriptions.Item label="DEPARTMENT/CENTRE" span={3}>{ emp.department }</Descriptions.Item>
+        </Descriptions>
+        <br/>
+        </div>
+        ) : (null)
+        ))
+        }
+        
+        <hr/>
+        <br/>
+        </div>
+      
+      ) : (null)  
+      }
+      {
+      prev_add_count > 0 ? (
+
+        <div>
+        <h4>PREVIOUS ADDITIONAL POSITIONS</h4>
+        <br/>
+        {
+        this.props.employment.map(emp => (
+        emp.position_type == "prev_add" ? ( 
+        <div>
+        <Descriptions bordered>
+        <Descriptions.Item label="POSITION" span={3}>{ emp.position }</Descriptions.Item>   
+        <Descriptions.Item label="DEPARTMENT/CENTRE" span={3}>{ emp.department }</Descriptions.Item>
+        </Descriptions>
+        <br/>
+        </div>
+        ) : (null)
+        ))
+        }
+        
+        <hr/>
+        <br/>
+        </div>
+      
+      ) : (<h1></h1>)
+      }
+      </div>
+      ) : (null)
+    }
+
+    {
+    oth_count > 0 ? (
+    <div> 
+    <hr/>
+    <u><h2>OTHER EMPLOYMENT DETAILS</h2></u>
+    <hr/>
+    {
+    industry_count > 0 ? ( 
+    <div>
+    <h4>INDUSTRY EXPERIENCE</h4>
+    <br/>
+    {
+    this.props.employment.map(emp => (
+    emp.exp_type == "industry" ? (
+    <div>
+    <Descriptions bordered>
+    <Descriptions.Item label="DESIGNATION" span={3}>{ emp.designation }</Descriptions.Item>   
+    <Descriptions.Item label="INSTITUTION" span={3}>{ emp.institution }</Descriptions.Item>
+    <Descriptions.Item label="YEARS" span={3}>{ emp.years }</Descriptions.Item>
+    </Descriptions>
+    <br/>
+    </div>
+    ) : (null)
+    ))
+    }
+    </div>
+    ) : (null)
+    }
+
+    {
+    academics_count > 0 ? ( 
+    <div>
+    <h4>ACADEMICS/RESEARCH EXPERIENCE</h4>
+    <br/>
+    {
+    this.props.employment.map(emp => (
+    emp.exp_type == "academics" ? (
+    <div>
+    <Descriptions bordered>
+    <Descriptions.Item label="DESIGNATION" span={3}>{ emp.designation }</Descriptions.Item>   
+    <Descriptions.Item label="INSTITUTION" span={3}>{ emp.institution }</Descriptions.Item>
+    <Descriptions.Item label="YEARS" span={3}>{ emp.years }</Descriptions.Item>
+    </Descriptions>
+    <br/>
+    </div>
+    ) : (null)
+    ))
+    }
+    </div>
+    ) : (null)
+    }
+
+    </div>
+    ) : (null)
+    }
+    
+
+    
       {this.renderRedirect('add')}
       <Button type="primary" onClick={this.setRedirect}>Add Employment information</Button>
       </CustomLayout>
       </div>
-      
     );
-      
     }
-}
+  }
+
 
 const mapStateToProps = state => ({
   employment: state.employment.employment

@@ -48,7 +48,7 @@ position_dropdown = e => {
     [e.target.name]: e.target.value
   });
 
-  this.setState({position_form: e.target.value});
+  this.setState({univ_emp_form: e.target.value});
 }
 
 
@@ -57,15 +57,34 @@ onSubmit = e => {
   e.preventDefault();
   if(this.state.emp_form == 'univ')
   {
+    console.log(this.state.univ_emp_form);
     if(this.state.univ_emp_form == "present")
     {
-      const {name,gender,dob,fath_hus_name,official_mail,personal_mail,aadhar,
-        pan,mobile_no,residence_ph_no,caste,community,res_address,perm_address,
-        website_url} = this.state;
+      const {designation,from_date,department,campus,present_pay,nature_of_app,position_type,emp_type} = this.state;
     
-      const emp_info = {name,gender,dob,fath_hus_name,official_mail,personal_mail,aadhar,
-        pan,mobile_no,residence_ph_no,caste,community,res_address,perm_address,
-        website_url};
+      const emp_info = {designation,from_date,department,campus,present_pay,nature_of_app,position_type,emp_type};
+
+          
+      console.log(emp_info);
+      this.props.addEmployment(emp_info);
+    }
+
+    else if(this.state.univ_emp_form == "prev")
+    {
+      const {designation,from_date,to_date,department,campus,present_pay,nature_of_app,position_type,emp_type} = this.state;
+    
+      const emp_info = {designation,from_date,to_date,department,campus,present_pay,nature_of_app,position_type,emp_type};
+
+          
+      console.log(emp_info);
+      this.props.addEmployment(emp_info);
+    }
+
+    else if(this.state.univ_emp_form == "present_add" || this.state.univ_emp_form == "prev_add")
+    {
+      const {department,position,position_type,emp_type} = this.state;
+    
+      const emp_info = {department,position,position_type,emp_type};
 
           
       console.log(emp_info);
@@ -75,9 +94,9 @@ onSubmit = e => {
   }
     else if(this.state.emp_form == "oth")
     {
-      const {designation,department,years,emp_type,exp_type} = this.state;
+      const {designation,institution,years,emp_type,exp_type} = this.state;
     
-      const emp_info = {designation,department,years,emp_type,exp_type};
+      const emp_info = {designation,institution,years,emp_type,exp_type};
 
           
       console.log(emp_info);
@@ -91,7 +110,7 @@ onSubmit = e => {
 
   render() {
     const emp = this.state.emp_form;
-    const pos = this.state.position_form;
+    const pos = this.state.univ_emp_form;
 
     return (
       <div>
@@ -112,7 +131,7 @@ onSubmit = e => {
           <option value="present">PRESENT POSITION</option>
           <option value="prev">PREVIOUS POSITION</option>
           <option value="present_add">PRESENT ADDITIONAL RESPONSIBILITY</option>
-          <option value="prev_add">PAST ADDITIONAL RESPONSIBILITY</option>
+          <option value="prev_add">PREVIOUS ADDITIONAL RESPONSIBILITY</option>
         </select><br/><br/>
         {
         pos == "present" ? (
@@ -204,7 +223,7 @@ onSubmit = e => {
           <Input name = "designation" placeholder="Enter designation" required onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="INSTITUTION">
-            <Input name = "department" placeholder="Enter institution" required onChange = {this.onChange} />
+            <Input name = "institution" placeholder="Enter institution" required onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="YEARS">
             <Input name = "years" placeholder="Enter years" required onChange = {this.onChange} />
