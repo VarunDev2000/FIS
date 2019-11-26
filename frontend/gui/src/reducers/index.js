@@ -4,6 +4,14 @@ import generalinfo from './generalinfo';
 import qualification from './qualification';
 import specialization from './specialization';
 import employment from './employment';
+import publication from './publication';
+import csw from './csw';
+import project from './project';
+import invited_lectures from './invited_lectures';
+import experience_abroad from './experience_abroad';
+import book_published from './book_published';
+import eao_programme from './eao_programme';
+
 
 export default combineReducers({
     auth,
@@ -11,4 +19,11 @@ export default combineReducers({
     qualification,
     specialization,
     employment,
+    publication,
+    csw,
+    project,
+    invited_lectures,
+    experience_abroad,
+    book_published,
+    eao_programme,
 });

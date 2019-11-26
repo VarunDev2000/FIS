@@ -60,10 +60,6 @@ onSubmit = e => {
 }
 
   render() {
-    const {name,gender,dob,fath_hus_name,official_mail,personal_mail,aadhar,
-    pan,mobile_no,residence_ph_no,caste,community,res_address,perm_address,
-    website_url} = this.state;
-
     return (
       <div>
         <CustomLayout>

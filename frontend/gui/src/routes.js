@@ -12,6 +12,21 @@ import SpecEdit from './components/area_of_spec/Edit';
 import Employment_view from './components/employment/Employment_View';
 import EmpAdd from './components/employment/Add';
 import EmpEdit from './components/employment/Edit';
+import Publication_view from './components/publication/Publication_View';
+import PubliAdd from './components/publication/Add';
+import PubliEdit from './components/publication/Edit';
+import CSW_view from './components/csw/CSW_view';
+import CSWAdd from './components/csw/Add';
+import CSWEdit from './components/csw/Edit';
+import Project_view from './components/project/Project_view';
+import ProAdd from './components/project/Add';
+import ProEdit from './components/project/Edit';
+import LecAdd from './components/invited_lectures/Add';
+import ExpAdd from './components/experience_abroad/Add';
+import BookPubliAdd from './components/book_published/Add';
+import EAOAdd from './components/eao_programme/Add';
+
+
 
 const BaseRouter = () => (
     <div>
@@ -30,6 +45,26 @@ const BaseRouter = () => (
         <Route exact path ='/employment' component = {Employment_view}/>
         <Route exact path ='/employment/edit' component = {EmpEdit}/>
         <Route exact path ='/employment/add' component = {EmpAdd}/>
+
+        <Route exact path ='/publication' component = {Publication_view}/>
+        <Route exact path ='/publication/edit' component = {PubliEdit}/>
+        <Route exact path ='/publication/add' component = {PubliAdd}/>
+
+        <Route exact path ='/csw' component = {CSW_view}/>
+        <Route exact path ='/csw/edit' component = {CSWEdit}/>
+        <Route exact path ='/csw/add' component = {CSWAdd}/>
+
+        <Route exact path ='/project' component = {Project_view}/>
+        <Route exact path ='/project/edit' component = {ProEdit}/>
+        <Route exact path ='/project/add' component = {ProAdd}/>
+
+        <Route exact path ='/invited_lectures/add' component = {LecAdd}/>
+
+        <Route exact path ='/experience_abroad/add' component = {ExpAdd}/>
+
+        <Route exact path ='/book_published/add' component = {BookPubliAdd}/>
+
+        <Route exact path ='/eao_programme/add' component = {EAOAdd}/>
     </div>
 );
 

@@ -1,0 +1,124 @@
+import React from 'react';
+import { Form, Input, Button } from 'antd';
+import CustomLayout from '../Layout';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types'; 
+import { addCSW } from '../../actions/csw';
+
+class CustomForm extends React.Component {
+
+  state = {
+    csw_form : null,
+    redirect : false,
+    title: '',
+    type_name: '',
+    level: '',
+    country: '',
+    csw_type: '',
+}
+
+static propTypes = {
+  addCSW: PropTypes.func.isRequired
+}
+
+onChange = e => {
+  this.setState({
+    [e.target.name]: e.target.value
+  });
+}
+
+dropdown = e => {
+  this.setState({
+    [e.target.name]: e.target.value
+  });
+  this.setState({csw_form: e.target.value});
+}
+
+onSubmit = e => {
+  
+  e.preventDefault();
+  if(this.props.type == 'add' && (this.state.csw_form == 'organized' || this.state.csw_form == 'cha_co-cha'))
+  {
+    const {title,type_name,level,csw_type} = this.state;
+
+  const csw_info = {title,type_name,level,csw_type}
+    
+  console.log(csw_info);
+    this.props.addCSW(csw_info);
+  }
+
+  else if(this.props.type == 'add' && this.state.csw_form == 'paper')
+  {
+    const {title,type_name,country,csw_type} = this.state;
+
+    const csw_info = {title,type_name,country,csw_type}
+
+    console.log(csw_info);
+    this.props.addCSW(csw_info);
+  }
+
+  else{
+    console.log("submit");
+  }
+}
+
+  render() {
+    const cswtype = this.state.csw_form;
+    return (
+      <div>
+        <CustomLayout>
+        <Form onSubmit ={this.onSubmit}>
+
+        <select name="csw_type" onChange = {this.dropdown}>
+            <option disabled selected value> -- select an option -- </option>
+            <option value="organized">ORGANIZED</option>
+            <option value="cha_co-cha">CHAIRED/CO-CHAIRED</option>
+            <option value="paper">PAPER PRESENTED</option>
+        </select><br/><br/>
+
+        {
+        cswtype == 'organized' || cswtype == 'cha_co-cha' ? (
+          <div>
+          <Form.Item label="TITLE">
+          <Input name = "title" placeholder="Enter Title" required onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item label="TYPE">
+          <Input name = "type_name" placeholder="Enter Type Name" required onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item label="LEVEL">
+          <Input name = "level" placeholder="Enter Level" required onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item>
+          <Button type="primary" htmlType = "submit">{this.props.btnText}</Button>
+          </Form.Item>
+          </div>
+        ) : (
+        cswtype == 'paper' ? (
+          <div>
+          <Form.Item label="TITLE">
+          <Input name = "title" placeholder="Enter Title" required onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item label="TYPE">
+          <Input name = "type_name" placeholder="Enter Type Name" required onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item label="COUNTRY">
+          <Input name = "country" placeholder="Enter Country Name" required onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item>
+          <Button type="primary" htmlType = "submit">{this.props.btnText}</Button>
+          </Form.Item>
+          </div>
+        ) : (
+          <h1></h1>
+        )) 
+        }
+
+        </Form>
+        </CustomLayout>
+      </div>
+    );
+  }
+}
+
+
+export default connect(null,{ addCSW })(CustomForm);
