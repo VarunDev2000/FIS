@@ -12,10 +12,11 @@ book_published,ext_and_outreach_prog
 
 
 class StaffinfoViewSet(viewsets.ModelViewSet):
-    
+
     permission_classes = [
         permissions.IsAuthenticated
     ]
+
     
 
     serializer_class = staff_detail_serializer

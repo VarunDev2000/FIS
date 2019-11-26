@@ -25,9 +25,12 @@ class Generalinfo extends React.Component{
       })
     }
 
-    renderRedirect = (type) => {
+    renderRedirect = (type,id) => {
       if (this.state.redirect && type === 'edit') {
-        return <Redirect to = '/edit' />
+        return <Redirect to = {{
+        pathname : '/edit',
+        state : { id : id}
+      }} />
       }
 
       else if (this.state.redirect && type === 'add') {
@@ -76,12 +79,11 @@ class Generalinfo extends React.Component{
               <Descriptions.Item label="RESIDENTIAL ADDRESS" span={3}>{ginfo.res_address}</Descriptions.Item>               
               <Descriptions.Item label="PERMANENT ADDRESS" span={3}>{ginfo.perm_address}</Descriptions.Item>
               <Descriptions.Item label="WEBSITE" span={3}>{ginfo.website_url}</Descriptions.Item>
-           
               </Descriptions>
                     
             <br /><br/>
 
-            {this.renderRedirect('edit')}
+            {this.renderRedirect('edit',ginfo.id)}
             <Button type="primary" onClick={this.setRedirect}>EDIT</Button>
             </CustomLayout>
             </div>
