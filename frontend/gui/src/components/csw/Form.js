@@ -15,6 +15,8 @@ class CustomForm extends React.Component {
     level: '',
     country: '',
     csw_type: '',
+    pdf: '',
+    file : null,
 }
 
 static propTypes = {
@@ -34,6 +36,57 @@ dropdown = e => {
   this.setState({csw_form: e.target.value});
 }
 
+onFileChange = e => {
+  this.setState({
+    file : e.target.files[0]
+  });
+}
+
+
+onSubmit = (e) => {
+  //e.preventDefault();
+
+  if(this.props.type == 'add' && (this.state.csw_form == 'organized' || this.state.csw_form == 'cha_co-cha'))
+  {
+  let form_data = new FormData();
+  form_data.append('pdf', this.state.file, this.state.file.name);
+  form_data.append('title', this.state.title);
+  form_data.append('type_name', this.state.type_name);
+  form_data.append('level', this.state.level);
+  form_data.append('csw_type', this.state.csw_type);
+  
+  //display values in console
+  for (var pair of form_data.entries()) {
+    console.log(pair[0]+ ' : ' + pair[1]); 
+  }
+
+  this.props.addCSW(form_data);
+  }
+
+  else if(this.props.type == 'add' && this.state.csw_form == 'paper')
+  {
+    let form_data = new FormData();
+    form_data.append('pdf', this.state.file, this.state.file.name);
+    form_data.append('title', this.state.title);
+    form_data.append('type_name', this.state.type_name);
+    form_data.append('country', this.state.country);
+    form_data.append('csw_type', this.state.csw_type);
+    
+    //display values in console
+    for (var pair of form_data.entries()) {
+      console.log(pair[0]+ ' : ' + pair[1]); 
+    }
+  
+    this.props.addCSW(form_data);
+  }
+
+  else{
+    console.log("submit");
+  }
+
+};
+
+/*
 onSubmit = e => {
   
   e.preventDefault();
@@ -61,7 +114,7 @@ onSubmit = e => {
     console.log("submit");
   }
 }
-
+*/
   render() {
     const cswtype = this.state.csw_form;
     return (
@@ -88,6 +141,9 @@ onSubmit = e => {
           <Form.Item label="LEVEL">
           <Input name = "level" placeholder="Enter Level" required onChange = {this.onChange} />
           </Form.Item>
+          <Form.Item label="FILE">
+            <input type="file" name="pdf" accept="application/pdf" required onChange = {this.onFileChange}></input>
+          </Form.Item>
           <Form.Item>
           <Button type="primary" htmlType = "submit">{this.props.btnText}</Button>
           </Form.Item>
@@ -103,6 +159,9 @@ onSubmit = e => {
           </Form.Item>
           <Form.Item label="COUNTRY">
           <Input name = "country" placeholder="Enter Country Name" required onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item label="FILE">
+            <input type="file" name="pdf" accept="application/pdf" required onChange = {this.onFileChange}></input>
           </Form.Item>
           <Form.Item>
           <Button type="primary" htmlType = "submit">{this.props.btnText}</Button>

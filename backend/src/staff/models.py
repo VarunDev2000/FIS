@@ -3,6 +3,7 @@ from phone_field import PhoneField
 from django import forms
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.core.validators import FileExtensionValidator
 
 
 class staff_detail(models.Model):
@@ -97,6 +98,8 @@ class publication(models.Model):
     title = models.CharField(max_length=800, null=False)
     level = models.CharField(max_length=400, null=False)
     year = models.IntegerField(null=False)
+    pdf = models.FileField(upload_to='publications',max_length=400,
+    default=None,null=False,validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
 
     class Meta:
         verbose_name_plural = "Publications"
@@ -112,6 +115,9 @@ class csw(models.Model):
     level = models.CharField(max_length=400,default=None,null=True)
     country = models.CharField(max_length=400,default=None,null=True)
     csw_type = models.CharField(max_length=400, null=False)
+    pdf = models.FileField(upload_to='csw',max_length=400,
+    default=None,null=False,validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
+
 
     class Meta:
         verbose_name_plural = "Conference/Seminar/Workshop"
@@ -127,6 +133,9 @@ class project(models.Model):
     funding_agent = models.CharField(max_length=400,default=None,null=False)
     amt = models.IntegerField(default=None,null=False)
     pro_type = models.CharField(max_length=800,default=None,null=False)
+    pdf = models.FileField(upload_to='project',max_length=400,
+    default=None,null=False,validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
+
 
     class Meta:
         verbose_name_plural = "Projects"

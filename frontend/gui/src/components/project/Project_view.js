@@ -25,6 +25,11 @@ class Project_view extends React.Component{
       })
     }
 
+    popPDF(url) {
+      var ref = window.open(url,"thePop","menubar=1,resizable=1,scrollbars=1,status=1,height=1920,width=1020,top=0")
+      ref.focus();
+    }
+
     renderRedirect = (type) => {
       if (this.state.redirect && type === 'edit') {
         return <Redirect to = '/project/edit' />
@@ -78,6 +83,9 @@ class Project_view extends React.Component{
             <Descriptions.Item label="PROJECT TITLE" span={3}>{ pro.pro_title }</Descriptions.Item>   
             <Descriptions.Item label="FUNDING AGENT" span={3}>{ pro.funding_agent }</Descriptions.Item>
             <Descriptions.Item label="AMOUNT" span={3}>{ pro.amt }</Descriptions.Item>
+            <Descriptions.Item label="PDF" >
+              <Button span={3} target="ref" onClick={() => this.popPDF(pro.pdf)}>View</Button>
+            </Descriptions.Item>
             </Descriptions>
           <br /><br/>
           </div>
@@ -101,6 +109,9 @@ class Project_view extends React.Component{
             <Descriptions.Item label="PROJECT TITLE" span={3}>{ pro.pro_title }</Descriptions.Item>   
             <Descriptions.Item label="FUNDING AGENT" span={3}>{ pro.funding_agent }</Descriptions.Item>
             <Descriptions.Item label="AMOUNT" span={3}>{ pro.amt }</Descriptions.Item>
+            <Descriptions.Item label="PDF" >
+              <Button span={3} target="ref" onClick={() => this.popPDF(pro.pdf)}>View</Button>
+            </Descriptions.Item>
             </Descriptions>
           <br /><br/>
           </div>

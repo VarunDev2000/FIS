@@ -49,6 +49,7 @@ class App extends Component {
   componentDidMount(){
     store.dispatch(LoadUser());
   };  
+
   render(){
   return (
     <div className="App">

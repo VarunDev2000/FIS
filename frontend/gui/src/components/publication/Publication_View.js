@@ -25,6 +25,24 @@ class Publication_view extends React.Component{
       })
     }
 
+    viewPDF = (fileURL) => {
+      setTimeout(() => {
+        const response = {
+          file: fileURL
+        };
+        window.open(response.file, 'Download');  
+      }, 100);
+    }
+
+
+     popPDF(url) {
+      var ref = window.open(url,"thePop","menubar=1,resizable=1,scrollbars=1,status=1,height=1920,width=1020,top=0")
+      ref.focus();
+    }
+    
+
+
+
     renderRedirect = (type) => {
       if (this.state.redirect && type === 'edit') {
         return <Redirect to = '/publication/edit' />
@@ -62,10 +80,13 @@ class Publication_view extends React.Component{
         {
         this.props.publication.map(publi => (
           <div>
+            {console.log(publi.pdf)}
                 <Descriptions bordered>
                 <Descriptions.Item label="TITLE" span={3}>{ publi.title }</Descriptions.Item>   
                 <Descriptions.Item label="LEVEL" span={3}>{ publi.level }</Descriptions.Item>
                 <Descriptions.Item label="YEAR" span={3}>{ publi.year }</Descriptions.Item>
+                <Descriptions.Item label="PDF" >
+                  <Button span={3} target="ref" onClick={() => this.popPDF(publi.pdf)}>View</Button></Descriptions.Item>
                 </Descriptions>
                 <br /><br/>
           </div>

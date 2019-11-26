@@ -8,6 +8,7 @@ import {
     REGISTER_SUCCESS,
     REGISTER_FAIL
 } from '../actions/types'
+import {setTokenTime} from '../components/common/setLocalStorageTime'
 
 const initialstate = {
     token : localStorage.getItem('token'),
@@ -36,6 +37,7 @@ export default function(state = initialstate,action)
 
         case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
+            setTokenTime();
             localStorage.setItem('token',action.payload.token);
             localStorage.setItem('Auth',true);
             return {
@@ -51,6 +53,7 @@ export default function(state = initialstate,action)
         case REGISTER_FAIL:
             localStorage.removeItem('token');
             localStorage.removeItem('Auth');
+            localStorage.removeItem('tokenSetupTime');
             return{
                 ...state,
                 token: null,

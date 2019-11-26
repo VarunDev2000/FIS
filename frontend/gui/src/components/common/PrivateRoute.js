@@ -1,12 +1,13 @@
 import React from 'react';
 import { Route,Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
-
+import { setTokenTime } from './setLocalStorageTime'
 
 const PrivateRoute = ({ component: Component,auth,...rest }) =>(
     <Route {...rest} 
     render={props =>{
         const isAuth = localStorage.getItem('Auth');
+        setTokenTime();
         
         if(!isAuth)
         {

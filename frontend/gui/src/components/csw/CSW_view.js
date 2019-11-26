@@ -25,6 +25,11 @@ class CSW_view extends React.Component{
       })
     }
 
+    popPDF(url) {
+      var ref = window.open(url,"thePop","menubar=1,resizable=1,scrollbars=1,status=1,height=1920,width=1020,top=0")
+      ref.focus();
+    }
+
     renderRedirect = (type) => {
       if (this.state.redirect && type === 'edit') {
         return <Redirect to = '/csw/edit' />
@@ -80,6 +85,9 @@ class CSW_view extends React.Component{
             <Descriptions.Item label="TITLE" span={3}>{ csw.title }</Descriptions.Item>   
             <Descriptions.Item label="TYPE" span={3}>{ csw.type_name }</Descriptions.Item>
             <Descriptions.Item label="LEVEL" span={3}>{ csw.level }</Descriptions.Item>
+            <Descriptions.Item label="PDF" >
+            <Button span={3} target="ref" onClick={() => this.popPDF(csw.pdf)}>View</Button>
+            </Descriptions.Item>
             </Descriptions>
           <br /><br/>
           </div>
@@ -103,6 +111,9 @@ class CSW_view extends React.Component{
             <Descriptions.Item label="TITLE" span={3}>{ csw.title }</Descriptions.Item>   
             <Descriptions.Item label="TYPE" span={3}>{ csw.type_name }</Descriptions.Item>
             <Descriptions.Item label="LEVEL" span={3}>{ csw.level }</Descriptions.Item>
+            <Descriptions.Item label="PDF" >
+            <Button span={3} target="ref" onClick={() => this.popPDF(csw.pdf)}>View</Button>
+            </Descriptions.Item>
             </Descriptions>
           <br /><br/>
           </div>
@@ -126,6 +137,9 @@ class CSW_view extends React.Component{
             <Descriptions.Item label="TITLE" span={3}>{ csw.title }</Descriptions.Item>   
             <Descriptions.Item label="TYPE" span={3}>{ csw.type_name }</Descriptions.Item>
             <Descriptions.Item label="COUNTRY" span={3}>{ csw.country }</Descriptions.Item>
+            <Descriptions.Item label="PDF" >
+            <Button span={3} target="ref" onClick={() => this.popPDF(csw.pdf)}>View</Button>
+            </Descriptions.Item>
             </Descriptions>
           <br /><br/>
           </div>
