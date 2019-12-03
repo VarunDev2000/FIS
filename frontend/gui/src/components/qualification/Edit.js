@@ -137,14 +137,14 @@ componentDidUpdate(prevProps) {
 
 
   render() { 
-    const id = this.props.match.params.id;
     var quali = this.state.quali;
+    var quali_len = Object.keys(quali).length
 
     return (
       <div>
       <CustomLayout>
         {
-        id != null ? (
+        quali_len > 0 ? (
         <div>
 
         <div align="right">
@@ -217,7 +217,7 @@ componentDidUpdate(prevProps) {
         }
         </Form>
         </div>
-        ) : (<h1><center>ERROR!</center></h1>)
+        ) : (<h1>ERROR!</h1>)
         }
         </CustomLayout>
       </div>

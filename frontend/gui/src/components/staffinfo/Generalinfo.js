@@ -49,12 +49,13 @@ class Generalinfo extends React.Component{
           this.setState({
             numRows : this.props.length
           })
+          localStorage.setItem('length',this.props.length)
         }
       }
       
 
     render(){
-      var numRows = this.props.length;
+      var numRows = localStorage.getItem('length');
     return (
       <CustomLayout>
       {

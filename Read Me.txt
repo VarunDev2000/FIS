@@ -1,5 +1,9 @@
-Install this : pip install django-phone-field
-
+Install these : 
+pip install django-phone-field
+pip install django-cors-headers
+pip install djangorestframework
+pip install django-rest-knox
+pip install django-cleanup
 
 SUPERUSER:
 
@@ -9,6 +13,3 @@ PASSWORD :  itdep123
 
 python manage.py flush 
 
-pip install django-cors-headers
-pip install djangorestframework
-pip install django-rest-knox

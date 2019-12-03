@@ -1,9 +1,10 @@
 import { GET_SPECIALIZATION,ADD_SPECIALIZATION,
-EDIT_SPECIALIZATION,DELETE_SPECIALIZATION } from '../actions/types';
+EDIT_SPECIALIZATION,DELETE_SPECIALIZATION,GET_SPECIALIZATION_BY_ID } from '../actions/types';
 
 
 const initialstate = {
-    specialization: []
+    specialization: [],
+    specialization_by_id: {}
 }
 
 export default function(state = initialstate,action)
@@ -13,6 +14,12 @@ export default function(state = initialstate,action)
             return{
                 ...state,
                 specialization: action.payload
+            };
+
+        case GET_SPECIALIZATION_BY_ID:
+            return{
+                ...state,
+                specialization_by_id: action.payload
             };
 
         case ADD_SPECIALIZATION:

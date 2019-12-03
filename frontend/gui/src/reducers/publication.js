@@ -1,8 +1,10 @@
-import { GET_PUBLICATION,ADD_PUBLICATION } from '../actions/types';
+import { GET_PUBLICATION,ADD_PUBLICATION,EDIT_PUBLICATION,
+    DELETE_PUBLICATION,GET_PUBLICATION_BY_ID } from '../actions/types';
 
 
 const initialstate = {
-    publication: []
+    publication: [],
+    publication_by_id: {}
 }
 
 export default function(state = initialstate,action)
@@ -14,7 +16,15 @@ export default function(state = initialstate,action)
                 publication: action.payload
             };
 
+        case GET_PUBLICATION_BY_ID:
+            return{
+                ...state,
+                publication_by_id: action.payload
+            };
+
         case ADD_PUBLICATION:
+        case EDIT_PUBLICATION:
+        case DELETE_PUBLICATION:
             return{
                 ...state,
                 publication: [...state.publication,action.payload]

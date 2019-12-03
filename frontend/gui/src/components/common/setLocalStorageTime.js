@@ -11,7 +11,7 @@ else {
         localStorage.clear()
         var conf = alert("Your Session has expired!!You will be redirected to login page");
         if(conf === true)
-        window.location.reload();
+        window.open("/login","_self")
         return false;
     }
 }

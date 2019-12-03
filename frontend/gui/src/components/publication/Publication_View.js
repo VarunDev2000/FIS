@@ -1,10 +1,10 @@
 import React from 'react';
 import { Descriptions,Button } from 'antd';
-import { Redirect } from 'react-router-dom';
 import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
 import { getPublication } from '../../actions/publication';
+import history from '../common/history';
 
 class Publication_view extends React.Component{
 
@@ -14,16 +14,8 @@ class Publication_view extends React.Component{
 
   state = {
     publication:{},
-    length : -1,
-    redirect : false
+    length : -1
   }
-
-
-    setRedirect = () => {
-      this.setState({
-        redirect: true
-      })
-    }
 
     viewPDF = (fileURL) => {
       setTimeout(() => {
@@ -41,16 +33,19 @@ class Publication_view extends React.Component{
     }
     
 
+    addRedirect = () => {
+      history.push('/publication/add');
+
+      //window.open("/qualification/edit","_self");
+    }
 
 
-    renderRedirect = (type) => {
-      if (this.state.redirect && type === 'edit') {
-        return <Redirect to = '/publication/edit' />
-      }
-
-      else if (this.state.redirect && type === 'add') {
-        return <Redirect to = '/publication/add' />
-      }
+    editRedirect = (e) => {
+        var id = e.target.id;
+        history.push(`/publication/edit/${id}`);
+        
+        //console.log(e.target.id);
+        //window.open("/qualification/edit","_self");
     }
 
     
@@ -70,7 +65,7 @@ class Publication_view extends React.Component{
       <CustomLayout>
 
       {
-      numRows === 0 ? (
+      numRows == 0 ? (
                   <div>
                   </div>
       ) : (
@@ -79,8 +74,11 @@ class Publication_view extends React.Component{
       <br/>
         {
         this.props.publication.map(publi => (
-          <div>
-            {console.log(publi.pdf)}
+          <div key = {publi.id}>
+                <div align = "right">
+                  <Button id = {publi.id} type = "primary" onClick={this.editRedirect}>Edit</Button>
+                </div>
+                <br/>
                 <Descriptions bordered>
                 <Descriptions.Item label="TITLE" span={3}>{ publi.title }</Descriptions.Item>   
                 <Descriptions.Item label="LEVEL" span={3}>{ publi.level }</Descriptions.Item>
@@ -97,8 +95,7 @@ class Publication_view extends React.Component{
       )
       }
 
-      {this.renderRedirect('add')}
-      <Button type="primary" onClick={this.setRedirect}>Add Publication</Button>
+      <Button type="primary" onClick={this.addRedirect}>Add Publication</Button>
       </CustomLayout>
       </div>
     );

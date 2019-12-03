@@ -14,18 +14,10 @@ class Qualification_view extends React.Component{
 
   state = {
     qualification:{},
-    redirect : false,
     numRows : 0,
     ug_pg_count : 0,
     r_count : 0
   }
-
-
-    setRedirect = () => {
-      this.setState({
-        redirect: true
-      })
-    }
 
     addRedirect = () => {
       history.push('/qualification/add');
@@ -71,7 +63,7 @@ class Qualification_view extends React.Component{
     return (
       <div>
       {
-      numRows === 0 ? (
+      numRows == 0 ? (
         <CustomLayout>
         </CustomLayout>
       ) : (

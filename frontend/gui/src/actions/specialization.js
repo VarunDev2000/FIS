@@ -4,7 +4,8 @@ import{
     GET_SPECIALIZATION,
     ADD_SPECIALIZATION,
     EDIT_SPECIALIZATION,
-    DELETE_SPECIALIZATION
+    DELETE_SPECIALIZATION,
+    GET_SPECIALIZATION_BY_ID
 }from './types';
 
 //GET STAFF AREA OF SPECIALIZATION
@@ -14,6 +15,19 @@ export const getSpecialization = () => (dispatch,getState) => {
     .then(res => {
             dispatch({
                 type: GET_SPECIALIZATION,
+                payload: res.data
+            });
+    }).catch(err => {
+        console.log("Error fetching Data..");
+    });
+}
+
+export const getSpecializationbyID = (id) => (dispatch,getState) => {
+
+    axios.get(`http://127.0.0.1:8000/api/specialization/${id}/`,tokenConfig(getState))
+    .then(res => {
+            dispatch({
+                type: GET_SPECIALIZATION_BY_ID,
                 payload: res.data
             });
     }).catch(err => {

@@ -35,7 +35,7 @@ onFileChange = e => {
 
 
 onSubmit = (e) => {
-  //e.preventDefault();
+  e.preventDefault();
 
   let form_data = new FormData();
   form_data.append('pdf', this.state.file, this.state.file.name);
@@ -44,16 +44,21 @@ onSubmit = (e) => {
   form_data.append('year', this.state.year);
   
   //display values in console
+  /* 
   for (var pair of form_data.entries()) {
     console.log(pair[0]+ ' : ' + pair[1]); 
   }
-  /* 
+
   for (var value of form_data.values()) {
     console.log(value);
- }
- */
+  }
+  */
 
   this.props.addPublication(form_data);
+
+  setTimeout( function(){
+    window.open("/publication","_self")
+  }, 1000 );
 };
 
 /*

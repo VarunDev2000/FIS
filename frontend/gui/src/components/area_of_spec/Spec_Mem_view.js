@@ -4,6 +4,7 @@ import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
 import { getSpecialization } from '../../actions/specialization';
+import history from '../common/history'
 
 class Specialization_view extends React.Component{
 
@@ -13,151 +14,123 @@ class Specialization_view extends React.Component{
 
   state = {
     specialization:{},
-    length : -1,
-    redirect : false
+    numRows : 0,
+    spec_count : 0
   }
 
 
-    setRedirect = () => {
-      this.setState({
-        redirect: true
-      })
-    }
-
     addRedirect = () => {
-      //this.props.history.push('/specialization/add');
-      window.open("/specialization/add","_self");
+      history.push('/specialization/add');
+
+      //window.open("/qualification/edit","_self");
     }
 
 
-    editRedirect = (type) => {
-      if (this.state.redirect && type === 'edit') {
-        //this.props.history.push('/specialization/edit');
-        window.open("/specialization/edit","_self");
-      }
-
-      else if (this.state.redirect && type === 'add') {
-        //this.props.history.push('/specialization/add');
-        window.open("/specialization/add","_self");
-      }
+    editRedirect = (e) => {
+        history.push('/specialization/edit');
+        
+        //console.log(e.target.id);
+        //window.open("/qualification/edit","_self");
     }
 
     
       componentDidMount() {
         this.props.getSpecialization();
-        this.setState({ length: Object.keys(this.props.specialization).length });
+      }
+
+      /*
+      componentDidUpdate(prevProps) {
+        if (prevProps.specialization !== this.props.specialization) {
+          var n = 0,spec_count = 0,mem_count = 0;
+
+          this.props.specialization.map(s_m =>
+            (
+              s_m.spec_mem_type === "spec" ? (spec_count++,n++) : (s_m.spec_mem_type === "mem" ?
+              (mem_count++,n++) : (null))
+            ));
+
+            localStorage.setItem('n',n);
+            localStorage.setItem('spec_count',spec_count);
+            localStorage.setItem('mem_count',mem_count);
+        }
+      }
+      */
+
+
+      UNSAFE_componentWillReceiveProps(props)
+      {
+        var n = 0,spec_count = 0,mem_count = 0;
+
+        props.specialization.map(s_m =>
+          (
+            s_m.spec_mem_type === "spec" ? (spec_count++,n++) : (s_m.spec_mem_type === "mem" ?
+            (mem_count++,n++) : (null))
+          ));
+
+          localStorage.setItem('n',n);
+          localStorage.setItem('spec_count',spec_count);
+          localStorage.setItem('mem_count',mem_count);
       }
       
 
     render(){
-      var n = 0;
-
-      var spec_count = 0;
-      this.props.specialization.map(s_m =>
-        (
-          s_m.spec_mem_type === "spec" ? (spec_count++) : (null)
-        )
-        );
-
-      if(spec_count > 0)
-      {
-        n++;
-      }
-
-      var mem_count = 0;
-      this.props.specialization.map(s_m =>
-        (
-          s_m.spec_mem_type === "mem" ? (mem_count++) : (null)
-        )
-        );
-
-      if(mem_count > 0)
-      {
-        n++;
-      }
-      //console.log(n);
+      var n = localStorage.getItem('n');
+      var spec_count = localStorage.getItem('spec_count');
+      var mem_count = localStorage.getItem('mem_count');
 
     return (
       <div>
       <CustomLayout>
 
       {
-      n === 0 ? (
+      n == 0 || n < 0 ? (
                   <div>
                   </div>
       ) : (
         <div>
         <div align = "right">
-        {this.editRedirect('edit',"area")}
-        <Button  type="primary" onClick={this.setRedirect}>Edit</Button>
+        <Button  type="primary" onClick={this.editRedirect}>Edit</Button>
         </div>
         <br/>
         {
-        n === 1 ? (
         spec_count > 0 ? (
           <div>
             <Descriptions title="AREA OF SPECIALIZATION" bordered></Descriptions>
             <br/>
             {
-            this.props.specialization.map(s_m => (
+              this.props.specialization.map(s_m => (
               s_m.spec_mem_type === "spec" ?(
-              <div>
+              <div key = {s_m.id}>
               <Descriptions.Item span={3}>{ s_m.area_name }</Descriptions.Item>
               <br/><br/>
               </div>) : (null)
               ))
             }
-            <br/><br/>   
+          <br/><br/>   
           </div>
-               
-        ) : (
+            
+        ) : (null)
+        }
+
+        {
+        mem_count > 0 ? (
           <div>
           <Descriptions title="MEMBERSHIP OF PROFESSIONAL BODIES" bordered></Descriptions>
           <br/>
           {
           this.props.specialization.map(s_m => (
             s_m.spec_mem_type === "mem" ?(
-            <div>
+            <div key = {s_m.id}>
             <Descriptions.Item span={3}>{ s_m.mem }</Descriptions.Item>
             <br/><br/>
             </div>) : (null)
             ))
           }
           <br/><br/>   
-        </div>
-        )) :
-
-        (
-          <div>
-          <Descriptions title="AREA OF SPECIALIZATION" bordered></Descriptions>
-          <br/>
-          {
-          this.props.specialization.map(s_m => (
-            s_m.spec_mem_type === "spec" ?(
-            <div>
-            <Descriptions.Item span={3}>{ s_m.area_name }</Descriptions.Item>
-            <br/><br/>
-            </div>) : (null)
-            ))
-          }
-          <br/><br/>
-
-          <Descriptions title="MEMBERSHIP OF PROFESSIONAL BODIES" bordered></Descriptions>
-          <br/>
-          {
-          this.props.specialization.map(s_m => (
-            s_m.spec_mem_type === "mem" ?(
-            <div>
-            <Descriptions.Item span={3}>{ s_m.mem }</Descriptions.Item>
-            <br/><br/>
-            </div>) : (null)
-            ))
-          }
-          <br/>
           </div>
-        )
+        ) : (null)
         }
-    </div>
+      </div>
       )
       }
 

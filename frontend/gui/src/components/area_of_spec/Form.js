@@ -40,7 +40,7 @@ onSubmit = e => {
     const {area_name,spec_mem_type} = this.state;
     const spec_mem = {area_name,spec_mem_type};
 
-    console.log(spec_mem);
+    //console.log(spec_mem);
     this.props.addSpecialization(spec_mem);
     //this.props.history.push('/specialization');
     window.open("/specialization","_self");
@@ -51,14 +51,13 @@ onSubmit = e => {
     const {mem,spec_mem_type} = this.state;
     const spec_mem = {mem,spec_mem_type}
     
-    console.log(spec_mem);
+    //console.log(spec_mem);
     this.props.addSpecialization(spec_mem);
     //this.props.history.push('/');
     window.open("/specialization","_self");
   }
 
   else{
-    console.log("submit");
   }
 }
 
@@ -69,8 +68,8 @@ onSubmit = e => {
         <CustomLayout>
         <Form onSubmit ={this.onSubmit}>
 
-        <select name="spec_mem_type" onChange = {this.dropdown}>
-            <option disabled selected value> -- select an option -- </option>
+        <select name="spec_mem_type" defaultValue={'DEFAULT'} onChange = {this.dropdown}>
+            <option value="DEFAULT" disabled> -- select an option -- </option>
             <option value="spec">SPECIALIZATION</option>
             <option value="mem">MEMBERSHIP</option>
         </select><br/><br/>

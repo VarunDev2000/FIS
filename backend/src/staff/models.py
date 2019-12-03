@@ -99,7 +99,7 @@ class publication(models.Model):
     level = models.CharField(max_length=400, null=False)
     year = models.IntegerField(null=False)
     pdf = models.FileField(upload_to='publications',max_length=400,
-    default=None,null=False,validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
+    default=None,null=True,validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
 
     class Meta:
         verbose_name_plural = "Publications"

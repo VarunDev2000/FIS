@@ -1,9 +1,10 @@
 import React from 'react';
-import { Form, Input, Button } from 'antd';
+import { Descriptions,Form, Input, Button } from 'antd';
 import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
-import { editSpecialization,getSpecialization,deleteSpecialization } from '../../actions/specialization';
+import { getSpecialization,deleteSpecialization } from '../../actions/specialization';
+import history from '../common/history'
 
 class SpecEdit extends React.Component {
 
@@ -18,74 +19,37 @@ class SpecEdit extends React.Component {
 }
 
 static propTypes = {
-  editSpecialization: PropTypes.func.isRequired,
   specialization: PropTypes.array.isRequired,
   deleteSpecialization: PropTypes.func.isRequired,
 }
 
-dropdown = e => {
+delete = (e) => {
+  //e.preventDefault();
+  const id = e.target.id;
+  var conf = window.confirm("Do you want to delete ?");
+  if (conf === true) {
+  this.props.deleteSpecialization(id);
+  //history.push('/specialization/edit');
+
+  window.open("/specialization/edit","_self");
+  }
+}
+
+
+onChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
-    });
-    this.setState({type_form: e.target.value});
-  }
-
-
-delete = (id,e) => {
-    //e.preventDefault();
-    var conf = window.confirm("Do you want to delete ?");
-    if (conf === true) {
-      this.props.deleteSpecialization(id);
-      //window.open('/specialization',"_self");
-      window.location.reload();
-      //this.props.history.push('/specialization');
-    } 
+    })
 }
 
+editClick = (e) => {
+      history.push(`/specialization/edit/${e.target.id}`);
 
-onChange = (id,e) => {
-    
-    if(this.state.type_form === 'spec')
-    {
-      var area_name = e.target.value;
-      var spec_mem_type = 'spec';
-      const sm = {area_name,spec_mem_type};
-
-      this.setState({
-          spec_mem : sm,
-          id : id
-      })
-  
-      console.log(sm);
-      
-      //this.props.history.push('/specialization');
-      //window.open("/specialization","_self");
-    }
-  
-    else if(this.state.type_form === 'mem')
-    {
-      const {mem,spec_mem_type} = this.state;
-      const spec_mem = {mem,spec_mem_type}
-      
-      console.log(spec_mem);
-      this.props.editSpecialization(spec_mem,id);
-      //this.props.history.push('/');
-      //window.open("/specialization","_self");
-    }
-  
-    else{
-      console.log("submit");
-    }
-}
-
-editClick = e => {
-    this.props.editSpecialization(this.state.spec_mem,this.state.id);
-    this.props.getSpecialization();
-    window.location.reload();
+      //window.open('/specialization/edit',"_self");
 }
 
 onSubmit = e => {
-    window.open("/specialization","_self");
+    history.push('/specialization')
 }
 
 componentDidMount()
@@ -93,74 +57,110 @@ componentDidMount()
     this.props.getSpecialization();
 }
 
-componentDidUpdate() 
+/*
+componentDidUpdate(prevProps) {
+  if (prevProps.specialization !== this.props.specialization) {
+    var n = 0,spec_count = 0,mem_count = 0;
+    this.props.specialization.map(s_m =>
+      (
+        s_m.spec_mem_type === "spec" ? (spec_count++,n++) : (s_m.spec_mem_type === "mem" ? (mem_count++,n++) : (null))
+      ));
+      
+      localStorage.setItem('n',n);
+      localStorage.setItem('spec_count',spec_count);
+      localStorage.setItem('mem_count',mem_count);
+  }
+}
+*/
+
+componentWillReceiveProps(props)
 {
-    this.props.getSpecialization();
+  var n = 0,spec_count = 0,mem_count = 0;
+  props.specialization.map(s_m =>
+    (
+      s_m.spec_mem_type === "spec" ? (spec_count++,n++) : (s_m.spec_mem_type === "mem" ? (mem_count++,n++) : (null))
+    ));
+    
+    localStorage.setItem('n',n);
+    localStorage.setItem('spec_count',spec_count);
+    localStorage.setItem('mem_count',mem_count);
 }
 
   render() {
-    const spec_mem_type = this.state.type_form;
-    var spec_count = 0;
+    var spec_count = localStorage.getItem('spec_count');
+    var mem_count = localStorage.getItem('mem_count');
+    console.log(spec_count);
+
     return (
-        <div>
         <CustomLayout>
-        <Form>
-
-        <select name="spec_mem_type" onChange = {this.dropdown}>
-            <option disabled selected value> -- select an option -- </option>
-            <option value="spec">SPECIALIZATION</option>
-            <option value="mem">MEMBERSHIP</option>
-        </select><br/><br/>
-
         {
-        spec_mem_type === 'spec' ? (
-        <div>
-        {
+          spec_count > 0 ? (
+          <div>
+          <Descriptions title="SPECIALIZATION"></Descriptions>
+          {
           this.props.specialization.map(spec => (
           spec.spec_mem_type === 'spec' ? (
-          spec_count++,
-
-          <div>
+          <div key = {spec.id}>
+          <Form id = {spec.id}>
           <Form.Item>
-            <div class = "row">
-            <div class = "col-sm-10">
-            <Input name = "area_name" placeholder="Enter Specialization" required defaultValue = {spec.area_name} onChange = {this.onChange.bind(this,spec.id)} />
+            <div className = "row">
+            <div className = "col-sm-10">
+            <Input name = "area_name" placeholder="Enter Specialization" required defaultValue = {spec.area_name} disabled />
             </div>
-            <div class = "col-sm-1">
-            <Button variant="success" htmlType = "submit" onClick = {this.editClick}>Update</Button>
+            <div className = "col-sm-1">
+            <Button id = {spec.id} type="primary" onClick={this.editClick}>Edit</Button>
             </div>
-            <div class = "col-sm-1">
-            <Button type="danger" htmlType = "submit" onClick = {this.delete.bind(this,spec.id)}>Delete</Button>
+            <div className = "col-sm-1">
+            <Button id = {spec.id} type="danger" onClick = {this.delete}>Delete</Button>
             </div>
             </div>
           </Form.Item>
+          </Form>
           </div>
           ) : (null)
           ))
+          }
+          </div>
+          ) : (null)
         }
+
         {
-        spec_count > 0 ? (
-          <Form.Item>
-          <Button type="primary" onClick ={this.onSubmit}>Submit</Button>
-          </Form.Item>
-        ) : (null)
-        }
-          </div>
-        )
-         : (
-        spec_mem_type === 'mem' ? (
+          mem_count > 0 ? (
           <div>
+          <Descriptions title="MEMBERSHIP"></Descriptions>
+          {
+          this.props.specialization.map(spec => (
+          spec.spec_mem_type === 'mem' ? (
+          <div key = {spec.id}>
+          <Form id = {spec.id}>
           <Form.Item>
-            <Input name = "mem" placeholder="Enter Membership" required onChange = {this.onChange} />
+            <div className = "row">
+            <div className = "col-sm-10">
+            <Input name = "area_name" placeholder="Enter Specialization" required defaultValue = {spec.mem} disabled />
+            </div>
+            <div className = "col-sm-1">
+            <Button id = {spec.id} type="primary" onClick={this.editClick}>Edit</Button>
+            </div>
+            <div className = "col-sm-1">
+            <Button id = {spec.id} type="danger" onClick = {this.delete}>Delete</Button>
+            </div>
+            </div>
           </Form.Item>
+          </Form>
           </div>
-        ) : (
-          null
-        )) 
+          ) : (null)
+          ))
+          }
+          </div>
+          ) : (null)
+          }
+        
+        {
+          <Form.Item>
+          <Button type="primary" onClick ={this.onSubmit}>OK</Button>
+          </Form.Item>
         }
-        </Form>
         </CustomLayout>
-      </div>
     );
   }
 }
@@ -171,4 +171,4 @@ const mapStateToProps = state => ({
     specialization: state.specialization.specialization
 });
 
-export default connect(mapStateToProps,{ editSpecialization,getSpecialization,deleteSpecialization })(SpecEdit);
+export default connect(mapStateToProps,{ getSpecialization,deleteSpecialization })(SpecEdit);
