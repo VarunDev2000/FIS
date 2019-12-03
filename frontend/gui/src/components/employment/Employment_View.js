@@ -56,12 +56,12 @@ class Employment_view extends React.Component{
 
       this.props.employment.map(emp =>
         (
-          emp.emp_type == "univ" ? (emp.position_type == "present" ? (present_count++,n++) 
-          : (emp.position_type == "prev" ? (prev_count++,n++) : 
-            (emp.position_type == "present_add" ? (present_add_count++,n++) : 
-            (emp.position_type == "prev_add" ? (prev_add_count++,n++):(n = n))))) : 
-            (emp.exp_type == "industry" ? (industry_count++,oth_count++) : (emp.exp_type == "academics") ? 
-            (academics_count++,oth_count++) : (n = n))
+          emp.emp_type === "univ" ? (emp.position_type === "present" ? (present_count++,n++) 
+          : (emp.position_type === "prev" ? (prev_count++,n++) : 
+            (emp.position_type === "present_add" ? (present_add_count++,n++) : 
+            (emp.position_type === "prev_add" ? (prev_add_count++,n++):(null))))) : 
+            (emp.exp_type === "industry" ? (industry_count++,oth_count++) : (emp.exp_type === "academics") ? 
+            (academics_count++,oth_count++) : (null))
         )
         );
 
@@ -82,7 +82,7 @@ class Employment_view extends React.Component{
         <br/>
         {
         this.props.employment.map(emp => (
-        emp.position_type == "present" ? ( 
+        emp.position_type === "present" ? ( 
         <div>
         <Descriptions bordered>
         <Descriptions.Item label="DESIGNATION" span={3}>{ emp.designation }</Descriptions.Item>   
@@ -111,7 +111,7 @@ class Employment_view extends React.Component{
         <br/>
         {
         this.props.employment.map(emp => (
-        emp.position_type == "prev" ? ( 
+        emp.position_type === "prev" ? ( 
         <div>
         <Descriptions bordered>
         <Descriptions.Item label="DESIGNATION" span={3}>{ emp.designation }</Descriptions.Item>   
@@ -142,7 +142,7 @@ class Employment_view extends React.Component{
         <br/>
         {
         this.props.employment.map(emp => (
-        emp.position_type == "present_add" ? ( 
+        emp.position_type === "present_add" ? ( 
         <div>
         <Descriptions bordered>
         <Descriptions.Item label="POSITION" span={3}>{ emp.position }</Descriptions.Item>   
@@ -168,7 +168,7 @@ class Employment_view extends React.Component{
         <br/>
         {
         this.props.employment.map(emp => (
-        emp.position_type == "prev_add" ? ( 
+        emp.position_type === "prev_add" ? ( 
         <div>
         <Descriptions bordered>
         <Descriptions.Item label="POSITION" span={3}>{ emp.position }</Descriptions.Item>   
@@ -184,7 +184,7 @@ class Employment_view extends React.Component{
         <br/>
         </div>
       
-      ) : (<h1></h1>)
+      ) : (null)
       }
       </div>
       ) : (null)
@@ -203,7 +203,7 @@ class Employment_view extends React.Component{
     <br/>
     {
     this.props.employment.map(emp => (
-    emp.exp_type == "industry" ? (
+    emp.exp_type === "industry" ? (
     <div>
     <Descriptions bordered>
     <Descriptions.Item label="DESIGNATION" span={3}>{ emp.designation }</Descriptions.Item>   
@@ -226,7 +226,7 @@ class Employment_view extends React.Component{
     <br/>
     {
     this.props.employment.map(emp => (
-    emp.exp_type == "academics" ? (
+    emp.exp_type === "academics" ? (
     <div>
     <Descriptions bordered>
     <Descriptions.Item label="DESIGNATION" span={3}>{ emp.designation }</Descriptions.Item>   

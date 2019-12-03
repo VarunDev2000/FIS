@@ -56,9 +56,9 @@ class CSW_view extends React.Component{
   
         this.props.csw.map(csw =>
           (
-            csw.csw_type == "organized" ? (org_count++,n++) : 
-            (csw.csw_type == "cha_co-cha" ? (cha_count++,n++) :
-            (csw.csw_type == "paper" ? (paper_count++,n++) : (n = n)))
+            csw.csw_type === "organized" ? (org_count++,n++) : 
+            (csw.csw_type === "cha_co-cha" ? (cha_count++,n++) :
+            (csw.csw_type === "paper" ? (paper_count++,n++) : (null)))
           )
           );
 
@@ -67,7 +67,7 @@ class CSW_view extends React.Component{
       <CustomLayout>
 
       {
-      n == 0 ? (
+      n === 0 ? (
                   <div>
                   </div>
       ) : (
@@ -79,7 +79,7 @@ class CSW_view extends React.Component{
         <br/>
         {
         this.props.csw.map(csw => (
-          csw.csw_type == "organized" ? ( 
+          csw.csw_type === "organized" ? ( 
           <div>
             <Descriptions bordered>
             <Descriptions.Item label="TITLE" span={3}>{ csw.title }</Descriptions.Item>   
@@ -105,7 +105,7 @@ class CSW_view extends React.Component{
         <br/>
         {
         this.props.csw.map(csw => (
-          csw.csw_type == "cha_co-cha" ? ( 
+          csw.csw_type === "cha_co-cha" ? ( 
           <div>
             <Descriptions bordered>
             <Descriptions.Item label="TITLE" span={3}>{ csw.title }</Descriptions.Item>   
@@ -131,7 +131,7 @@ class CSW_view extends React.Component{
         <br/>
         {
         this.props.csw.map(csw => (
-          csw.csw_type == "paper" ? ( 
+          csw.csw_type === "paper" ? ( 
           <div>
             <Descriptions bordered>
             <Descriptions.Item label="TITLE" span={3}>{ csw.title }</Descriptions.Item>   

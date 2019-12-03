@@ -35,7 +35,7 @@ onSubmit = e => {
 
   e.preventDefault();
     
-  if(this.props.type == 'add')
+  if(this.props.type === 'add')
   {
   const {title,author,co_author1,co_author2,publisher,place_of_publication,
     year_of_publication,edition_no} = this.state;

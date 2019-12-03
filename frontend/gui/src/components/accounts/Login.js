@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { Link,Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
@@ -60,13 +60,11 @@ export class Login extends Component{
               />
             </div>
             <div className="form-group">
+              <br/>
               <button type="submit" className="btn btn-primary">
                 Log In
               </button>
             </div>
-            <p>
-              Don't have an account? <Link to="/register">Register</Link>
-            </p>
           </form>
         </div>
       </div>

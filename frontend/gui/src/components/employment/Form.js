@@ -55,10 +55,10 @@ position_dropdown = e => {
 onSubmit = e => {
   
   e.preventDefault();
-  if(this.state.emp_form == 'univ')
+  if(this.state.emp_form === 'univ')
   {
     console.log(this.state.univ_emp_form);
-    if(this.state.univ_emp_form == "present")
+    if(this.state.univ_emp_form === "present")
     {
       const {designation,from_date,department,campus,present_pay,nature_of_app,position_type,emp_type} = this.state;
     
@@ -69,7 +69,7 @@ onSubmit = e => {
       this.props.addEmployment(emp_info);
     }
 
-    else if(this.state.univ_emp_form == "prev")
+    else if(this.state.univ_emp_form === "prev")
     {
       const {designation,from_date,to_date,department,campus,present_pay,nature_of_app,position_type,emp_type} = this.state;
     
@@ -80,7 +80,7 @@ onSubmit = e => {
       this.props.addEmployment(emp_info);
     }
 
-    else if(this.state.univ_emp_form == "present_add" || this.state.univ_emp_form == "prev_add")
+    else if(this.state.univ_emp_form === "present_add" || this.state.univ_emp_form === "prev_add")
     {
       const {department,position,position_type,emp_type} = this.state;
     
@@ -92,7 +92,7 @@ onSubmit = e => {
     }
     
   }
-    else if(this.state.emp_form == "oth")
+    else if(this.state.emp_form === "oth")
     {
       const {designation,institution,years,emp_type,exp_type} = this.state;
     
@@ -124,7 +124,7 @@ onSubmit = e => {
       </select><br/><br/>
 
       {
-      emp == 'univ' ? (
+      emp === 'univ' ? (
         <div>
         <select name="position_type" onChange = {this.position_dropdown}>
           <option disabled selected value> -- select an option -- </option>
@@ -134,7 +134,7 @@ onSubmit = e => {
           <option value="prev_add">PREVIOUS ADDITIONAL RESPONSIBILITY</option>
         </select><br/><br/>
         {
-        pos == "present" ? (
+        pos === "present" ? (
 
           <div>
           <Form.Item label="DESIGNATION">
@@ -160,7 +160,7 @@ onSubmit = e => {
           </Form.Item>
           </div>
 
-        ) : (pos == "prev" ? (
+        ) : (pos === "prev" ? (
 
           <div>
           <Form.Item label="DESIGNATION">
@@ -189,7 +189,7 @@ onSubmit = e => {
           </Form.Item>
           </div>
 
-        ) : (pos == "present_add" || pos == "prev_add" ? 
+        ) : (pos === "present_add" || pos === "prev_add" ? 
         (
 
           <div>
@@ -210,7 +210,7 @@ onSubmit = e => {
         
         </div>
       ) : (
-      emp == 'oth' ? (
+      emp === 'oth' ? (
 
         <div>
           <Form.Item label="EXPERIENCE TYPE">

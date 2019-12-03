@@ -5,6 +5,7 @@ import{
     ADD_STAFFINFO,
     EDIT_STAFFINFO,
     DELETE_STAFFINFO,
+    GET_STAFFINFO_BY_ID
 }from './types';
 
 //GET STAFF INFO
@@ -14,6 +15,19 @@ export const getStaffinfo = () => (dispatch,getState) => {
     .then(res => {
             dispatch({
                 type: GET_STAFFINFO,
+                payload: res.data
+            });
+    }).catch(err => {
+        console.log("Error fetching Data..");
+    });
+}
+
+export const getStaffinfobyID = (id) => (dispatch,getState) => {
+
+    axios.get(`http://127.0.0.1:8000/api/staffinfo/${id}/`,tokenConfig(getState))
+    .then(res => {
+            dispatch({
+                type: GET_STAFFINFO_BY_ID,
                 payload: res.data
             });
     }).catch(err => {

@@ -40,7 +40,7 @@ onChange = e => {
 onSubmit = e => {
   
   e.preventDefault();
-  if(this.props.type == 'add')
+  if(this.props.type === 'add')
   {
   const {name,gender,dob,fath_hus_name,official_mail,personal_mail,aadhar,
     pan,mobile_no,residence_ph_no,caste,community,res_address,perm_address,
@@ -52,6 +52,8 @@ onSubmit = e => {
     
     console.log(s_info);
     this.props.addStaffinfo(s_info);
+    //history.push('/');
+    window.open('/',"_self");
   }
 
   else{

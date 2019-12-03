@@ -3,13 +3,13 @@ import { Form, Input, Button } from 'antd';
 import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
-import { editStaffinfo,getStaffinfo,deleteStaffinfo } from '../../actions/generalinfo';
+import { editStaffinfo,getStaffinfobyID,deleteStaffinfo } from '../../actions/generalinfo';
 
 class Edit extends React.Component {
 
   state = {
     generalinfo:{},
-    id : this.props.location.state.id,
+    g_info:{},
     redirect : false,
 
     name: '',
@@ -31,7 +31,7 @@ class Edit extends React.Component {
 
 static propTypes = {
   editStaffinfo: PropTypes.func.isRequired,
-  generalinfo: PropTypes.array.isRequired,
+  generalinfo: PropTypes.object.isRequired,
   deleteStaffinfo: PropTypes.func.isRequired,
 }
 
@@ -43,34 +43,21 @@ onChange = e => {
 
 delete = (e) => {
     e.preventDefault();
-
-    this.props.deleteStaffinfo(this.state.id);
-    window.open('/',"_self");
+    const id = this.props.match.params.id;
+    var conf = window.confirm("Do you want to delete ?");
+    if (conf === true) {
+      this.props.deleteStaffinfo(id);
+      //history.push('/');
+      window.open('/',"_self");
+    } 
 }
 
-setStates = () => {
-    this.props.generalinfo.map(ginfo => (
-            this.state.name = ginfo.name,
-            this.state.gender = ginfo.gender,
-            this.state.dob = ginfo.dob,
-            this.state.fath_hus_name = ginfo.fath_hus_name,
-            this.state.official_mail = ginfo.official_mail,
-            this.state.personal_mail = ginfo.personal_mail,
-            this.state.aadhar = ginfo.aadhar,
-            this.state.pan = ginfo.pan,
-            this.state.mobile_no = ginfo.mobile_no,
-            this.state.residence_ph_no = ginfo.residence_ph_no,
-            this.state.caste = ginfo.caste,
-            this.state.community = ginfo.community,
-            this.state.res_address = ginfo.res_address,
-            this.state.perm_address = ginfo.perm_address,
-            this.state.website_url = ginfo.website_url
-    ));
-}
 
 onSubmit = e => {
   
   e.preventDefault();
+  const id = this.props.match.params.id;
+
   const {name,gender,dob,fath_hus_name,official_mail,personal_mail,aadhar,
     pan,mobile_no,residence_ph_no,caste,community,res_address,perm_address,
     website_url} = this.state;
@@ -80,23 +67,57 @@ onSubmit = e => {
     website_url};
     
     console.log(s_info);
-    this.props.editStaffinfo(s_info,this.state.id);
+    this.props.editStaffinfo(s_info,id);
     window.open('/',"_self");
-
+    //history.push('/');
 }
 
-componentDidMount() {
-    this.props.getStaffinfo();
-    this.setStates();
-}
+    setStates(props)
+    {
+      this.setState({
+        name : props.generalinfo.name,
+        gender : props.generalinfo.gender,
+        dob : props.generalinfo.dob,
+        fath_hus_name : props.generalinfo.fath_hus_name,
+        official_mail : props.generalinfo.official_mail,
+        personal_mail : props.generalinfo.personal_mail,
+        aadhar : props.generalinfo.aadhar,
+        pan : props.generalinfo.pan,
+        mobile_no : props.generalinfo.mobile_no,
+        residence_ph_no : props.generalinfo.residence_ph_no,
+        caste : props.generalinfo.caste,
+        community : props.generalinfo.community,
+        res_address : props.generalinfo.res_address,
+        perm_address : props.generalinfo.perm_address,
+        website_url : props.generalinfo.website_url
+      })
+    }
+
+    componentDidMount() {
+      const id = this.props.match.params.id;
+      this.props.getStaffinfobyID(id);
+    }
+
+    componentDidUpdate(prevProps) {
+      if (prevProps.generalinfo !== this.props.generalinfo) {
+        this.setStates(this.props);
+        this.setState({
+          g_info : this.props.generalinfo
+        })
+      }
+    }
+    
 
 
   render() {
+    const id = this.props.match.params.id;
+    var ginfo = this.state.g_info;
+
     return (
-      <div>
-        { 
-        this.props.generalinfo.map(ginfo => (
-        <CustomLayout>
+      <CustomLayout>
+      {
+      id != null ? (
+      <div key = {ginfo.id}>
         <div align="right">
           <Button type="danger" htmlType = "submit" onClick = {this.delete}>Delete</Button>
         </div>
@@ -150,18 +171,19 @@ componentDidMount() {
             <Button type="primary" htmlType = "submit">submit</Button>
           </Form.Item>
         </Form>
-        </CustomLayout>
-        ))
-        }
+
       </div>
+      ) : (<h1><center>ERROR!</center></h1>)
+      }
+      </CustomLayout>
     );
   }
 }
 
 
 const mapStateToProps = state => ({
-    generalinfo: state.generalinfo.generalinfo
+    generalinfo: state.generalinfo.generalinfo_by_id
 });
 
-export default connect(mapStateToProps,{ editStaffinfo,getStaffinfo,deleteStaffinfo })(Edit);
+export default connect(mapStateToProps,{ editStaffinfo,getStaffinfobyID,deleteStaffinfo })(Edit);
     

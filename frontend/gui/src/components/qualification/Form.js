@@ -45,24 +45,28 @@ dropdown = e => {
 onSubmit = e => {
   
   e.preventDefault();
-  if(this.props.type == 'add' && this.state.deg_form == 'ug_pg')
+  if(this.props.type === 'add' && this.state.deg_form === 'ug_pg')
   {
     const {level,degree,branch,institution,university,duration,class_obtained,degree_type} = this.state;
 
-  const quali = {level,degree,branch,institution,university,duration,class_obtained,degree_type}
-    
-  console.log(quali);
-    this.props.addQualification(quali);
-  }
-
-  else if(this.props.type == 'add' && this.state.deg_form == 'research')
-  {
-    const {degree,title_of_thesis,research_area,faculty,department,institution,university,duration,viva,degree_type} = this.state;
-
-  const quali = {degree,title_of_thesis,research_area,faculty,department,institution,university,duration,viva,degree_type}
+    const quali = {level,degree,branch,institution,university,duration,class_obtained,degree_type}
     
     console.log(quali);
     this.props.addQualification(quali);
+    //this.props.history.push('/qualification');
+    window.open('/qualification',"_self");
+  }
+
+  else if(this.props.type === 'add' && this.state.deg_form === 'research')
+  {
+    const {degree,title_of_thesis,research_area,faculty,department,institution,university,duration,viva,degree_type} = this.state;
+
+    const quali = {degree,title_of_thesis,research_area,faculty,department,institution,university,duration,viva,degree_type}
+    
+    console.log(quali);
+    this.props.addQualification(quali);
+    //this.props.history.push('/qualification');
+    window.open('/qualification',"_self");
   }
 
   else{
@@ -84,10 +88,10 @@ onSubmit = e => {
         </select><br/><br/>
 
         {
-        degreetype == 'ug_pg' ? (
+        degreetype === 'ug_pg' ? (
           <div>
           <Form.Item label="LEVEL">
-          <Input name = "level" placeholder="Enter Level" required onChange = {this.onChange} />
+          <Input name = "level" placeholder="Enter Level" required  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="DEGREE">
             <Input name = "degree" placeholder="Enter Degree" required onChange = {this.onChange} />
@@ -112,7 +116,7 @@ onSubmit = e => {
           </Form.Item>
           </div>
         ) : (
-        degreetype == 'research' ? (
+        degreetype === 'research' ? (
           <div>
           <Form.Item label="DEGREE">
             <Input name = "degree" placeholder="Enter Degree" required onChange = {this.onChange} />
@@ -146,10 +150,9 @@ onSubmit = e => {
           </Form.Item>
           </div>
         ) : (
-          <h1></h1>
+          null
         )) 
         }
-
         </Form>
         </CustomLayout>
       </div>

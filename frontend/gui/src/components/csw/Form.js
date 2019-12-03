@@ -46,7 +46,7 @@ onFileChange = e => {
 onSubmit = (e) => {
   //e.preventDefault();
 
-  if(this.props.type == 'add' && (this.state.csw_form == 'organized' || this.state.csw_form == 'cha_co-cha'))
+  if(this.props.type === 'add' && (this.state.csw_form === 'organized' || this.state.csw_form === 'cha_co-cha'))
   {
   let form_data = new FormData();
   form_data.append('pdf', this.state.file, this.state.file.name);
@@ -55,15 +55,16 @@ onSubmit = (e) => {
   form_data.append('level', this.state.level);
   form_data.append('csw_type', this.state.csw_type);
   
+  var pair;
   //display values in console
-  for (var pair of form_data.entries()) {
+  for (pair of form_data.entries()) {
     console.log(pair[0]+ ' : ' + pair[1]); 
   }
 
   this.props.addCSW(form_data);
   }
 
-  else if(this.props.type == 'add' && this.state.csw_form == 'paper')
+  else if(this.props.type === 'add' && this.state.csw_form === 'paper')
   {
     let form_data = new FormData();
     form_data.append('pdf', this.state.file, this.state.file.name);
@@ -73,7 +74,7 @@ onSubmit = (e) => {
     form_data.append('csw_type', this.state.csw_type);
     
     //display values in console
-    for (var pair of form_data.entries()) {
+    for (pair of form_data.entries()) {
       console.log(pair[0]+ ' : ' + pair[1]); 
     }
   
@@ -90,7 +91,7 @@ onSubmit = (e) => {
 onSubmit = e => {
   
   e.preventDefault();
-  if(this.props.type == 'add' && (this.state.csw_form == 'organized' || this.state.csw_form == 'cha_co-cha'))
+  if(this.props.type === 'add' && (this.state.csw_form === 'organized' || this.state.csw_form === 'cha_co-cha'))
   {
     const {title,type_name,level,csw_type} = this.state;
 
@@ -100,7 +101,7 @@ onSubmit = e => {
     this.props.addCSW(csw_info);
   }
 
-  else if(this.props.type == 'add' && this.state.csw_form == 'paper')
+  else if(this.props.type === 'add' && this.state.csw_form === 'paper')
   {
     const {title,type_name,country,csw_type} = this.state;
 
@@ -130,7 +131,7 @@ onSubmit = e => {
         </select><br/><br/>
 
         {
-        cswtype == 'organized' || cswtype == 'cha_co-cha' ? (
+        cswtype === 'organized' || cswtype === 'cha_co-cha' ? (
           <div>
           <Form.Item label="TITLE">
           <Input name = "title" placeholder="Enter Title" required onChange = {this.onChange} />
@@ -149,7 +150,7 @@ onSubmit = e => {
           </Form.Item>
           </div>
         ) : (
-        cswtype == 'paper' ? (
+        cswtype === 'paper' ? (
           <div>
           <Form.Item label="TITLE">
           <Input name = "title" placeholder="Enter Title" required onChange = {this.onChange} />
@@ -168,7 +169,7 @@ onSubmit = e => {
           </Form.Item>
           </div>
         ) : (
-          <h1></h1>
+          null
         )) 
         }
 

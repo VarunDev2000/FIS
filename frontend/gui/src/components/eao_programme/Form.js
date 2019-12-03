@@ -36,7 +36,7 @@ onSubmit = e => {
 
   //e.preventDefault();
     
-  if(this.props.type == 'add')
+  if(this.props.type === 'add')
   {
   const {type_of_prog,title_of_prog,your_role,cross_sec_of_participants,
     no_of_participants,funded_by,venue,from_date,to_date} = this.state;

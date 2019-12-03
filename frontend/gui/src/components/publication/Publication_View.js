@@ -62,7 +62,7 @@ class Publication_view extends React.Component{
 
     render(){
       var numRows = 0;
-      const render = this.props.publication.map(publi => 
+      this.props.publication.map(publi => 
         (numRows++) );
 
     return (
@@ -70,7 +70,7 @@ class Publication_view extends React.Component{
       <CustomLayout>
 
       {
-      numRows == 0 ? (
+      numRows === 0 ? (
                   <div>
                   </div>
       ) : (

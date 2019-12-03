@@ -35,22 +35,26 @@ dropdown = e => {
 onSubmit = e => {
   
   e.preventDefault();
-  if(this.props.type == 'add' && this.state.type_form == 'spec')
+  if(this.props.type === 'add' && this.state.type_form === 'spec')
   {
     const {area_name,spec_mem_type} = this.state;
     const spec_mem = {area_name,spec_mem_type};
 
     console.log(spec_mem);
     this.props.addSpecialization(spec_mem);
+    //this.props.history.push('/specialization');
+    window.open("/specialization","_self");
   }
 
-  else if(this.props.type == 'add' && this.state.type_form == 'mem')
+  else if(this.props.type === 'add' && this.state.type_form === 'mem')
   {
     const {mem,spec_mem_type} = this.state;
     const spec_mem = {mem,spec_mem_type}
     
     console.log(spec_mem);
     this.props.addSpecialization(spec_mem);
+    //this.props.history.push('/');
+    window.open("/specialization","_self");
   }
 
   else{
@@ -72,7 +76,7 @@ onSubmit = e => {
         </select><br/><br/>
 
         {
-        spec_mem_type == 'spec' ? (
+        spec_mem_type === 'spec' ? (
           <div>
           <Form.Item label="AREA OF SPECIALIZATION">
           <Input name = "area_name" placeholder="Enter Specialization" required onChange = {this.onChange} />
@@ -82,7 +86,7 @@ onSubmit = e => {
           </Form.Item>
           </div>
         ) : (
-        spec_mem_type == 'mem' ? (
+        spec_mem_type === 'mem' ? (
           <div>
           <Form.Item label="MEMBERSHIPS IN PROFESSIONAL BODIES">
             <Input name = "mem" placeholder="Enter Membership" required onChange = {this.onChange} />
@@ -92,7 +96,7 @@ onSubmit = e => {
           </Form.Item>
           </div>
         ) : (
-          <h1></h1>
+          null
         )) 
         }
 

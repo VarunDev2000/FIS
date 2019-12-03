@@ -1,8 +1,11 @@
-import { GET_STAFFINFO,ADD_STAFFINFO,EDIT_STAFFINFO,DELETE_STAFFINFO } from '../actions/types';
+import { GET_STAFFINFO,ADD_STAFFINFO,EDIT_STAFFINFO,
+    DELETE_STAFFINFO,GET_STAFFINFO_BY_ID } from '../actions/types';
 
 
 const initialstate = {
-    generalinfo: []
+    generalinfo: [],
+    generalinfo_by_id: {},
+    length : 0,
 }
 
 export default function(state = initialstate,action)
@@ -11,7 +14,15 @@ export default function(state = initialstate,action)
         case GET_STAFFINFO:
             return{
                 ...state,
-                generalinfo: action.payload
+                generalinfo: action.payload,
+                length: action.payload.length
+            };
+
+        case GET_STAFFINFO_BY_ID:
+            return{
+                ...state,
+                generalinfo_by_id: action.payload,
+                length: action.payload.length
             };
 
         case ADD_STAFFINFO:

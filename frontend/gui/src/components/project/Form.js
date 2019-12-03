@@ -46,7 +46,7 @@ onFileChange = e => {
 onSubmit = (e) => {
   //e.preventDefault();
 
-  if(this.props.type == 'add' && (this.state.pro_form == 'on_going' || this.state.pro_form == 'completed'))
+  if(this.props.type === 'add' && (this.state.pro_form === 'on_going' || this.state.pro_form === 'completed'))
   {
   let form_data = new FormData();
   form_data.append('pdf', this.state.file, this.state.file.name);
@@ -73,7 +73,7 @@ onSubmit = (e) => {
 onSubmit = e => {
   
   e.preventDefault();
-  if(this.props.type == 'add' && (this.state.pro_form == 'on_going' || this.state.pro_form == 'completed'))
+  if(this.props.type === 'add' && (this.state.pro_form === 'on_going' || this.state.pro_form === 'completed'))
   {
     const {pro_title,funding_agent,amt,pro_type} = this.state;
 

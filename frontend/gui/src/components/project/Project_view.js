@@ -44,8 +44,7 @@ class Project_view extends React.Component{
       componentDidMount() {
         this.props.getProject();
         this.setState({ length: Object.keys(this.props.project).length });
-      }
-      
+      }      
 
     render(){
         var n = 0;
@@ -55,8 +54,8 @@ class Project_view extends React.Component{
   
         this.props.project.map(pro =>
           (
-            pro.pro_type == "on_going" ? (on_going_count++,n++) : 
-            (pro.pro_type == "completed" ? (comp_count++,n++) : (n = n))
+            pro.pro_type === "on_going" ? (on_going_count++,n++) : 
+            (pro.pro_type === "completed" ? (comp_count++,n++) : (null))
           )
           );
 
@@ -65,7 +64,7 @@ class Project_view extends React.Component{
       <CustomLayout>
 
       {
-      n == 0 ? (
+      n === 0 ? (
                   <div>
                   </div>
       ) : (
@@ -77,7 +76,7 @@ class Project_view extends React.Component{
         <br/>
         {
         this.props.project.map(pro => (
-          pro.pro_type == "on_going" ? ( 
+          pro.pro_type === "on_going" ? ( 
           <div>
             <Descriptions bordered>
             <Descriptions.Item label="PROJECT TITLE" span={3}>{ pro.pro_title }</Descriptions.Item>   
@@ -103,7 +102,7 @@ class Project_view extends React.Component{
         <br/>
         {
         this.props.project.map(pro => (
-          pro.pro_type == "completed" ? ( 
+          pro.pro_type === "completed" ? ( 
           <div>
             <Descriptions bordered>
             <Descriptions.Item label="PROJECT TITLE" span={3}>{ pro.pro_title }</Descriptions.Item>   

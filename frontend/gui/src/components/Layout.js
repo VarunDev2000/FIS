@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom'
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu } from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
 import { logout } from '../actions/auth';
+import history from './common/history'
 
 const { Header, Content, Footer } = Layout;
 
@@ -13,6 +14,12 @@ export class CustomLayout extends React.Component{
     static propTypes = {
         auth: PropTypes.object.isRequired,
         logout: PropTypes.func.isRequired
+    }
+
+    
+    changePage = (url) => {
+        //window.open(url,"_self");
+        history.push(url)
     }
 
     render(){
@@ -28,34 +35,22 @@ export class CustomLayout extends React.Component{
                         style={{ lineHeight: '60px' }}
                     >
                         <Menu.Item key="1" onClick=""><strong>{ user ? `Welcome ${user.username}`:"" }</strong></Menu.Item>
-                        <Menu.Item key="2"><Link to="/">PERSONAL INFO</Link></Menu.Item>
-                        <Menu.Item key="3"><Link to="/qualification">QUALIFICATION</Link></Menu.Item>
-                        <Menu.Item key="4"><Link to="/specialization">SPECIALIZATION & MEMBERSHIPS</Link></Menu.Item>
-                        <Menu.Item key="4"><Link to="/employment">EMPLOYMENT DETAILS</Link></Menu.Item>
-                        <Menu.Item key="5"><Link to="/publication">PUBLICATIONS</Link></Menu.Item>
-                        <Menu.Item key="6"><Link to="/csw">CONFERENCE/SEMINAR/WORKSHOP</Link></Menu.Item>
-                        <Menu.Item key="7"><Link to="/project">PROJECTS</Link></Menu.Item>
-                        <Menu.Item key="8"><Link to="/invited_lectures/add">INVITED LECTURES</Link></Menu.Item>
-                        <Menu.Item key="9"><Link to="/experience_abroad/add">EXPERIENCE ABROAD</Link></Menu.Item>
-                        <Menu.Item key="10"><Link to="/book_published/add">BOOK PUBLISHED</Link></Menu.Item>
-                        <Menu.Item key="11"><Link to="/eao_programme/add">EXTENSION AND OUTREACH PROGRAMME</Link></Menu.Item>
-                        <Menu.Item key="12" style={{float: 'right'}} onClick= {this.props.logout} >Logout</Menu.Item>
+                        <Menu.Item key="2" onClick = {() => this.changePage('/')}>PERSONAL INFO</Menu.Item>
+                        <Menu.Item key="3" onClick = {() => this.changePage('/qualification')}>QUALIFICATION</Menu.Item>
+                        <Menu.Item key="4" onClick = {() => this.changePage('/specialization')}>SPECIALIZATION & MEMBERSHIPS</Menu.Item>
+                        <Menu.Item key="5" onClick = {() => this.changePage('/employment')}>EMPLOYMENT DETAILS</Menu.Item>
+                        <Menu.Item key="6" onClick = {() => this.changePage('/publication')}>PUBLICATIONS</Menu.Item>
+                        <Menu.Item key="7" onClick = {() => this.changePage('/csw')}>CONFERENCE/SEMINAR/WORKSHOP</Menu.Item>
+                        <Menu.Item key="8" onClick = {() => this.changePage('/project')}>PROJECT</Menu.Item>
+                        <Menu.Item key="9" onClick = {() => this.changePage('/invited_lectures/add')}>INVITED LECTURES</Menu.Item>
+                        <Menu.Item key="10" onClick = {() => this.changePage('/experience_abroad/add')}>EXPERIENCE ABROAD</Menu.Item>
+                        <Menu.Item key="11" onClick = {() => this.changePage('/book_published/add')}>BOOK PUBLISHED</Menu.Item>
+                        <Menu.Item key="12" onClick = {() => this.changePage('/eao_programme/add')}>EXTENSION AND OUTREACH PROGRAMME</Menu.Item>
+                        <Menu.Item key="13" style={{float: 'right'}} onClick= {this.props.logout} >Logout</Menu.Item>
                     </Menu>
                 </Header>
                 <Content style={{ padding: '0 50px' }}>
-                <Breadcrumb style={{ margin: '16px 0' }}>
-                    <Breadcrumb.Item><Link to ='/'>Home</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item><Link to ='/qualification'>Qualifications</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item><Link to ='/specialization'>Specialization & Memberships</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item><Link to ='/employment'>Employment Details</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item><Link to ='/publication'>Publications</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item><Link to ='/csw'>CSW</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item><Link to ='/project'>Project</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item><Link to ='/invited_lectures/add'>Invited Lectures</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item><Link to ='/experience_abroad/add'>Experience Abroad</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item><Link to ='/book_published/add'>Book Published</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item><Link to ='/eao_programme/add'>Extension and Outreach Programme</Link></Breadcrumb.Item>
-                </Breadcrumb>
+                    <br/>
                     <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
                         {this.props.children} 
                     </div>
@@ -75,8 +70,7 @@ export class CustomLayout extends React.Component{
                         mode="horizontal"
                         style={{ lineHeight: '64px' }}
                     >
-                        <Menu.Item key="1"><Link to = '/register'>Register</Link></Menu.Item>
-                        <Menu.Item key="2"><Link to = '/login'>Login</Link></Menu.Item>
+                        <Menu.Item key="notauthenticatedlogin"><Link to = '/login'>Login</Link></Menu.Item>
                     </Menu>
                 </Header>
                 <Content style={{ padding: '0 50px' }}>

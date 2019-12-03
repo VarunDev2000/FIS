@@ -1,10 +1,10 @@
 import React from 'react';
 import { Descriptions,Button } from 'antd';
-import { Redirect } from 'react-router-dom';
 import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
 import { getStaffinfo } from '../../actions/generalinfo';
+import history from '../common/history'
 
 class Generalinfo extends React.Component{
 
@@ -14,8 +14,8 @@ class Generalinfo extends React.Component{
 
   state = {
     generalinfo:{},
-    length : -1,
-    redirect : false
+    redirect : false,
+    numRows : 0
 }
 
 
@@ -25,44 +25,44 @@ class Generalinfo extends React.Component{
       })
     }
 
-    renderRedirect = (type,id) => {
-      if (this.state.redirect && type === 'edit') {
-        return <Redirect to = {{
-        pathname : '/edit',
-        state : { id : id}
-      }} />
-      }
+    addRedirect = () => {
+      history.push('/add');
 
-      else if (this.state.redirect && type === 'add') {
-        return <Redirect to = '/add' />
-      }
+      //window.open("/add","_self");
+    }
+
+    editRedirect = (e) => {
+      var id = e.target.id;
+      history.push(`/edit/${id}`);
+
+        //window.open('/edit',"_self");
+
     }
 
     
       componentDidMount() {
         this.props.getStaffinfo();
-        this.setState({ length: Object.keys(this.props.generalinfo).length });
+      }
+
+      componentDidUpdate(prevProps) {
+        if (prevProps.generalinfo !== this.props.generalinfo) {
+          this.setState({
+            numRows : this.props.length
+          })
+        }
       }
       
 
     render(){
-      var numRows = 0;
-      const render = this.props.generalinfo.map(ginfo => 
-        (numRows++)
-        );
+      var numRows = this.props.length;
     return (
-       numRows == 0 ? (
-                  <div>
-                  <CustomLayout>
-                  {this.renderRedirect('add')}
-                  <Button type="primary" onClick={this.setRedirect}>Add Details</Button>
-                  </CustomLayout>
-                  </div>
+      <CustomLayout>
+      {
+       numRows === 0 ? (
+            <Button type="primary" onClick={this.addRedirect}>Add Details</Button>
       ) : (
-
       this.props.generalinfo.map(ginfo => (
-              <div>
-              <CustomLayout>
+              <div key = {'staffinfo'+ginfo.id}>
               <Descriptions title="INFORMATION" bordered>
               <Descriptions.Item label="NAME" span={3}>{ ginfo.name }</Descriptions.Item>   
               <Descriptions.Item label="GENDER" span={3}>{ ginfo.gender }</Descriptions.Item>
@@ -83,19 +83,19 @@ class Generalinfo extends React.Component{
                     
             <br /><br/>
 
-            {this.renderRedirect('edit',ginfo.id)}
-            <Button type="primary" onClick={this.setRedirect}>EDIT</Button>
-            </CustomLayout>
+            <Button id={ginfo.id} type="primary" onClick={this.editRedirect}>EDIT</Button>
             </div>
       ))
       )
+      }
+      </CustomLayout>
     );
-      
     }
-}
+  }
 
 const mapStateToProps = state => ({
-  generalinfo: state.generalinfo.generalinfo
+  generalinfo: state.generalinfo.generalinfo,
+  length : state.generalinfo.length
 });
 
 

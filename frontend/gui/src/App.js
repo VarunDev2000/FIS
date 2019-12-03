@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router,Route,Switch,Redirect } from 'react-router-dom'; 
+import { Router,Route,Switch } from 'react-router-dom'; 
 import PrivateRoute from './components/common/PrivateRoute';
 import 'antd/dist/antd.css';
 import { Provider } from 'react-redux';
 import store from './store'
 import Login from './components/accounts/Login';
-import Register from './components/accounts/Register';
+import history from './components/common/history'
+
+//--------------------------------
 import Generalinfo from './components/staffinfo/Generalinfo';
 import Add from './components/staffinfo/Add';
 import Edit from './components/staffinfo/Edit';
@@ -54,17 +56,16 @@ class App extends Component {
   return (
     <div className="App">
       <Provider store = {store}>
-        <Router>
+        <Router history = {history}>
         <Switch>
-        <Route exact path ='/register' component = {Register}/>
         <Route exact path ='/login' component = {Login}/>
 
         <PrivateRoute exact path ='/' component = {Generalinfo}/>
-        <PrivateRoute exact path ='/edit' component = {Edit}/>
+        <PrivateRoute exact path ='/edit/:id' component = {Edit}/>
         <PrivateRoute exact path ='/add' component = {Add}/>
 
         <PrivateRoute exact path ='/qualification' component = {Qualification_view}/>
-        <PrivateRoute exact path ='/qualification/edit' component = {QualiEdit}/>
+        <PrivateRoute exact path ='/qualification/edit/:id' component = {QualiEdit}/>
         <PrivateRoute exact path ='/qualification/add' component = {QualiAdd}/>
 
         <PrivateRoute exact path ='/specialization' component = {Specialization_view}/>

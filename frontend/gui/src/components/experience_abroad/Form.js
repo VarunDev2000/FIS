@@ -34,7 +34,7 @@ onSubmit = e => {
 
   //e.preventDefault();
     
-  if(this.props.type == 'add')
+  if(this.props.type === 'add')
   {
   const {nature_of_assignment,from_date,to_date,institution,country,purp_of_visit,funding_agency} = this.state;
 

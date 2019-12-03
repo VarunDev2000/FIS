@@ -30,7 +30,7 @@ onChange = e => {
 
 onSubmit = e => {
   
-  if(this.props.type == 'add')
+  if(this.props.type === 'add')
   {
   const {level,topic,programme,institution,place,date} = this.state;
 

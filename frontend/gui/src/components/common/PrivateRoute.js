@@ -1,7 +1,8 @@
 import React from 'react';
-import { Route,Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import { setTokenTime } from './setLocalStorageTime'
+import history from './history'
 
 const PrivateRoute = ({ component: Component,auth,...rest }) =>(
     <Route {...rest} 
@@ -11,7 +12,8 @@ const PrivateRoute = ({ component: Component,auth,...rest }) =>(
         
         if(!isAuth)
         {
-            return <Redirect to = "/login" />
+            history.push('/login',"_self");
+            //return <Redirect to = "/login" />
         }
   
         else{
