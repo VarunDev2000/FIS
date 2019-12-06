@@ -17,8 +17,10 @@ class PubliEdit extends React.Component {
     level: '',
     year: '',
     pdf: '',
+
     file : null,
     filechanged : false,
+    disabled : false,
 }
 
 static propTypes = {
@@ -56,6 +58,11 @@ popPDF(url) {
   }
 
 onSubmit = (e) => {
+
+  this.setState({
+    disabled : true
+  })
+
   e.preventDefault();
 
   const id = this.props.match.params.id;
@@ -133,7 +140,7 @@ componentDidUpdate(prevProps) {
           </Form.Item>
           <br/>
           <Form.Item>
-            <Button type="primary" htmlType = "submit">Submit</Button>
+            <Button type="primary" htmlType = "submit" disabled = {this.state.disabled}>Submit</Button>
           </Form.Item>
         </Form>
         ) : (<h1>Error!</h1>)

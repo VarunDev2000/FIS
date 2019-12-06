@@ -9,9 +9,8 @@ if (setupTime == null || now-setupTime <= hours*60*60*1000) {
 else {
     if(now-setupTime > hours*60*60*1000) {
         localStorage.clear()
-        var conf = alert("Your Session has expired!!You will be redirected to login page");
-        if(conf === true)
-        window.open("/login","_self")
+        alert("Your Session has expired!!You will be redirected to login page");
+        window.location.reload()
         return false;
     }
 }

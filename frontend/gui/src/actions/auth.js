@@ -26,12 +26,10 @@ export const LoadUser = () => (dispatch,getState) => {
     }).catch(err => {
         console.log("Error fetching Data..");
         dispatch({
-            type:AUTH_ERROR
+            type:AUTH_ERROR,
         });
     });
 }
-
-
 
 
 //Login User
@@ -58,38 +56,9 @@ export const login = (username,password) => dispatch => {
         dispatch({
             type:LOGIN_FAIL
         });
+        console.log(err.response.status)
     });
 }
-
-
-//Register User
-export const register = ({ username,password,email }) => dispatch => {
-
-    //Headers
-    const config = {
-        headers :{
-            'Content-Type': 'application/json'
-        }
-    }
-
-    //Request Body
-    const body = JSON.stringify({ username,email,password });
-
-    axios.post('http://127.0.0.1:8000/api/auth/register',body,config)
-    .then(res => {
-        dispatch({
-            type: REGISTER_SUCCESS,
-            payload:res.data
-        });
-    }).catch(err => {
-        console.log("Error Registering..");
-        dispatch({
-            type:REGISTER_FAIL
-        });
-    });
-}
-
-
 
 
 //Logout User
@@ -132,4 +101,39 @@ export const tokenConfig = getState => {
     }
 
     return config;
+}
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------
+//Register User
+export const register = ({ username,password,email }) => dispatch => {
+
+    //Headers
+    const config = {
+        headers :{
+            'Content-Type': 'application/json'
+        }
+    }
+
+    //Request Body
+    const body = JSON.stringify({ username,email,password });
+
+    axios.post('http://127.0.0.1:8000/api/auth/register',body,config)
+    .then(res => {
+        dispatch({
+            type: REGISTER_SUCCESS,
+            payload:res.data
+        });
+    }).catch(err => {
+        console.log("Error Registering..");
+        dispatch({
+            type:REGISTER_FAIL
+        });
+    });
 }

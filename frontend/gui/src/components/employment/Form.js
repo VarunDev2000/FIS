@@ -65,7 +65,7 @@ onSubmit = e => {
       const emp_info = {designation,from_date,department,campus,present_pay,nature_of_app,position_type,emp_type};
 
           
-      console.log(emp_info);
+      //console.log(emp_info);
       this.props.addEmployment(emp_info);
     }
 
@@ -76,7 +76,7 @@ onSubmit = e => {
       const emp_info = {designation,from_date,to_date,department,campus,present_pay,nature_of_app,position_type,emp_type};
 
           
-      console.log(emp_info);
+      //console.log(emp_info);
       this.props.addEmployment(emp_info);
     }
 
@@ -87,7 +87,7 @@ onSubmit = e => {
       const emp_info = {department,position,position_type,emp_type};
 
           
-      console.log(emp_info);
+      //console.log(emp_info);
       this.props.addEmployment(emp_info);
     }
     
@@ -99,13 +99,13 @@ onSubmit = e => {
       const emp_info = {designation,institution,years,emp_type,exp_type};
 
           
-      console.log(emp_info);
+      //console.log(emp_info);
       this.props.addEmployment(emp_info);
     }
 
   else{
-    console.log("submit");
   }
+  window.open('/employment',"_self");
 }
 
   render() {
@@ -117,8 +117,8 @@ onSubmit = e => {
       <CustomLayout>
       <Form onSubmit ={this.onSubmit}>
 
-      <select name="emp_type" onChange = {this.dropdown}>
-          <option disabled selected value> -- select an option -- </option>
+      <select name="emp_type" defaultValue={'DEFAULT'} onChange = {this.dropdown}>
+          <option value="DEFAULT" disabled > -- select an option -- </option>
           <option value="univ">UNIVERSITY EMPLOYMENT DETAILS</option>
           <option value="oth">OTHER EMPLOYMENT DETAILS</option>
       </select><br/><br/>
@@ -126,8 +126,8 @@ onSubmit = e => {
       {
       emp === 'univ' ? (
         <div>
-        <select name="position_type" onChange = {this.position_dropdown}>
-          <option disabled selected value> -- select an option -- </option>
+        <select name="position_type" defaultValue={'DEFAULT'} onChange = {this.position_dropdown}>
+          <option value="DEFAULT" disabled> -- select an option -- </option>
           <option value="present">PRESENT POSITION</option>
           <option value="prev">PREVIOUS POSITION</option>
           <option value="present_add">PRESENT ADDITIONAL RESPONSIBILITY</option>

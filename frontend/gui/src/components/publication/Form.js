@@ -15,6 +15,7 @@ class CustomForm extends React.Component {
     year: '',
     pdf: '',
     file : null,
+    disabled : false,
 }
 
 static propTypes = {
@@ -35,6 +36,10 @@ onFileChange = e => {
 
 
 onSubmit = (e) => {
+  
+  this.setState({
+    disabled : true
+  })
   e.preventDefault();
 
   let form_data = new FormData();
@@ -99,7 +104,7 @@ onSubmit = e => {
             <input type="file" name="pdf" accept="application/pdf" required onChange = {this.onFileChange}></input>
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType = "submit">{this.props.btnText}</Button>
+            <Button type="primary" htmlType = "submit" disabled = {this.state.disabled}>{this.props.btnText}</Button>
           </Form.Item>
         </Form>
         </CustomLayout>

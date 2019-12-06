@@ -51,14 +51,20 @@ class Publication_view extends React.Component{
     
       componentDidMount() {
         this.props.getPublication();
-        this.setState({ length: Object.keys(this.props.publication).length });
+      }
+
+      componentDidUpdate(prevProps) {
+        if (prevProps.publication !== this.props.publication) {
+          var numRows = 0;
+          this.props.publication.map(publi => 
+            (numRows++) );
+          localStorage.setItem('numRows',numRows);
+        }
       }
       
 
     render(){
-      var numRows = 0;
-      this.props.publication.map(publi => 
-        (numRows++) );
+      var numRows = localStorage.getItem('numRows');
 
     return (
       <div>

@@ -1,8 +1,10 @@
-import { GET_EMPLOYMENT,ADD_EMPLOYMENT } from '../actions/types';
+import { GET_EMPLOYMENT,ADD_EMPLOYMENT, GET_EMPLOYMENT_BY_ID, 
+    EDIT_EMPLOYMENT, DELETE_EMPLOYMENT } from '../actions/types';
 
 
 const initialstate = {
-    employment: []
+    employment: [],
+    employment_by_id: {}
 }
 
 export default function(state = initialstate,action)
@@ -14,7 +16,16 @@ export default function(state = initialstate,action)
                 employment: action.payload
             };
 
+        case GET_EMPLOYMENT_BY_ID:
+            return{
+            ...state,
+            employment_by_id: action.payload
+            };
+        
+
         case ADD_EMPLOYMENT:
+        case EDIT_EMPLOYMENT:
+        case DELETE_EMPLOYMENT:
             return{
                 ...state,
                 employment: [...state.employment,action.payload]

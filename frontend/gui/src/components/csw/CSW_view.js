@@ -1,10 +1,10 @@
 import React from 'react';
 import { Descriptions,Button } from 'antd';
-import { Redirect } from 'react-router-dom';
 import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
 import { getCSW } from '../../actions/csw';
+import history from '../common/history';
 
 class CSW_view extends React.Component{
 
@@ -30,37 +30,50 @@ class CSW_view extends React.Component{
       ref.focus();
     }
 
-    renderRedirect = (type) => {
-      if (this.state.redirect && type === 'edit') {
-        return <Redirect to = '/csw/edit' />
-      }
 
-      else if (this.state.redirect && type === 'add') {
-        return <Redirect to = '/csw/add' />
-      }
+    addRedirect = () => {
+      history.push('/csw/add');
+
+      //window.open("/csw/add","_self");
+    }
+
+
+    editRedirect = (e) => {
+        var id = e.target.id;
+        history.push(`/csw/edit/${id}`);
+        
+        //console.log(e.target.id);
+        //window.open("/csw/edit","_self");
     }
 
     
-      componentDidMount() {
-        this.props.getCSW();
-        this.setState({ length: Object.keys(this.props.csw).length });
-      }
+    componentDidMount() {
+      this.props.getCSW();
+    }
       
-
-    render(){
-        var n = 0;
-
-        var org_count = 0;
-        var cha_count = 0;
-        var paper_count = 0;
+    componentWillReceiveProps(props) {
+        var n = 0,org_count = 0,cha_count = 0,paper_count = 0;
   
-        this.props.csw.map(csw =>
+        props.csw.map(csw =>
           (
             csw.csw_type === "organized" ? (org_count++,n++) : 
             (csw.csw_type === "cha_co-cha" ? (cha_count++,n++) :
             (csw.csw_type === "paper" ? (paper_count++,n++) : (null)))
           )
           );
+        localStorage.setItem('n',n);
+        localStorage.setItem('org_count',org_count);
+        localStorage.setItem('cha_count',cha_count);
+        localStorage.setItem('paper_count',paper_count);
+    }
+
+
+    render(){
+        var n = localStorage.getItem('n');
+        var org_count = localStorage.getItem('org_count');
+        var cha_count = localStorage.getItem('cha_count');
+        var paper_count = localStorage.getItem('paper_count');
+
 
     return (
       <div>
@@ -80,7 +93,11 @@ class CSW_view extends React.Component{
         {
         this.props.csw.map(csw => (
           csw.csw_type === "organized" ? ( 
-          <div>
+          <div  key = {csw.id}>
+            <div align = "right">
+              <Button id = {csw.id} type = "primary" onClick={this.editRedirect}>Edit</Button>
+            </div>
+            <br/>
             <Descriptions bordered>
             <Descriptions.Item label="TITLE" span={3}>{ csw.title }</Descriptions.Item>   
             <Descriptions.Item label="TYPE" span={3}>{ csw.type_name }</Descriptions.Item>
@@ -106,7 +123,11 @@ class CSW_view extends React.Component{
         {
         this.props.csw.map(csw => (
           csw.csw_type === "cha_co-cha" ? ( 
-          <div>
+          <div key = {csw.id}>
+            <div align = "right">
+              <Button id = {csw.id} type = "primary" onClick={this.editRedirect}>Edit</Button>
+            </div>
+            <br/>
             <Descriptions bordered>
             <Descriptions.Item label="TITLE" span={3}>{ csw.title }</Descriptions.Item>   
             <Descriptions.Item label="TYPE" span={3}>{ csw.type_name }</Descriptions.Item>
@@ -132,7 +153,11 @@ class CSW_view extends React.Component{
         {
         this.props.csw.map(csw => (
           csw.csw_type === "paper" ? ( 
-          <div>
+          <div key = {csw.id}>
+            <div align = "right">
+              <Button id = {csw.id} type = "primary" onClick={this.editRedirect}>Edit</Button>
+            </div>
+            <br/>
             <Descriptions bordered>
             <Descriptions.Item label="TITLE" span={3}>{ csw.title }</Descriptions.Item>   
             <Descriptions.Item label="TYPE" span={3}>{ csw.type_name }</Descriptions.Item>
@@ -155,8 +180,7 @@ class CSW_view extends React.Component{
 
       }
 
-      {this.renderRedirect('add')}
-      <Button type="primary" onClick={this.setRedirect}>Add</Button>
+      <Button type="primary" onClick={this.addRedirect}>Add</Button>
       </CustomLayout>
       </div>
     );

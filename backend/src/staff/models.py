@@ -75,6 +75,7 @@ class employment(models.Model):
     staff = models.ForeignKey(User, on_delete=models.CASCADE,related_name = "employment",null=True)
     designation = models.CharField(max_length=400,null=True)
     from_date = models.DateField( default=None,null=True)
+    to_date = models.DateField( default=None,null=True)
     department = models.CharField(max_length=400, default=None,null=True)
     campus = models.CharField(max_length=400, default=None,null=True)
     present_pay = models.IntegerField(default=None,null=True)

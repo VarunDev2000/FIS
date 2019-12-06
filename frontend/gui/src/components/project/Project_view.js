@@ -1,15 +1,15 @@
 import React from 'react';
 import { Descriptions,Button } from 'antd';
-import { Redirect } from 'react-router-dom';
 import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
 import { getProject } from '../../actions/project';
+import history from '../common/history';
 
 class Project_view extends React.Component{
 
   static propTypes = {
-    csw: PropTypes.array.isRequired
+    project: PropTypes.array.isRequired
   }
 
   state = {
@@ -30,15 +30,21 @@ class Project_view extends React.Component{
       ref.focus();
     }
 
-    renderRedirect = (type) => {
-      if (this.state.redirect && type === 'edit') {
-        return <Redirect to = '/project/edit' />
-      }
+    addRedirect = () => {
+      history.push('/project/add');
 
-      else if (this.state.redirect && type === 'add') {
-        return <Redirect to = '/project/add' />
-      }
+      //window.open("/qualification/edit","_self");
     }
+
+
+    editRedirect = (e) => {
+        var id = e.target.id;
+        history.push(`/project/edit/${id}`);
+        
+        //console.log(e.target.id);
+        //window.open("/qualification/edit","_self");
+    }
+
 
     
       componentDidMount() {
@@ -46,25 +52,32 @@ class Project_view extends React.Component{
         this.setState({ length: Object.keys(this.props.project).length });
       }      
 
-    render(){
-        var n = 0;
+      componentWillReceiveProps(props) {
+          var n = 0,on_going_count = 0,comp_count = 0;
+          props.project.map(pro =>
+            (
+              pro.pro_type === "on_going" ? (on_going_count++,n++) : 
+              (pro.pro_type === "completed" ? (comp_count++,n++) : (null))
+            )
+            );
 
-        var on_going_count = 0;
-        var comp_count = 0;
-  
-        this.props.project.map(pro =>
-          (
-            pro.pro_type === "on_going" ? (on_going_count++,n++) : 
-            (pro.pro_type === "completed" ? (comp_count++,n++) : (null))
-          )
-          );
+            localStorage.setItem('n',n);
+            localStorage.setItem('on_going_count',on_going_count);
+            localStorage.setItem('comp_count',comp_count);
+
+      }
+
+    render(){
+        var n = localStorage.getItem('n');;
+        var on_going_count = localStorage.getItem('on_going_count');;
+        var comp_count = localStorage.getItem('comp_count');
 
     return (
       <div>
       <CustomLayout>
 
       {
-      n === 0 ? (
+      n == 0 ? (
                   <div>
                   </div>
       ) : (
@@ -77,7 +90,11 @@ class Project_view extends React.Component{
         {
         this.props.project.map(pro => (
           pro.pro_type === "on_going" ? ( 
-          <div>
+          <div key = {pro.id}>
+              <div align = "right">
+                <Button id = {pro.id} type = "primary" onClick={this.editRedirect}>Edit</Button>
+              </div>
+              <br/>
             <Descriptions bordered>
             <Descriptions.Item label="PROJECT TITLE" span={3}>{ pro.pro_title }</Descriptions.Item>   
             <Descriptions.Item label="FUNDING AGENT" span={3}>{ pro.funding_agent }</Descriptions.Item>
@@ -103,7 +120,11 @@ class Project_view extends React.Component{
         {
         this.props.project.map(pro => (
           pro.pro_type === "completed" ? ( 
-          <div>
+          <div key = {pro.id}>
+            <div align = "right">
+              <Button id = {pro.id} type = "primary" onClick={this.editRedirect}>Edit</Button>
+            </div>
+            <br/>
             <Descriptions bordered>
             <Descriptions.Item label="PROJECT TITLE" span={3}>{ pro.pro_title }</Descriptions.Item>   
             <Descriptions.Item label="FUNDING AGENT" span={3}>{ pro.funding_agent }</Descriptions.Item>
@@ -125,8 +146,7 @@ class Project_view extends React.Component{
 
       }
 
-      {this.renderRedirect('add')}
-      <Button type="primary" onClick={this.setRedirect}>Add Project</Button>
+      <Button type="primary" onClick={this.addRedirect}>Add Project</Button>
       </CustomLayout>
       </div>
     );

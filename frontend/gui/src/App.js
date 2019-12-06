@@ -75,7 +75,7 @@ class App extends Component {
         <PrivateRoute exact path ='/specialization/edit/:id' component = {SpecEditbyID}/>
 
         <PrivateRoute exact path ='/employment' component = {Employment_view}/>
-        <PrivateRoute exact path ='/employment/edit' component = {EmpEdit}/>
+        <PrivateRoute exact path ='/employment/edit/:id' component = {EmpEdit}/>
         <PrivateRoute exact path ='/employment/add' component = {EmpAdd}/>
 
         <PrivateRoute exact path ='/publication' component = {Publication_view}/>
@@ -83,11 +83,11 @@ class App extends Component {
         <PrivateRoute exact path ='/publication/add' component = {PubliAdd}/>
 
         <PrivateRoute exact path ='/csw' component = {CSW_view}/>
-        <PrivateRoute exact path ='/csw/edit' component = {CSWEdit}/>
+        <PrivateRoute exact path ='/csw/edit/:id' component = {CSWEdit}/>
         <PrivateRoute exact path ='/csw/add' component = {CSWAdd}/>
 
         <PrivateRoute exact path ='/project' component = {Project_view}/>
-        <PrivateRoute exact path ='/project/edit' component = {ProEdit}/>
+        <PrivateRoute exact path ='/project/edit/:id' component = {ProEdit}/>
         <PrivateRoute exact path ='/project/add' component = {ProAdd}/>
 
         <PrivateRoute exact path ='/invited_lectures/add' component = {LecAdd}/>

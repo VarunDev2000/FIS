@@ -1,10 +1,10 @@
 import React from 'react';
 import { Descriptions,Button } from 'antd';
-import { Redirect } from 'react-router-dom';
 import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
 import { getEmployment } from '../../actions/employment';
+import history from '../common/history'
 
 class Employment_view extends React.Component{
 
@@ -25,14 +25,19 @@ class Employment_view extends React.Component{
       })
     }
 
-    renderRedirect = (type) => {
-      if (this.state.redirect && type === 'edit') {
-        return <Redirect to = '/employment/edit' />
-      }
+    addRedirect = () => {
+      history.push('/employment/add');
 
-      else if (this.state.redirect && type === 'add') {
-        return <Redirect to = '/employment/add' />
-      }
+      //window.open("/qualification/edit","_self");
+    }
+
+
+    editRedirect = (e) => {
+        var id = e.target.id;
+        history.push(`/employment/edit/${id}`);
+        
+        //console.log(e.target.id);
+        //window.open("/qualification/edit","_self");
     }
 
     
@@ -40,30 +45,43 @@ class Employment_view extends React.Component{
         this.props.getEmployment();
         this.setState({ length: Object.keys(this.props.employment).length });
       }
+
+      componentWillReceiveProps(props) {
+        var n = 0,present_count = 0,prev_count = 0,present_add_count = 0,prev_add_count = 0,oth_count = 0,industry_count = 0,academics_count = 0;
+  
+        props.employment.map(emp =>
+          (
+            emp.emp_type === "univ" ? (emp.position_type === "present" ? (present_count++,n++) 
+            : (emp.position_type === "prev" ? (prev_count++,n++) : 
+              (emp.position_type === "present_add" ? (present_add_count++,n++) : 
+              (emp.position_type === "prev_add" ? (prev_add_count++,n++):(null))))) : 
+              (emp.exp_type === "industry" ? (industry_count++,oth_count++) : (emp.exp_type === "academics") ? 
+              (academics_count++,oth_count++) : (null))
+          )
+          );
+
+          localStorage.setItem('n',n);
+          localStorage.setItem('present_count',present_count);
+          localStorage.setItem('prev_count',prev_count);
+          localStorage.setItem('present_add_count',present_add_count);
+          localStorage.setItem('prev_add_count',prev_add_count);
+          localStorage.setItem('oth_count',oth_count);
+          localStorage.setItem('industry_count',industry_count);
+          localStorage.setItem('academics_count',academics_count);
+      }
       
 
     render(){
-      var n = 0;
+      var n = localStorage.getItem('n');
 
-      var present_count = 0;
-      var prev_count = 0;
-      var present_add_count = 0;
-      var prev_add_count = 0;
+      var present_count = localStorage.getItem('present_count');
+      var prev_count = localStorage.getItem('prev_count');
+      var present_add_count = localStorage.getItem('present_add_count');
+      var prev_add_count = localStorage.getItem('prev_add_count');
 
-      var oth_count = 0;
-      var industry_count = 0;
-      var academics_count = 0;
-
-      this.props.employment.map(emp =>
-        (
-          emp.emp_type === "univ" ? (emp.position_type === "present" ? (present_count++,n++) 
-          : (emp.position_type === "prev" ? (prev_count++,n++) : 
-            (emp.position_type === "present_add" ? (present_add_count++,n++) : 
-            (emp.position_type === "prev_add" ? (prev_add_count++,n++):(null))))) : 
-            (emp.exp_type === "industry" ? (industry_count++,oth_count++) : (emp.exp_type === "academics") ? 
-            (academics_count++,oth_count++) : (null))
-        )
-        );
+      var oth_count = localStorage.getItem('oth_count');
+      var industry_count = localStorage.getItem('industry_count');
+      var academics_count = localStorage.getItem('academics_count');
 
     return (
       <div>
@@ -83,7 +101,7 @@ class Employment_view extends React.Component{
         {
         this.props.employment.map(emp => (
         emp.position_type === "present" ? ( 
-        <div>
+        <div key = {emp.id}>
         <Descriptions bordered>
         <Descriptions.Item label="DESIGNATION" span={3}>{ emp.designation }</Descriptions.Item>   
         <Descriptions.Item label="FROM" span={3}>{ emp.from_date }</Descriptions.Item>
@@ -93,6 +111,9 @@ class Employment_view extends React.Component{
         <Descriptions.Item label="NATURE OF APPOINTMENT" span={3}>{emp.nature_of_app}</Descriptions.Item>       
         </Descriptions>
         <br/>
+        <div align = "right">
+        <Button id={emp.id} type="primary" onClick={this.editRedirect}>Edit</Button>
+        </div>
         </div>
         ) : (null)
         ))
@@ -112,7 +133,7 @@ class Employment_view extends React.Component{
         {
         this.props.employment.map(emp => (
         emp.position_type === "prev" ? ( 
-        <div>
+        <div key = {emp.id}>
         <Descriptions bordered>
         <Descriptions.Item label="DESIGNATION" span={3}>{ emp.designation }</Descriptions.Item>   
         <Descriptions.Item label="FROM" span={3}>{ emp.from_date }</Descriptions.Item>
@@ -121,7 +142,11 @@ class Employment_view extends React.Component{
         <Descriptions.Item label="CAMPUS" span={3}>{emp.campus}</Descriptions.Item>
         <Descriptions.Item label="PRESENT PAY" span={3}>{emp.present_pay}</Descriptions.Item>
         <Descriptions.Item label="NATURE OF APPOINTMENT" span={3}>{emp.nature_of_app}</Descriptions.Item>       
-        </Descriptions>
+        </Descriptions>        
+        <br/>
+        <div align = "right">
+        <Button id={emp.id} type="primary" onClick={this.editRedirect}>Edit</Button>
+        </div>
         <br/>
         </div>
         ) : (null)
@@ -143,11 +168,15 @@ class Employment_view extends React.Component{
         {
         this.props.employment.map(emp => (
         emp.position_type === "present_add" ? ( 
-        <div>
+        <div key = {emp.id}>
         <Descriptions bordered>
         <Descriptions.Item label="POSITION" span={3}>{ emp.position }</Descriptions.Item>   
         <Descriptions.Item label="DEPARTMENT/CENTRE" span={3}>{ emp.department }</Descriptions.Item>
         </Descriptions>
+        <br/>
+        <div align = "right">
+        <Button id={emp.id} type="primary" onClick={this.editRedirect}>Edit</Button>
+        </div>
         <br/>
         </div>
         ) : (null)
@@ -169,11 +198,15 @@ class Employment_view extends React.Component{
         {
         this.props.employment.map(emp => (
         emp.position_type === "prev_add" ? ( 
-        <div>
+        <div key = {emp.id}>
         <Descriptions bordered>
         <Descriptions.Item label="POSITION" span={3}>{ emp.position }</Descriptions.Item>   
         <Descriptions.Item label="DEPARTMENT/CENTRE" span={3}>{ emp.department }</Descriptions.Item>
         </Descriptions>
+        <br/>
+        <div align = "right">
+        <Button id={emp.id} type="primary" onClick={this.editRedirect}>Edit</Button>
+        </div>
         <br/>
         </div>
         ) : (null)
@@ -204,12 +237,16 @@ class Employment_view extends React.Component{
     {
     this.props.employment.map(emp => (
     emp.exp_type === "industry" ? (
-    <div>
+    <div key = {emp.id}>
     <Descriptions bordered>
     <Descriptions.Item label="DESIGNATION" span={3}>{ emp.designation }</Descriptions.Item>   
     <Descriptions.Item label="INSTITUTION" span={3}>{ emp.institution }</Descriptions.Item>
     <Descriptions.Item label="YEARS" span={3}>{ emp.years }</Descriptions.Item>
     </Descriptions>
+    <br/>
+    <div align = "right">
+    <Button id={emp.id} type="primary" onClick={this.editRedirect}>Edit</Button>
+    </div>
     <br/>
     </div>
     ) : (null)
@@ -227,12 +264,16 @@ class Employment_view extends React.Component{
     {
     this.props.employment.map(emp => (
     emp.exp_type === "academics" ? (
-    <div>
+    <div key = {emp.id}>
     <Descriptions bordered>
     <Descriptions.Item label="DESIGNATION" span={3}>{ emp.designation }</Descriptions.Item>   
     <Descriptions.Item label="INSTITUTION" span={3}>{ emp.institution }</Descriptions.Item>
     <Descriptions.Item label="YEARS" span={3}>{ emp.years }</Descriptions.Item>
     </Descriptions>
+    <br/>
+    <div align = "right">
+    <Button id={emp.id} type="primary" onClick={this.editRedirect}>Edit</Button>
+    </div>
     <br/>
     </div>
     ) : (null)
@@ -247,9 +288,7 @@ class Employment_view extends React.Component{
     }
     
 
-    
-      {this.renderRedirect('add')}
-      <Button type="primary" onClick={this.setRedirect}>Add Employment information</Button>
+      <Button type="primary" onClick={this.addRedirect}>Add Employment information</Button>
       </CustomLayout>
       </div>
     );

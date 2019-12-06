@@ -8,14 +8,15 @@ import { addProject } from '../../actions/project';
 class CustomForm extends React.Component {
 
   state = {
-    pro_form : null,
+    pro_form : 'on_going',
     redirect : false,
     pro_title: '',
     funding_agent: '',
     amt: '',
-    pro_type: '',
+    pro_type: 'on_going',
     pdf: '',
     file : null,
+    disabled : false,
 }
 
 static propTypes = {
@@ -44,7 +45,11 @@ onFileChange = e => {
 
 
 onSubmit = (e) => {
-  //e.preventDefault();
+  this.setState({
+    disabled : true
+  })
+
+  e.preventDefault();
 
   if(this.props.type === 'add' && (this.state.pro_form === 'on_going' || this.state.pro_form === 'completed'))
   {
@@ -56,15 +61,19 @@ onSubmit = (e) => {
   form_data.append('pro_type', this.state.pro_type);
   
   //display values in console
+  /*
   for (var pair of form_data.entries()) {
     console.log(pair[0]+ ' : ' + pair[1]); 
   }
-
+  */
   this.props.addProject(form_data);
+
+  setTimeout( function(){
+    window.open("/project","_self")
+  }, 1000 );
   }
 
   else{
-    console.log("submit");
   }
 
 };
@@ -96,7 +105,6 @@ onSubmit = e => {
         <Form onSubmit ={this.onSubmit}>
 
         <select name="pro_type" onChange = {this.dropdown}>
-            <option disabled selected value> -- select an option -- </option>
             <option value="on_going">ON GOING</option>
             <option value="completed">COMPLETED</option>
         </select><br/><br/>
@@ -114,7 +122,7 @@ onSubmit = e => {
             <input type="file" name="pdf" accept="application/pdf" required onChange = {this.onFileChange}></input>
           </Form.Item>
           <Form.Item>
-          <Button type="primary" htmlType = "submit">{this.props.btnText}</Button>
+          <Button type="primary" htmlType = "submit" disabled = {this.state.disabled}>{this.props.btnText}</Button>
           </Form.Item>
           </div>
         </Form>

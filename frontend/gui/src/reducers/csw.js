@@ -1,8 +1,9 @@
-import { GET_CSW,ADD_CSW } from '../actions/types';
+import { GET_CSW,ADD_CSW,EDIT_CSW,DELETE_CSW,GET_CSW_BY_ID } from '../actions/types';
 
 
 const initialstate = {
-    csw: []
+    csw: [],
+    csw_by_id: {}
 }
 
 export default function(state = initialstate,action)
@@ -14,7 +15,15 @@ export default function(state = initialstate,action)
                 csw: action.payload
             };
 
+        case GET_CSW_BY_ID:
+            return{
+                ...state,
+                csw_by_id: action.payload
+            };
+
         case ADD_CSW:
+        case EDIT_CSW:
+        case DELETE_CSW:
             return{
                 ...state,
                 csw: [...state.csw,action.payload]

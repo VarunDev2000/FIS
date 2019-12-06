@@ -8,11 +8,11 @@ import { addSpecialization } from '../../actions/specialization';
 class CustomForm extends React.Component {
 
   state = {
-    type_form : null,
+    type_form : 'spec',
     redirect : false,
     area_name: '',
     mem: '',
-    spec_mem_type: '',
+    spec_mem_type: 'spec',
 }
 
 static propTypes = {
@@ -68,8 +68,7 @@ onSubmit = e => {
         <CustomLayout>
         <Form onSubmit ={this.onSubmit}>
 
-        <select name="spec_mem_type" defaultValue={'DEFAULT'} onChange = {this.dropdown}>
-            <option value="DEFAULT" disabled> -- select an option -- </option>
+        <select name="spec_mem_type" onChange = {this.dropdown}>
             <option value="spec">SPECIALIZATION</option>
             <option value="mem">MEMBERSHIP</option>
         </select><br/><br/>

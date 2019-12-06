@@ -8,13 +8,13 @@ import { addCSW } from '../../actions/csw';
 class CustomForm extends React.Component {
 
   state = {
-    csw_form : null,
+    csw_form : 'organized',
     redirect : false,
     title: '',
     type_name: '',
     level: '',
     country: '',
-    csw_type: '',
+    csw_type: 'organized',
     pdf: '',
     file : null,
 }
@@ -44,7 +44,11 @@ onFileChange = e => {
 
 
 onSubmit = (e) => {
-  //e.preventDefault();
+
+  this.setState({
+    disabled : true
+  })
+  e.preventDefault();
 
   if(this.props.type === 'add' && (this.state.csw_form === 'organized' || this.state.csw_form === 'cha_co-cha'))
   {
@@ -57,11 +61,17 @@ onSubmit = (e) => {
   
   var pair;
   //display values in console
+  /*
   for (pair of form_data.entries()) {
     console.log(pair[0]+ ' : ' + pair[1]); 
   }
+  */
 
   this.props.addCSW(form_data);
+
+  setTimeout( function(){
+    window.open("/csw","_self")
+  }, 1000 );
   }
 
   else if(this.props.type === 'add' && this.state.csw_form === 'paper')
@@ -74,15 +84,20 @@ onSubmit = (e) => {
     form_data.append('csw_type', this.state.csw_type);
     
     //display values in console
+    /*
     for (pair of form_data.entries()) {
       console.log(pair[0]+ ' : ' + pair[1]); 
     }
+    */
   
     this.props.addCSW(form_data);
+
+    setTimeout( function(){
+      window.open("/csw","_self")
+    }, 1000 );
   }
 
   else{
-    console.log("submit");
   }
 
 };
@@ -124,7 +139,6 @@ onSubmit = e => {
         <Form onSubmit ={this.onSubmit}>
 
         <select name="csw_type" onChange = {this.dropdown}>
-            <option disabled selected value> -- select an option -- </option>
             <option value="organized">ORGANIZED</option>
             <option value="cha_co-cha">CHAIRED/CO-CHAIRED</option>
             <option value="paper">PAPER PRESENTED</option>
@@ -146,7 +160,7 @@ onSubmit = e => {
             <input type="file" name="pdf" accept="application/pdf" required onChange = {this.onFileChange}></input>
           </Form.Item>
           <Form.Item>
-          <Button type="primary" htmlType = "submit">{this.props.btnText}</Button>
+          <Button type="primary" htmlType = "submit" disabled = {this.state.disabled}>{this.props.btnText}</Button>
           </Form.Item>
           </div>
         ) : (
@@ -165,7 +179,7 @@ onSubmit = e => {
             <input type="file" name="pdf" accept="application/pdf" required onChange = {this.onFileChange}></input>
           </Form.Item>
           <Form.Item>
-          <Button type="primary" htmlType = "submit">{this.props.btnText}</Button>
+          <Button type="primary" htmlType = "submit" disabled = {this.state.disabled}>{this.props.btnText}</Button>
           </Form.Item>
           </div>
         ) : (
