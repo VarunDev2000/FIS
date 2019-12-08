@@ -79,13 +79,11 @@ componentDidMount()
     this.props.getSpecializationbyID(id);
 }
 
-componentDidUpdate(prevProps) {
-  if (prevProps.specialization !== this.props.specialization) {
-    this.setStates(this.props);
+componentWillReceiveProps(props) {
+    this.setStates(props);
     this.setState({
-      spec : this.props.specialization
+      spec : props.specialization
     })
-  }
 }
 
 

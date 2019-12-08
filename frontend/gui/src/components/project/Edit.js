@@ -109,13 +109,11 @@ componentDidMount()
 }
 
 
-componentDidUpdate(prevProps) {
-  if (prevProps.project !== this.props.project) {
-    this.setStates(this.props);
+componentWillReceiveProps(props) {
+    this.setStates(props);
     this.setState({
-      pro : this.props.project
+      pro : props.project
     })
-  }
 }
 
   render() {

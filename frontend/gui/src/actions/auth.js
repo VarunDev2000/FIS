@@ -7,7 +7,9 @@ import{
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
-    REGISTER_FAIL
+    REGISTER_FAIL,
+    PASSWORD_CHANGED,
+    PASSWORD_CHANGE_ERROR
 }from './types';
 
 //Check Token & Load User
@@ -106,7 +108,25 @@ export const tokenConfig = getState => {
 
 
 
+//Check Token & Load User
+export const changePass = (old_password,new_password) => (dispatch,getState) => {
 
+    const body = JSON.stringify({ old_password,new_password });
+
+    axios.put('http://127.0.0.1:8000/api/auth/change_password',body,tokenConfig(getState))
+    .then(res => {
+        dispatch({
+            type: PASSWORD_CHANGED,
+            payload:res.data
+        });
+    }).catch(err => {
+        console.log("Error changing Password..");
+        dispatch({
+            type:PASSWORD_CHANGE_ERROR,
+        })
+    });
+
+}
 
 
 

@@ -44,13 +44,11 @@ class Generalinfo extends React.Component{
         this.props.getStaffinfo();
       }
 
-      componentDidUpdate(prevProps) {
-        if (prevProps.generalinfo !== this.props.generalinfo) {
+      componentWillReceiveProps(props) {
           this.setState({
-            numRows : this.props.length
+            numRows : props.length
           })
-          localStorage.setItem('length',this.props.length)
-        }
+          localStorage.setItem('length',props.length)
       }
       
 
@@ -59,7 +57,7 @@ class Generalinfo extends React.Component{
     return (
       <CustomLayout>
       {
-       numRows === 0 ? (
+       numRows == 0 ? (
             <Button type="primary" onClick={this.addRedirect}>Add Details</Button>
       ) : (
       this.props.generalinfo.map(ginfo => (

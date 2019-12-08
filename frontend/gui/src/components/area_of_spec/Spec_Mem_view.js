@@ -57,7 +57,7 @@ class Specialization_view extends React.Component{
       */
 
 
-      UNSAFE_componentWillReceiveProps(props)
+      componentWillReceiveProps(props)
       {
         var n = 0,spec_count = 0,mem_count = 0;
 

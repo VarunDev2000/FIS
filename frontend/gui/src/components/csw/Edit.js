@@ -159,13 +159,11 @@ componentDidMount()
 }
 
 
-componentDidUpdate(prevProps) {
-  if (prevProps.c_s_w !== this.props.c_s_w) {
-    this.setStates(this.props);
+componentWillReceiveProps(props) {
+    this.setStates(props);
     this.setState({
-      csw : this.props.c_s_w
+      csw : props.c_s_w
     })
-  }
 }
 
   render() {

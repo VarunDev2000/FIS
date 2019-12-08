@@ -40,18 +40,16 @@ class Qualification_view extends React.Component{
       }
 
 
-      componentDidUpdate(prevProps) {
-        if (prevProps.qualification !== this.props.qualification) {
+      componentWillReceiveProps(props) {
           var ug_pg_count=0,research_count=0,n=0;
 
-          this.props.qualification.map(quali => 
+          props.qualification.map(quali => 
           quali.degree_type === 'ug_pg' ? (ug_pg_count++,n++) : (research_count++,n++));
           this.setState({
             numRows : n,
             ug_pg_count : ug_pg_count,
             r_count : research_count
           })
-        }
       }
       
 

@@ -47,6 +47,7 @@ export class CustomLayout extends React.Component{
                         <Menu.Item key="11" onClick = {() => this.changePage('/book_published/add')}>BOOK PUBLISHED</Menu.Item>
                         <Menu.Item key="12" onClick = {() => this.changePage('/eao_programme/add')}>EXTENSION AND OUTREACH PROGRAMME</Menu.Item>
                         <Menu.Item key="13" style={{float: 'right'}} onClick= {this.props.logout} >Logout</Menu.Item>
+                        <Menu.Item key="14" style={{float: 'right'}} onClick={() => this.changePage('/change-password')} >Change Password</Menu.Item>
                     </Menu>
                 </Header>
                 <Content style={{ padding: '0 50px' }}>

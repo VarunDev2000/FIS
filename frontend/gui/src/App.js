@@ -7,6 +7,7 @@ import store from './store'
 import Login from './components/accounts/Login';
 import history from './components/common/history'
 
+import changePassword from './components/accounts/change_password'
 //--------------------------------
 import Generalinfo from './components/staffinfo/Generalinfo';
 import Add from './components/staffinfo/Add';
@@ -60,6 +61,8 @@ class App extends Component {
         <Router history = {history}>
         <Switch>
         <Route exact path ='/login' component = {Login}/>
+
+        <PrivateRoute exact path ='/change-password' component = {changePassword}/>
 
         <PrivateRoute exact path ='/' component = {Generalinfo}/>
         <PrivateRoute exact path ='/edit/:id' component = {Edit}/>

@@ -126,13 +126,11 @@ componentDidMount()
 }
 
 
-componentDidUpdate(prevProps) {
-  if (prevProps.qualification !== this.props.qualification) {
-    this.setStates(this.props);
+componentWillReceiveProps(props) {
+    this.setStates(props);
     this.setState({
-      quali : this.props.qualification
+      quali : props.qualification
     })
-  }
 }
 
 

@@ -101,13 +101,11 @@ componentDidMount()
 }
 
 
-componentDidUpdate(prevProps) {
-  if (prevProps.publication !== this.props.publication) {
-    this.setStates(this.props);
+componentWillReceiveProps(props) {
+    this.setStates(props);
     this.setState({
-      publi : this.props.publication
+      publi : props.publication
     })
-  }
 }
 
   render() {

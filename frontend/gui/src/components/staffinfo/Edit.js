@@ -98,13 +98,11 @@ onSubmit = e => {
       this.props.getStaffinfobyID(id);
     }
 
-    componentDidUpdate(prevProps) {
-      if (prevProps.generalinfo !== this.props.generalinfo) {
+    componentWillReceiveProps(props) {
         this.setStates(this.props);
         this.setState({
-          g_info : this.props.generalinfo
+          g_info : props.generalinfo
         })
-      }
     }
     
 
