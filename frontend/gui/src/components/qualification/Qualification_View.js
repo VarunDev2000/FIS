@@ -72,8 +72,8 @@ class Qualification_view extends React.Component{
           {
           ug_pg_count > 0 ? (
           <div>
-          <Descriptions title="UG/PG"></Descriptions>
-          {
+          <h4>UG/PG</h4>
+          <br/>          {
           this.props.qualification.map(quali => (
           quali.degree_type === "ug_pg" ? ( 
           <div key = {'ugpg'+quali.id}>
@@ -86,9 +86,7 @@ class Qualification_view extends React.Component{
             <Descriptions.Item label="DURATION" span={3}>{quali.duration}</Descriptions.Item>
             <Descriptions.Item label="CLASS OBTAINED" span={3}>{quali.class_obtained}</Descriptions.Item>
             </Descriptions>
-            <br/>
-
-            <Button id={quali.id} type="primary" onClick={this.editRedirect}>Edit</Button>
+            <Button id={quali.id} type="primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
           <br /><br/>
           </div>
           ):(null)))
@@ -100,7 +98,9 @@ class Qualification_view extends React.Component{
           {
           r_count > 0 ? ( 
           <div>
-          <Descriptions title="RESEARCH"></Descriptions>
+          <h4>RESEARCH</h4>
+          <br/>
+
           {
           this.props.qualification.map(quali => (
           quali.degree_type === "research" ? ( 
@@ -116,8 +116,7 @@ class Qualification_view extends React.Component{
                 <Descriptions.Item label="DURATION" span={3}>{quali.duration}</Descriptions.Item>
                 <Descriptions.Item label="VIVA" span={3}>{quali.viva}</Descriptions.Item>       
                 </Descriptions>
-                 <br/>
-                <Button id={quali.id} type="primary" onClick={this.editRedirect}>Edit</Button>
+                <Button id={quali.id} type="primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
               <br /><br/>
             </div>
           ):(null)))

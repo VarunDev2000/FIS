@@ -95,18 +95,18 @@ class Specialization_view extends React.Component{
         {
         spec_count > 0 ? (
           <div>
-            <Descriptions title="AREA OF SPECIALIZATION" bordered></Descriptions>
-            <br/>
+            <h2>AREA OF SPECIALIZATION</h2><br/>
             {
               this.props.specialization.map(s_m => (
               s_m.spec_mem_type === "spec" ?(
-              <div key = {s_m.id}>
-              <Descriptions.Item span={3}>{ s_m.area_name }</Descriptions.Item>
+              <div key = {s_m.id} className = "aos_div">
+              <Descriptions.Item span={3}><b>.</b> { s_m.area_name }</Descriptions.Item>
               <br/><br/>
+
               </div>) : (null)
               ))
             }
-          <br/><br/>   
+          <br/><br/> 
           </div>
             
         ) : (null)
@@ -115,13 +115,13 @@ class Specialization_view extends React.Component{
         {
         mem_count > 0 ? (
           <div>
-          <Descriptions title="MEMBERSHIP OF PROFESSIONAL BODIES" bordered></Descriptions>
+          <h2>MEMBERSHIP OF PROFESSIONAL BODIES</h2><br/>
           <br/>
           {
           this.props.specialization.map(s_m => (
             s_m.spec_mem_type === "mem" ?(
-            <div key = {s_m.id}>
-            <Descriptions.Item span={3}>{ s_m.mem }</Descriptions.Item>
+            <div key = {s_m.id} className = "aos_div">
+           <Descriptions.Item span={3}><b>.</b> { s_m.mem }</Descriptions.Item>
             <br/><br/>
             </div>) : (null)
             ))

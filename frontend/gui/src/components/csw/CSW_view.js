@@ -78,7 +78,8 @@ class CSW_view extends React.Component{
     return (
       <div>
       <CustomLayout>
-
+      <Button type="primary" onClick={this.addRedirect}>Add</Button>
+      <br/><br/><br/>
       {
       n === 0 ? (
                   <div>
@@ -94,10 +95,6 @@ class CSW_view extends React.Component{
         this.props.csw.map(csw => (
           csw.csw_type === "organized" ? ( 
           <div  key = {csw.id}>
-            <div align = "right">
-              <Button id = {csw.id} type = "primary" onClick={this.editRedirect}>Edit</Button>
-            </div>
-            <br/>
             <Descriptions bordered>
             <Descriptions.Item label="TITLE" span={3}>{ csw.title }</Descriptions.Item>   
             <Descriptions.Item label="TYPE" span={3}>{ csw.type_name }</Descriptions.Item>
@@ -106,6 +103,7 @@ class CSW_view extends React.Component{
             <Button span={3} target="ref" onClick={() => this.popPDF(csw.pdf)}>View</Button>
             </Descriptions.Item>
             </Descriptions>
+            <Button id = {csw.id} type = "primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
           <br /><br/>
           </div>
           )  :  (null))
@@ -124,10 +122,6 @@ class CSW_view extends React.Component{
         this.props.csw.map(csw => (
           csw.csw_type === "cha_co-cha" ? ( 
           <div key = {csw.id}>
-            <div align = "right">
-              <Button id = {csw.id} type = "primary" onClick={this.editRedirect}>Edit</Button>
-            </div>
-            <br/>
             <Descriptions bordered>
             <Descriptions.Item label="TITLE" span={3}>{ csw.title }</Descriptions.Item>   
             <Descriptions.Item label="TYPE" span={3}>{ csw.type_name }</Descriptions.Item>
@@ -136,6 +130,7 @@ class CSW_view extends React.Component{
             <Button span={3} target="ref" onClick={() => this.popPDF(csw.pdf)}>View</Button>
             </Descriptions.Item>
             </Descriptions>
+            <Button id = {csw.id} type = "primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
           <br /><br/>
           </div>
           )  :  (null))
@@ -154,10 +149,6 @@ class CSW_view extends React.Component{
         this.props.csw.map(csw => (
           csw.csw_type === "paper" ? ( 
           <div key = {csw.id}>
-            <div align = "right">
-              <Button id = {csw.id} type = "primary" onClick={this.editRedirect}>Edit</Button>
-            </div>
-            <br/>
             <Descriptions bordered>
             <Descriptions.Item label="TITLE" span={3}>{ csw.title }</Descriptions.Item>   
             <Descriptions.Item label="TYPE" span={3}>{ csw.type_name }</Descriptions.Item>
@@ -166,6 +157,7 @@ class CSW_view extends React.Component{
             <Button span={3} target="ref" onClick={() => this.popPDF(csw.pdf)}>View</Button>
             </Descriptions.Item>
             </Descriptions>
+            <Button id = {csw.id} type = "primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
           <br /><br/>
           </div>
           )  :  (null))
@@ -180,7 +172,6 @@ class CSW_view extends React.Component{
 
       }
 
-      <Button type="primary" onClick={this.addRedirect}>Add</Button>
       </CustomLayout>
       </div>
     );

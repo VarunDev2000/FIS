@@ -75,7 +75,8 @@ class Project_view extends React.Component{
     return (
       <div>
       <CustomLayout>
-
+      <Button type="primary" onClick={this.addRedirect}>Add Project</Button>
+      <br/><br/><br/>
       {
       n == 0 ? (
                   <div>
@@ -91,18 +92,15 @@ class Project_view extends React.Component{
         this.props.project.map(pro => (
           pro.pro_type === "on_going" ? ( 
           <div key = {pro.id}>
-              <div align = "right">
-                <Button id = {pro.id} type = "primary" onClick={this.editRedirect}>Edit</Button>
-              </div>
-              <br/>
             <Descriptions bordered>
             <Descriptions.Item label="PROJECT TITLE" span={3}>{ pro.pro_title }</Descriptions.Item>   
             <Descriptions.Item label="FUNDING AGENT" span={3}>{ pro.funding_agent }</Descriptions.Item>
             <Descriptions.Item label="AMOUNT" span={3}>{ pro.amt }</Descriptions.Item>
             <Descriptions.Item label="PDF" >
-              <Button span={3} target="ref" onClick={() => this.popPDF(pro.pdf)}>View</Button>
+            <Button span={3} target="ref" onClick={() => this.popPDF(pro.pdf)}>View</Button>
             </Descriptions.Item>
             </Descriptions>
+            <Button id = {pro.id} type = "primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
           <br /><br/>
           </div>
           )  :  (null))
@@ -121,10 +119,6 @@ class Project_view extends React.Component{
         this.props.project.map(pro => (
           pro.pro_type === "completed" ? ( 
           <div key = {pro.id}>
-            <div align = "right">
-              <Button id = {pro.id} type = "primary" onClick={this.editRedirect}>Edit</Button>
-            </div>
-            <br/>
             <Descriptions bordered>
             <Descriptions.Item label="PROJECT TITLE" span={3}>{ pro.pro_title }</Descriptions.Item>   
             <Descriptions.Item label="FUNDING AGENT" span={3}>{ pro.funding_agent }</Descriptions.Item>
@@ -133,6 +127,7 @@ class Project_view extends React.Component{
               <Button span={3} target="ref" onClick={() => this.popPDF(pro.pdf)}>View</Button>
             </Descriptions.Item>
             </Descriptions>
+            <Button id = {pro.id} type = "primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
           <br /><br/>
           </div>
           )  :  (null))
@@ -146,7 +141,6 @@ class Project_view extends React.Component{
 
       }
 
-      <Button type="primary" onClick={this.addRedirect}>Add Project</Button>
       </CustomLayout>
       </div>
     );

@@ -2,8 +2,9 @@ import React,{ Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'; 
+import PropTypes, { shape } from 'prop-types'; 
 import { changePass } from '../../actions/auth';
+import * as Yup from 'yup';
 
 export class changePassword extends Component{
     state = {
@@ -12,7 +13,9 @@ export class changePassword extends Component{
         password1 : '',
         password2 : '',
         pass_checked : false,
-        disabled : false
+        disabled : false,
+
+        errors : {}
     }
 
     static propTypes = {
@@ -63,7 +66,7 @@ export class changePassword extends Component{
           window.open('/',"_self");
         }
 
-        else
+        else if(this.props.err == true)
         {
           alert("Password Wrong!!")
         }
@@ -76,12 +79,14 @@ export class changePassword extends Component{
         return(
         <div><CustomLayout>
         {
+        <div>
+        <h2 className="text-center">CHANGE PASSWORD</h2><br/>
+        {
         this.state.pass_checked == false ? (
         <div>
-          <h2 className="text-center">CHANGE PASSWORD</h2>
-          <form onSubmit = {this.firstSubmit}>
+          <form onSubmit = {this.firstSubmit} className="change-pass-form">
             <div className="form-group">
-              <label>New Password</label>
+              <label>*New Password</label>
               <input
                 required
                 type="password"
@@ -91,7 +96,7 @@ export class changePassword extends Component{
               />
             </div>
             <div className="form-group">
-              <label>Confirm Password</label>
+              <label>*Confirm Password</label>
               <input
                 required
                 type="password"
@@ -109,9 +114,9 @@ export class changePassword extends Component{
           </form>
         </div>
         ) : (
-            <form onSubmit = {this.finalSubmit}>
+            <form onSubmit = {this.finalSubmit} className="change-pass-form">
             <div className="form-group">
-              <label>Current Password:</label>
+              <label>*Current Password</label>
               <input
                 required
                 type="password"
@@ -137,6 +142,8 @@ export class changePassword extends Component{
             </div>
           </form>
         )
+        }
+        </div>
         }
       </CustomLayout>
       </div>

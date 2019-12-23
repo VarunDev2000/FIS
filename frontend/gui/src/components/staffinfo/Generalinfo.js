@@ -26,14 +26,14 @@ class Generalinfo extends React.Component{
     }
 
     addRedirect = () => {
-      history.push('/add');
+      history.push('generalinfo/add');
 
       //window.open("/add","_self");
     }
 
     editRedirect = (e) => {
       var id = e.target.id;
-      history.push(`/edit/${id}`);
+      history.push(`generalinfo/edit/${id}`);
 
         //window.open('/edit',"_self");
 
@@ -62,7 +62,8 @@ class Generalinfo extends React.Component{
       ) : (
       this.props.generalinfo.map(ginfo => (
               <div key = {'staffinfo'+ginfo.id}>
-              <Descriptions title="INFORMATION" bordered>
+              <h2>INFORMATION</h2><br/>
+              <Descriptions bordered>
               <Descriptions.Item label="NAME" span={3}>{ ginfo.name }</Descriptions.Item>   
               <Descriptions.Item label="GENDER" span={3}>{ ginfo.gender }</Descriptions.Item>
               <Descriptions.Item label="DOB" span={3}>{ ginfo.dob }</Descriptions.Item>
@@ -79,10 +80,8 @@ class Generalinfo extends React.Component{
               <Descriptions.Item label="PERMANENT ADDRESS" span={3}>{ginfo.perm_address}</Descriptions.Item>
               <Descriptions.Item label="WEBSITE" span={3}>{ginfo.website_url}</Descriptions.Item>
               </Descriptions>
-                    
-            <br /><br/>
-
-            <Button id={ginfo.id} type="primary" onClick={this.editRedirect}>EDIT</Button>
+              <br/>
+              <Button id={ginfo.id} type="primary" className="editButton" onClick={this.editRedirect}>EDIT</Button>
             </div>
       ))
       )

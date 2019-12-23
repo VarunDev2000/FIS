@@ -87,16 +87,17 @@ class Employment_view extends React.Component{
       <div>
       <CustomLayout>
 
+      <Button type="primary" onClick={this.addRedirect}>Add Employment information</Button>
+      <br/><br/><br/>
       {
       n > 0 ? (
         <div> 
-        <hr/>
-        <u><h2>UNIVERSITY EMPLOYMENT DETAILS</h2></u>
-        <hr/> 
+        <h3 className = "emp_heading_div">UNIVERSITY EMPLOYMENT DETAILS</h3><br/>
+        <br/>
       {  
       present_count > 0 ? (
         <div>
-        <h4>PRESENT POSITIONS</h4>
+        <h5>PRESENT POSITIONS :</h5>
         <br/>
         {
         this.props.employment.map(emp => (
@@ -110,10 +111,7 @@ class Employment_view extends React.Component{
         <Descriptions.Item label="PRESENT PAY" span={3}>{emp.present_pay}</Descriptions.Item>
         <Descriptions.Item label="NATURE OF APPOINTMENT" span={3}>{emp.nature_of_app}</Descriptions.Item>       
         </Descriptions>
-        <br/>
-        <div align = "right">
-        <Button id={emp.id} type="primary" onClick={this.editRedirect}>Edit</Button>
-        </div>
+        <Button id={emp.id} type="primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
         </div>
         ) : (null)
         ))
@@ -128,7 +126,7 @@ class Employment_view extends React.Component{
       {
       prev_count > 0 ? (
         <div>
-        <h4>PREVIOUS POSITIONS</h4>
+        <h5>PREVIOUS POSITIONS :</h5>
         <br/>
         {
         this.props.employment.map(emp => (
@@ -143,10 +141,7 @@ class Employment_view extends React.Component{
         <Descriptions.Item label="PRESENT PAY" span={3}>{emp.present_pay}</Descriptions.Item>
         <Descriptions.Item label="NATURE OF APPOINTMENT" span={3}>{emp.nature_of_app}</Descriptions.Item>       
         </Descriptions>        
-        <br/>
-        <div align = "right">
-        <Button id={emp.id} type="primary" onClick={this.editRedirect}>Edit</Button>
-        </div>
+        <Button id={emp.id} type="primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
         <br/>
         </div>
         ) : (null)
@@ -163,7 +158,7 @@ class Employment_view extends React.Component{
       present_add_count > 0 ? (
 
        <div>
-        <h4>PRESENT ADDITIONAL POSITIONS</h4>
+        <h5>PRESENT ADDITIONAL POSITIONS</h5>
         <br/>
         {
         this.props.employment.map(emp => (
@@ -173,10 +168,7 @@ class Employment_view extends React.Component{
         <Descriptions.Item label="POSITION" span={3}>{ emp.position }</Descriptions.Item>   
         <Descriptions.Item label="DEPARTMENT/CENTRE" span={3}>{ emp.department }</Descriptions.Item>
         </Descriptions>
-        <br/>
-        <div align = "right">
-        <Button id={emp.id} type="primary" onClick={this.editRedirect}>Edit</Button>
-        </div>
+        <Button id={emp.id} type="primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
         <br/>
         </div>
         ) : (null)
@@ -193,7 +185,7 @@ class Employment_view extends React.Component{
       prev_add_count > 0 ? (
 
         <div>
-        <h4>PREVIOUS ADDITIONAL POSITIONS</h4>
+        <h5>PREVIOUS ADDITIONAL POSITIONS</h5>
         <br/>
         {
         this.props.employment.map(emp => (
@@ -203,10 +195,7 @@ class Employment_view extends React.Component{
         <Descriptions.Item label="POSITION" span={3}>{ emp.position }</Descriptions.Item>   
         <Descriptions.Item label="DEPARTMENT/CENTRE" span={3}>{ emp.department }</Descriptions.Item>
         </Descriptions>
-        <br/>
-        <div align = "right">
-        <Button id={emp.id} type="primary" onClick={this.editRedirect}>Edit</Button>
-        </div>
+        <Button id={emp.id} type="primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
         <br/>
         </div>
         ) : (null)
@@ -226,13 +215,12 @@ class Employment_view extends React.Component{
     {
     oth_count > 0 ? (
     <div> 
-    <hr/>
-    <u><h2>OTHER EMPLOYMENT DETAILS</h2></u>
-    <hr/>
+    <h3 className = "emp_heading_div" >OTHER EMPLOYMENT DETAILS</h3>
+    <br/><br/>
     {
     industry_count > 0 ? ( 
     <div>
-    <h4>INDUSTRY EXPERIENCE</h4>
+    <h5>INDUSTRY EXPERIENCE</h5>
     <br/>
     {
     this.props.employment.map(emp => (
@@ -243,10 +231,8 @@ class Employment_view extends React.Component{
     <Descriptions.Item label="INSTITUTION" span={3}>{ emp.institution }</Descriptions.Item>
     <Descriptions.Item label="YEARS" span={3}>{ emp.years }</Descriptions.Item>
     </Descriptions>
-    <br/>
-    <div align = "right">
-    <Button id={emp.id} type="primary" onClick={this.editRedirect}>Edit</Button>
-    </div>
+    <Button id={emp.id} type="primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
+    <hr/>
     <br/>
     </div>
     ) : (null)
@@ -259,7 +245,7 @@ class Employment_view extends React.Component{
     {
     academics_count > 0 ? ( 
     <div>
-    <h4>ACADEMICS/RESEARCH EXPERIENCE</h4>
+    <h5>ACADEMICS/RESEARCH EXPERIENCE</h5>
     <br/>
     {
     this.props.employment.map(emp => (
@@ -270,10 +256,8 @@ class Employment_view extends React.Component{
     <Descriptions.Item label="INSTITUTION" span={3}>{ emp.institution }</Descriptions.Item>
     <Descriptions.Item label="YEARS" span={3}>{ emp.years }</Descriptions.Item>
     </Descriptions>
-    <br/>
-    <div align = "right">
-    <Button id={emp.id} type="primary" onClick={this.editRedirect}>Edit</Button>
-    </div>
+    <Button id={emp.id} type="primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
+    <hr/>
     <br/>
     </div>
     ) : (null)
@@ -287,9 +271,7 @@ class Employment_view extends React.Component{
     ) : (null)
     }
     
-
-      <Button type="primary" onClick={this.addRedirect}>Add Employment information</Button>
-      </CustomLayout>
+    </CustomLayout>
       </div>
     );
     }

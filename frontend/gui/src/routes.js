@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom';
+import Dashboard from './components/Dashboard/Dashboard';
 import Generalinfo from './components/staffinfo/Generalinfo';
 import Add from './components/staffinfo/Add';
 import Edit from './components/staffinfo/Edit';
@@ -30,9 +31,11 @@ import EAOAdd from './components/eao_programme/Add';
 
 const BaseRouter = () => (
     <div>
-        <Route exact path ='' component = {Generalinfo}/>
-        <Route exact path ='/edit' component = {Edit}/>
-        <Route exact path ='/add' component = {Add}/>
+        <Route exact path ='' component = {Dashboard}/>
+
+        <Route exact path ='/generalinfo' component = {Generalinfo}/>
+        <Route exact path ='generalinfo/edit' component = {Edit}/>
+        <Route exact path ='generalinfo/add' component = {Add}/>
 
         <Route exact path ='qualification' component = {Qualification_View}/>
         <Route exact path ='qualification/edit' component = {QualiAdd}/>

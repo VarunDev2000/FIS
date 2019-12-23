@@ -58,7 +58,7 @@ export const login = (username,password) => dispatch => {
         dispatch({
             type:LOGIN_FAIL
         });
-        console.log(err.response.status)
+        //console.log(err.response.status)
     });
 }
 

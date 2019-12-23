@@ -67,7 +67,8 @@ class Publication_view extends React.Component{
     return (
       <div>
       <CustomLayout>
-
+      <Button type="primary" onClick={this.addRedirect}>Add Publication</Button>
+      <br/><br/><br/>
       {
       numRows == 0 ? (
                   <div>
@@ -79,10 +80,6 @@ class Publication_view extends React.Component{
         {
         this.props.publication.map(publi => (
           <div key = {publi.id}>
-                <div align = "right">
-                  <Button id = {publi.id} type = "primary" onClick={this.editRedirect}>Edit</Button>
-                </div>
-                <br/>
                 <Descriptions bordered>
                 <Descriptions.Item label="TITLE" span={3}>{ publi.title }</Descriptions.Item>   
                 <Descriptions.Item label="LEVEL" span={3}>{ publi.level }</Descriptions.Item>
@@ -90,6 +87,8 @@ class Publication_view extends React.Component{
                 <Descriptions.Item label="PDF" >
                   <Button span={3} target="ref" onClick={() => this.popPDF(publi.pdf)}>View</Button></Descriptions.Item>
                 </Descriptions>
+                <Button id = {publi.id} type = "primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
+          
                 <br /><br/>
           </div>
         )
@@ -98,8 +97,6 @@ class Publication_view extends React.Component{
       </div>
       )
       }
-
-      <Button type="primary" onClick={this.addRedirect}>Add Publication</Button>
       </CustomLayout>
       </div>
     );

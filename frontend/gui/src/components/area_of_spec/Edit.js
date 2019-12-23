@@ -96,12 +96,13 @@ componentWillReceiveProps(props)
         {
           spec_count > 0 ? (
           <div>
+              <br/>
           <Descriptions title="SPECIALIZATION"></Descriptions>
           {
           this.props.specialization.map(spec => (
           spec.spec_mem_type === 'spec' ? (
           <div key = {spec.id}>
-          <Form id = {spec.id}>
+          <Form id = {spec.id} className="aos_form">
           <Form.Item>
             <div className = "row">
             <div className = "col-sm-10">
@@ -127,12 +128,13 @@ componentWillReceiveProps(props)
         {
           mem_count > 0 ? (
           <div>
+            <br/>
           <Descriptions title="MEMBERSHIP"></Descriptions>
           {
           this.props.specialization.map(spec => (
           spec.spec_mem_type === 'mem' ? (
           <div key = {spec.id}>
-          <Form id = {spec.id}>
+          <Form id = {spec.id} className="aos_form">
           <Form.Item>
             <div className = "row">
             <div className = "col-sm-10">

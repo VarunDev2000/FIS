@@ -44,6 +44,7 @@ export default function(state = initialstate,action)
             localStorage.setItem('token',action.payload.token);
             localStorage.setItem('Auth',true);
             localStorage.setItem('count',0);
+            localStorage.setItem('s_key',"1");
             return {
                 ...state,
                 ...action.payload,
@@ -55,10 +56,12 @@ export default function(state = initialstate,action)
         case LOGIN_FAIL:
         case LOGOUT_SUCCESS:
         case REGISTER_FAIL:
+            //localStorage.setItem('s_key',["1"])
             localStorage.removeItem('token');
             localStorage.removeItem('Auth');
             localStorage.removeItem('tokenSetupTime');
             localStorage.removeItem('count');
+            localStorage.removeItem('s_key');
             return{
                 ...state,
                 token: null,

@@ -48,7 +48,7 @@ delete = (e) => {
     if (conf === true) {
       this.props.deleteStaffinfo(id);
       //history.push('/');
-      window.open('/',"_self");
+      window.open('/generalinfo',"_self");
     } 
 }
 
@@ -68,7 +68,7 @@ onSubmit = e => {
     
     console.log(s_info);
     this.props.editStaffinfo(s_info,id);
-    window.open('/',"_self");
+    window.open('/generalinfo',"_self");
     //history.push('/');
 }
 
