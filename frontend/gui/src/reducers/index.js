@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
+
 import auth from './auth';
 import generalinfo from './generalinfo';
 import qualification from './qualification';
@@ -14,6 +16,8 @@ import eao_programme from './eao_programme';
 
 
 export default combineReducers({
+    form: formReducer,
+    
     auth,
     generalinfo,
     qualification,

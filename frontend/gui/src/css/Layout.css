@@ -19,6 +19,18 @@
     width: 100%;
 }
 
+label{
+    font-weight: bold;
+}
+
+.ew {
+    border: none;
+    font-weight: 1100;
+    font-size: 14px;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    color: rgb(235, 26, 26);
+}
+
 .card-body{
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }

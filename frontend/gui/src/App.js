@@ -63,7 +63,7 @@ class App extends Component {
         <Router history = {history}>
         <Switch>
         <Route exact path ='/login' component = {Login}/>
-
+        
         <PrivateRoute exact path ='/' component = {Dashboard}/>
 
         <PrivateRoute exact path ='/change-password' component = {changePassword}/>

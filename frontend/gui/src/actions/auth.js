@@ -56,9 +56,9 @@ export const login = (username,password) => dispatch => {
     }).catch(err => {
         console.log("Error Logging in..");
         dispatch({
-            type:LOGIN_FAIL
+            type:LOGIN_FAIL,
+            payload:err.response.status
         });
-        //console.log(err.response.status)
     });
 }
 

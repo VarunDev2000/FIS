@@ -17,3 +17,4 @@ python manage.py flush
 ----------------------------NPM------------------------------
 npm install formik --save
 npm install -S yup
+npm install --save redux-form

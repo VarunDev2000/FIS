@@ -17,7 +17,9 @@ const initialstate = {
     isAuthenticated : null,
     isLoading : false,
     user : null,
-    err : null
+    err : null,
+    login_err : false,
+    log_c : 0,
 }
 
 
@@ -44,15 +46,16 @@ export default function(state = initialstate,action)
             localStorage.setItem('token',action.payload.token);
             localStorage.setItem('Auth',true);
             localStorage.setItem('count',0);
+            localStorage.setItem('lcount',0);
             return {
                 ...state,
                 ...action.payload,
                 isAuthenticated: true,
-                isLoading: false
+                isLoading: false,
+                login_err: false,
             }
 
         case AUTH_ERROR:
-        case LOGIN_FAIL:
         case LOGOUT_SUCCESS:
         case REGISTER_FAIL:
             //localStorage.setItem('s_key',["1"])
@@ -61,13 +64,37 @@ export default function(state = initialstate,action)
             localStorage.removeItem('tokenSetupTime');
             localStorage.removeItem('count');
             localStorage.removeItem('s_key');
+            localStorage.removeItem('lcount');
+
             return{
                 ...state,
                 token: null,
                 user: null,
                 isAuthenticated: false,
-                isLoading: false
+                isLoading: false,
             }
+
+
+        case LOGIN_FAIL:
+            localStorage.removeItem('token');
+            localStorage.removeItem('Auth');
+            localStorage.removeItem('tokenSetupTime');
+            localStorage.removeItem('count');
+            localStorage.removeItem('s_key');
+
+            var c = localStorage.getItem('lcount');
+            localStorage.setItem('lcount',c+1);
+
+            return{
+                ...state,
+                token: null,
+                user: null,
+                isAuthenticated: false,
+                isLoading: false,
+                login_err: true,
+                count : c + 1
+            }
+
 
         case PASSWORD_CHANGED:
             var c = localStorage.getItem('count');
