@@ -44,7 +44,6 @@ export default function(state = initialstate,action)
             localStorage.setItem('token',action.payload.token);
             localStorage.setItem('Auth',true);
             localStorage.setItem('count',0);
-            localStorage.setItem('s_key',"1");
             return {
                 ...state,
                 ...action.payload,

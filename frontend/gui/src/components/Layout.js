@@ -38,9 +38,12 @@ export class CustomLayout extends React.Component{
         history.push(url)
     }
 
-    changePage1 = (url) => {
+    changePage1 = (key,url) => {
         //window.open(url,"_self");
-        localStorage.removeItem("s_key");
+        if(key === "c_pass")
+        {
+            localStorage.removeItem("s_key");
+        }
         history.push(url)
     }
 
@@ -101,24 +104,34 @@ export class CustomLayout extends React.Component{
                     <span>PROJECT</span>
                     </Menu.Item>  
 
-                    <Menu.Item key="8" onClick = {this.changePage.bind(this,'/invited_lectures/add')}>
+                    <Menu.Item key="8" onClick = {this.changePage.bind(this,'#')}>
+                    <Icon type="experiment" />
+                    <span>ACADEMIC RESEARCH</span>
+                    </Menu.Item>  
+
+                    <Menu.Item key="9" onClick = {this.changePage.bind(this,'/invited_lectures/add')}>
                     <Icon type="solution" />
                     <span>INVITED LECTURES</span>
                     </Menu.Item>  
 
-                    <Menu.Item key="9" onClick = {this.changePage.bind(this,'/experience_abroad/add')}>
+                    <Menu.Item key="10" onClick = {this.changePage.bind(this,'/experience_abroad/add')}>
                     <Icon type="rise" />
                     <span>EXPERIENCE ABROAD</span>
                     </Menu.Item> 
 
-                    <Menu.Item key="10" onClick = {this.changePage.bind(this,'/book_published/add')}>
+                    <Menu.Item key="11" onClick = {this.changePage.bind(this,'/book_published/add')}>
                     <Icon type="book" />
                     <span>BOOKS PUBLISHED</span>
                     </Menu.Item> 
 
-                    <Menu.Item key="11" onClick = {this.changePage.bind(this,'/eao_programme/add')}>
+                    <Menu.Item key="12" onClick = {this.changePage.bind(this,'/eao_programme/add')}>
                     <Icon type="exception" />
                     <span>EXTENSION AND OUTREACH PROGRAMME</span>
+                    </Menu.Item>  
+
+                    <Menu.Item key="13" onClick = {this.changePage.bind(this,'#')}>
+                    <Icon type="alert" />
+                    <span>ACHIEVEMENTS</span>
                     </Menu.Item>   
 
                 </Menu>
@@ -135,13 +148,13 @@ export class CustomLayout extends React.Component{
                         onClick={this.toggle}
                         />
                         </Menu.Item>
-                        <Menu.Item key="1" onClick={() => this.changePage1('/')}><strong>
+                        <Menu.Item key="1" onClick={() => this.changePage1("1",'/')}><strong>
                         <Icon type="user"/>
                         { user ? `Welcome ${user.username}`:"" }</strong>
                         </Menu.Item>
                         <Menu.Item key="2" style={{float: 'right'}} onClick= {this.props.logout} >Logout</Menu.Item>
-                        <Menu.Item key="3" style={{float: 'right'}} onClick={() => this.changePage1('/change-password')} >Change Password</Menu.Item>
-                        <Menu.Item key="4" style={{float: 'right'}} onClick={() => this.changePage1('/')}  >
+                        <Menu.Item key="3" style={{float: 'right'}} onClick={() => this.changePage1("c_pass",'/change-password')} >Change Password</Menu.Item>
+                        <Menu.Item key="4" style={{float: 'right'}} onClick={() => this.changePage1("4",'/')}  >
                         <Icon type="home" />
                         </Menu.Item>
                         </Menu>

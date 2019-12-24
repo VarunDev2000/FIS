@@ -16,15 +16,13 @@ export class DashboardLayout extends React.Component{
         logout: PropTypes.func.isRequired
     }
     
-    changePage = (url,e) => {
-        //window.open(url,"_self");
-        localStorage.setItem("s_key",e.key);
-        history.push(url)
-    }
 
-    changePage1 = (url) => {
+    changePage1 = (key,url) => {
         //window.open(url,"_self");
-        localStorage.removeItem("s_key");
+        if(key === "c_pass")
+        {
+            localStorage.removeItem("s_key");
+        }
         history.push(url)
     }
 
@@ -41,13 +39,13 @@ export class DashboardLayout extends React.Component{
                         mode="horizontal"
                         style={{lineHeight: '60px'}}
                     >
-                        <Menu.Item key="1" onClick={() => this.changePage1('/')}><strong>
+                        <Menu.Item key="1" onClick={() => this.changePage1("1",'/')}><strong>
                         <Icon type="user"/>
                         { user ? `Welcome ${user.username}`:"" }</strong>
                         </Menu.Item>
                         <Menu.Item key="2" style={{float: 'right'}} onClick= {this.props.logout} >Logout</Menu.Item>
-                        <Menu.Item key="3" style={{float: 'right'}} onClick={() => this.changePage1('/change-password')} >Change Password</Menu.Item>
-                        <Menu.Item key="4" style={{float: 'right'}} onClick={() => this.changePage1('/')}  >
+                        <Menu.Item key="3" style={{float: 'right'}} onClick={() => this.changePage1("c_pass",'/change-password')} >Change Password</Menu.Item>
+                        <Menu.Item key="4" style={{float: 'right'}} onClick={() => this.changePage1("4",'/')}  >
                         <Icon type="home" />
                         </Menu.Item>
                         </Menu>
