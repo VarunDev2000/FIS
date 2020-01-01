@@ -162,7 +162,7 @@ export class CustomLayout extends React.Component{
                 <br/><br/>
                 <Content style={{ padding: '0 200px' }}>
                     <br/><br/><br/><br/>
-                    <div className="innerForm">
+                    <div id = {s_key} className="innerForm">
                         {this.props.children} 
                     </div>
                     <br/><br/>

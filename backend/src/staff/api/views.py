@@ -17,8 +17,6 @@ class StaffinfoViewSet(viewsets.ModelViewSet):
         permissions.IsAuthenticated
     ]
 
-    
-
     serializer_class = staff_detail_serializer
     
     def get_queryset(self):

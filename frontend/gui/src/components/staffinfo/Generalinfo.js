@@ -54,17 +54,17 @@ class Generalinfo extends React.Component{
 
     render(){
       var numRows = localStorage.getItem('length');
+      
     return (
       <CustomLayout>
       {
-       numRows == 0 ? (
+       numRows == 0 || numRows == null ? (
             <Button type="primary" onClick={this.addRedirect}>Add Details</Button>
       ) : (
       this.props.generalinfo.map(ginfo => (
               <div key = {'staffinfo'+ginfo.id}>
               <h2>INFORMATION</h2><br/>
               <Descriptions bordered>
-              <Descriptions.Item label="NAME" span={3}>{ ginfo.name }</Descriptions.Item>   
               <Descriptions.Item label="GENDER" span={3}>{ ginfo.gender }</Descriptions.Item>
               <Descriptions.Item label="DOB" span={3}>{ ginfo.dob }</Descriptions.Item>
               <Descriptions.Item label="FATHER/HUSBAND NAME" span={3}>{ginfo.fath_hus_name}</Descriptions.Item>
@@ -72,6 +72,8 @@ class Generalinfo extends React.Component{
               <Descriptions.Item label="PERSONAL MAIL" span={3}>{ginfo.personal_mail}</Descriptions.Item>
               <Descriptions.Item label="AADHAR NO" span={3}>{ginfo.aadhar}</Descriptions.Item>
               <Descriptions.Item label="PAN" span={3}>{ginfo.pan}</Descriptions.Item>
+              <Descriptions.Item label="INTERCOM NO 1" span={3}>{ ginfo.intercom1 }</Descriptions.Item>   
+              <Descriptions.Item label="INTERCOM NO 2" span={3}>{ ginfo.intercom2 }</Descriptions.Item>   
               <Descriptions.Item label="MOBILE NO" span={3}>{ginfo.mobile_no}</Descriptions.Item>
               <Descriptions.Item label="RESIDENCE PHONE NO" span={3}>{ginfo.residence_ph_no}</Descriptions.Item>
               <Descriptions.Item label="CASTE" span={3}>{ginfo.caste}</Descriptions.Item>

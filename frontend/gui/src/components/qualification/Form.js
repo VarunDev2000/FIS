@@ -81,8 +81,8 @@ onSubmit = e => {
         <CustomLayout>
         <Form onSubmit ={this.onSubmit}>
 
-        <select name="degree_type" onChange = {this.dropdown}>
-            <option disabled selected value> -- select an option -- </option>
+        <select name="degree_type" defaultValue={'DEFAULT'} onChange = {this.dropdown}>
+            <option disabled value="DEFAULT"> -- select an option -- </option>
             <option value="ug_pg">UG/PG</option>
             <option value="research">RESEARCH</option>
         </select><br/><br/>

@@ -8,23 +8,28 @@ from django.core.validators import FileExtensionValidator
 
 class staff_detail(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,related_name = "staffinfo",null=True)
+    salutation = models.CharField(max_length=200, null=False, default=None)
+    disability = models.CharField(max_length=200, null=False, default=None)
+    intercom1 = models.IntegerField(null = False,default = None)
+    intercom2 = models.IntegerField(null = False,default = None)
     name = models.CharField(max_length=200, null=False, default=None)
-    gender = models.CharField(max_length=200, null=True)
+    gender = models.CharField(max_length=200,blank=True, null=True)
     dob = models.DateField(null=False, default=None)
     fath_hus_name = models.CharField(max_length=200, null=False, default=None)
     official_mail = models.EmailField(
-        null=True, help_text='A valid email address, please.')
+        default = None,null=False, help_text='A valid email address, please.')
     personal_mail = models.EmailField(
-        null=True, help_text='A valid email address, please.')
-    aadhar = models.IntegerField(default=None)
-    pan = models.IntegerField(default=None)
+        null=True,blank = True, help_text='A valid email address, please.')
+    aadhar = models.IntegerField(null=True)
+    pan = models.IntegerField(null=True)
     mobile_no = models.IntegerField(default=None)
     residence_ph_no = models.IntegerField(default=None)
-    caste = models.CharField(max_length=200, null=True)
-    community = models.CharField(max_length=200, null=True)
-    res_address = models.CharField(max_length=1000, null=True)
-    perm_address = models.CharField(max_length=1000, null=True)
-    website_url = models.URLField(max_length=1000, default=None)
+    caste = models.CharField(max_length=200,blank=True, null=True)
+    community = models.CharField(max_length=200,blank=True, null=True)
+    res_address = models.CharField(max_length=1000,default = None,null=False)
+    perm_address = models.CharField(max_length=1000,blank=True, null=True,default =None)
+    website_url = models.URLField(blank=True, null=True,max_length=1000, default=None)
+
 
     class Meta:
         verbose_name_plural = "Staff"

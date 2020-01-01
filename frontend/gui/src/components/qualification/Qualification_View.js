@@ -63,6 +63,7 @@ class Qualification_view extends React.Component{
       {
       numRows == 0 ? (
         <CustomLayout>
+            <Button type="primary" onClick={this.addRedirect}>Add Details</Button>
         </CustomLayout>
       ) : (
         <CustomLayout>

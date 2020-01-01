@@ -12,6 +12,7 @@ class Edit extends React.Component {
     g_info:{},
     redirect : false,
 
+    salutation: '',
     name: '',
     gender: '',
     dob: '',
@@ -27,6 +28,9 @@ class Edit extends React.Component {
     res_address: '',
     perm_address: '',
     website_url: '',
+    disability: '',
+    intercom1: '',
+    intercom2: ''
 }
 
 static propTypes = {
@@ -58,15 +62,15 @@ onSubmit = e => {
   e.preventDefault();
   const id = this.props.match.params.id;
 
-  const {name,gender,dob,fath_hus_name,official_mail,personal_mail,aadhar,
+  const {salutation,name,gender,dob,fath_hus_name,official_mail,personal_mail,aadhar,
     pan,mobile_no,residence_ph_no,caste,community,res_address,perm_address,
-    website_url} = this.state;
+    website_url,disability,intercom1,intercom2} = this.state;
 
-  const s_info = {name,gender,dob,fath_hus_name,official_mail,personal_mail,aadhar,
+  const s_info = {salutation,name,gender,dob,fath_hus_name,official_mail,personal_mail,aadhar,
     pan,mobile_no,residence_ph_no,caste,community,res_address,perm_address,
-    website_url};
-    
-    console.log(s_info);
+    website_url,disability,intercom1,intercom2};
+
+    //console.log(s_info)
     this.props.editStaffinfo(s_info,id);
     window.open('/generalinfo',"_self");
     //history.push('/');
@@ -75,6 +79,7 @@ onSubmit = e => {
     setStates(props)
     {
       this.setState({
+        salutation : props.generalinfo.salutation,
         name : props.generalinfo.name,
         gender : props.generalinfo.gender,
         dob : props.generalinfo.dob,
@@ -89,7 +94,10 @@ onSubmit = e => {
         community : props.generalinfo.community,
         res_address : props.generalinfo.res_address,
         perm_address : props.generalinfo.perm_address,
-        website_url : props.generalinfo.website_url
+        website_url : props.generalinfo.website_url,
+        disability : props.generalinfo.disability,
+        intercom1 : props.generalinfo.intercom1,
+        intercom2 : props.generalinfo.intercom2
       })
     }
 
@@ -104,7 +112,6 @@ onSubmit = e => {
           g_info : props.generalinfo
         })
     }
-    
 
 
   render() {
@@ -119,12 +126,26 @@ onSubmit = e => {
         <div align="right">
           <Button type="danger" htmlType = "submit" onClick = {this.delete}>Delete</Button>
         </div>
-        <Form onSubmit ={this.onSubmit}>
+        <Form onSubmit = {this.onSubmit}>
+        <Form.Item label="SALUTATION">
+          <select name = "salutation" defaultValue = {ginfo.salutation} onChange = {this.onChange}>
+            <option value="Dr">Dr</option>
+            <option value="Dr.">Dr.</option>
+            <option value="Prof.">Prof.</option>
+            <option value="Mr.">Mr.</option>
+            <option value="Mrs.">Mrs.</option>
+            <option value="Ms.">Ms.</option>
+          </select>
+          </Form.Item>
           <Form.Item label="NAME">
             <Input name = "name" placeholder="Enter name" defaultValue = {ginfo.name} required onChange = {this.onChange} />         
           </Form.Item>
           <Form.Item label="GENDER">
-            <Input name = "gender" placeholder="gender"  required defaultValue = {ginfo.gender} onChange = {this.onChange} />
+            <select name = "gender" defaultValue={ginfo.gender} onChange = {this.onChange}>
+            <option value="Other">OTHER</option>
+            <option value="Male">MALE</option>
+            <option value="Female">FEMALE</option>
+          </select>
           </Form.Item>
           <Form.Item label="DOB">
             <input type = "date" name = "dob"  required defaultValue = {ginfo.dob} onChange = {this.onChange} ></input>
@@ -132,38 +153,56 @@ onSubmit = e => {
           <Form.Item label="FATHER/HUSBAND NAME">
             <Input name = "fath_hus_name" placeholder="Fath or Hus name" required defaultValue = {ginfo.fath_hus_name} onChange = {this.onChange} />
           </Form.Item>
+          <Form.Item label="PERSON WITH DISABILITY">
+          <select name = "disability"  defaultValue={ginfo.disability} onChange = {this.onChange}>
+            <option value="yes">YES</option>
+            <option value="no">NO</option>
+          </select>
+          </Form.Item>
           <Form.Item label="OFFICIAL MAIL">
-            <Input name = "official_mail" placeholder="mail"  required defaultValue = {ginfo.official_mail} onChange = {this.onChange} />
+          <Input type = "email" name = "official_mail" placeholder="Enter Official Mail" defaultValue = {ginfo.official_mail} required onChange = {this.onChange} />         
           </Form.Item>
           <Form.Item label="PERSONAL MAIL">
-            <Input name = "personal_mail" placeholder="mail"  required defaultValue = {ginfo.personal_mail} onChange = {this.onChange} />
+          <Input type = "email" name = "personal_mail" placeholder="Enter Personal Mail" defaultValue = {ginfo.personal_mail} required onChange = {this.onChange} />         
           </Form.Item>
           <Form.Item label="AADHAR">
-            <Input name = "aadhar" placeholder="Aadhar no"   required defaultValue = {ginfo.aadhar} onChange = {this.onChange} />
+            <Input type = "number" name = "aadhar" placeholder="Aadhar no"   defaultValue = {ginfo.aadhar} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="PAN">
-            <Input name = "pan" placeholder="Pan card no"   required defaultValue = {ginfo.pan} onChange = {this.onChange} />
+            <Input type = "number" name = "pan" placeholder="Pan card no"   defaultValue = {ginfo.pan} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="MOBILE NO">
-            <Input name = "mobile_no" placeholder="Mobile"   required defaultValue = {ginfo.mobile_no} onChange = {this.onChange} />
+            <Input type = "number" name = "mobile_no" placeholder="Mobile"   required defaultValue = {ginfo.mobile_no} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="RESIDENCE PHONE NO">
-            <Input name = "residence_ph_no" placeholder="Residence"  required defaultValue = {ginfo.residence_ph_no} onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="CASTE">
-            <Input name = "caste" placeholder="Caste"  required defaultValue = {ginfo.caste} onChange = {this.onChange} />
+            <Input type = "number" name = "residence_ph_no" placeholder="Residence"  required defaultValue = {ginfo.residence_ph_no} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="COMMUNITY">
-            <Input name = "community" placeholder="Community"  required defaultValue = {ginfo.community} onChange = {this.onChange} />
+          <select name = "community" defaultValue = {ginfo.community} onChange = {this.onChange}>
+            <option value="Other community">OTHER COMMUNITY</option>
+            <option value="Scheduled Tribe">SCHEDULED TRIBE</option>
+            <option value="Scheduled Caste">SCHEDULED CASTE</option>
+            <option value="Most Backward Community">MOST BACKWARD COMMUNITY</option>
+            <option value="Backward Community">BACKWARD COMMUNITY</option>
+          </select>
+          </Form.Item>
+          <Form.Item label="CASTE">
+            <Input name = "caste" placeholder="Caste"  defaultValue = {ginfo.caste} onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item label="INTERCOM NO 1">
+            <Input type = "number" name = "intercom1" required defaultValue = {ginfo.intercom1} onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item label="INTERCOM NO 2">
+            <Input type = "number" name = "intercom2" required defaultValue = {ginfo.intercom2} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="RESIDENTIAL ADDRESS">
             <Input name = "res_address" placeholder="Address"  required defaultValue = {ginfo.res_address} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="PERMANENT ADDRESS">
-            <Input name = "perm_address" placeholder="Address"  required defaultValue = {ginfo.perm_address} onChange = {this.onChange} />
+            <Input name = "perm_address" placeholder="Address"  defaultValue = {ginfo.perm_address} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="WEBSITE">
-            <Input name = "website_url" placeholder="URL"  required defaultValue = {ginfo.website_url} onChange = {this.onChange} />
+            <Input type = "url" name = "website_url" placeholder="URL"  defaultValue = {ginfo.website_url} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType = "submit">submit</Button>
@@ -179,9 +218,9 @@ onSubmit = e => {
 }
 
 
-const mapStateToProps = state => ({
-    generalinfo: state.generalinfo.generalinfo_by_id
+const mapStateToProps = state => (
+  {
+    generalinfo: state.generalinfo.generalinfo_by_id,
 });
 
 export default connect(mapStateToProps,{ editStaffinfo,getStaffinfobyID,deleteStaffinfo })(Edit);
-    
