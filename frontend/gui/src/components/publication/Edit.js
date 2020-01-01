@@ -16,6 +16,16 @@ class PubliEdit extends React.Component {
     title: '',
     level: '',
     year: '',
+    first_author: '',
+    corres_author: '',
+    all_auth_inorder: '', 
+    journal_name: '',
+    volume: '',
+    issue: '',
+    page_no: '',
+    publisher: '',
+    impact_factor: '',
+    ref_journal: '',
     pdf: '',
 
     file : null,
@@ -74,6 +84,16 @@ onSubmit = (e) => {
   form_data.append('title', this.state.title);
   form_data.append('level', this.state.level);
   form_data.append('year', this.state.year);
+  form_data.append('first_author ', this.state.first_author );
+  form_data.append('corres_author ', this.state.corres_author );
+  form_data.append('all_auth_inorder ', this.state.all_auth_inorder );
+  form_data.append('journal_name', this.state.journal_name);
+  form_data.append('volume', this.state.volume);
+  form_data.append('issue', this.state.issue);
+  form_data.append('page_no', this.state.page_no);
+  form_data.append('publisher', this.state.publisher);
+  form_data.append('impact_factor', this.state.impact_factor);
+  form_data.append('ref_journal', this.state.ref_journal);
   
   this.props.editPublication(form_data,id);
 
@@ -89,6 +109,16 @@ setStates(props)
       title : props.publication.title,
       level : props.publication.level,
       year : props.publication.year,
+      first_author: props.publication.first_author,
+      corres_author: props.publication.corres_author,
+      all_auth_inorder: props.publication.all_auth_inorder, 
+      journal_name: props.publication.journal_name,
+      volume: props.publication.volume,
+      issue: props.publication.issue,
+      page_no: props.publication.page_no,
+      publisher: props.publication.publisher,
+      impact_factor: props.publication.impact_factor,
+      ref_journal: props.publication.ref_journal,
       pdf : props.publication.pdf
     })
 }
@@ -111,6 +141,11 @@ componentWillReceiveProps(props) {
   render() {
     var publi = this.state.publi;
     var publi_len = Object.keys(publi).length
+    const year = [];
+
+    for (let i = 1950;i <= (new Date().getFullYear());i++) {
+      year.push(<option key = {i} value = {i}>{i}</option>)
+    }
 
     return (
       <div>
@@ -121,14 +156,52 @@ componentWillReceiveProps(props) {
         <div align="right">
           <Button type="danger" htmlType = "submit" onClick = {this.delete}>Delete</Button>
         </div>
-          <Form.Item label="TITLE">
-            <Input name = "title" placeholder="Enter Title" required defaultValue = {publi.title} onChange = {this.onChange} />
+        <Form.Item label="LEVEL">
+            <select name="level" defaultValue = {this.state.level} onChange = {this.onChange}>
+            <option value="International">International</option>
+            <option value="National">National</option>
+            </select>
           </Form.Item>
-          <Form.Item label="LEVEL">
-            <Input name = "level" placeholder="Enter Level" required defaultValue = {publi.level} onChange = {this.onChange} />
+          <Form.Item label="TITLE">
+            <Input name = "title" defaultValue = {this.state.title} placeholder="Enter Title" required onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item label="FIRST AUTOR">
+            <Input name = "first_author" defaultValue = {this.state.first_author} placeholder="Enter First Author" required onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item label="CORRESPONDING AUTHOR">
+            <Input name = "corres_author" defaultValue = {this.state.corres_author} placeholder="Enter Corresponding Author" onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item label="ALL AUTHOR'S INCLUDING THE ABOVE IN ORDER">
+            <Input name = "all_auth_inorder" defaultValue = {this.state.all_auth_inorder} placeholder="" onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item label="JOURNAL NAME">
+            <Input name = "journal_name" defaultValue = {this.state.journal_name} placeholder="Enter Journal Name" required onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item label="VOLUME">
+            <Input type = "number" name = "volume" required defaultValue = {this.state.volume} placeholder="" onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item label="ISSUE">
+            <Input type = "number" name = "issue" defaultValue = {this.state.issue} placeholder="" onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="YEAR">
-            <Input name = "year" placeholder="Enter Year" required defaultValue = {publi.year} onChange = {this.onChange} />
+          <select required className = "selectClass" name="year" defaultValue = {this.state.year} required onChange = {this.onChange}>
+            <option disabled value="DEFAULT"> </option>
+            {year}
+          </select> </Form.Item>
+          <Form.Item label="PAGE NO">
+            <Input name = "page_no" placeholder="Enter Page No" defaultValue = {this.state.page_no} required onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item label="PUBLISHER">
+            <Input name = "publisher" placeholder="Enter Publisher Name"  defaultValue = {this.state.publisher} onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item label="IMPACT FACTOR IN THE YEAR OF PUBLICATION">
+            <Input type = "number" name = "impact_factor" defaultValue = {this.state.impact_factor} placeholder="Enter Impact Factor" required onChange = {this.onChange} />
+          </Form.Item>
+          <Form.Item label="IS IT A REFEREED JOURNAL?">
+          <select name="ref_journal" defaultValue = {this.state.ref_journal} onChange = {this.onChange}>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
           </Form.Item>
           <Form.Item label="EXISTING PDF">
             <Button span={3} target="ref" onClick={() => this.popPDF(publi.pdf)}>View</Button>
@@ -141,7 +214,7 @@ componentWillReceiveProps(props) {
             <Button type="primary" htmlType = "submit" disabled = {this.state.disabled}>Submit</Button>
           </Form.Item>
         </Form>
-        ) : (<h1>Error!</h1>)
+        ) : (<h1></h1>)
         }
         </CustomLayout>
       </div>
