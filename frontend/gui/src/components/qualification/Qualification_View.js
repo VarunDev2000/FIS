@@ -84,7 +84,7 @@ class Qualification_view extends React.Component{
             <Descriptions.Item label="BRANCH" span={3}>{ quali.branch }</Descriptions.Item>
             <Descriptions.Item label="INSTITUTION" span={3}>{quali.institution}</Descriptions.Item>
             <Descriptions.Item label="UNIVERSITY" span={3}>{quali.university}</Descriptions.Item>
-            <Descriptions.Item label="DURATION" span={3}>{quali.duration}</Descriptions.Item>
+            <Descriptions.Item label="DURATION" span={3}>{quali.durationfrom} to {quali.durationto}</Descriptions.Item>
             <Descriptions.Item label="CLASS OBTAINED" span={3}>{quali.class_obtained}</Descriptions.Item>
             </Descriptions>
             <Button id={quali.id} type="primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
@@ -114,7 +114,7 @@ class Qualification_view extends React.Component{
                 <Descriptions.Item label="DEPARTMENT" span={3}>{quali.department}</Descriptions.Item>
                 <Descriptions.Item label="INSTITUTION" span={3}>{quali.institution}</Descriptions.Item>
                 <Descriptions.Item label="UNIVERSITY" span={3}>{quali.university}</Descriptions.Item>
-                <Descriptions.Item label="DURATION" span={3}>{quali.duration}</Descriptions.Item>
+                <Descriptions.Item label="DURATION" span={3}>{quali.durationfrom} to {quali.durationto}</Descriptions.Item>
                 <Descriptions.Item label="VIVA" span={3}>{quali.viva}</Descriptions.Item>       
                 </Descriptions>
                 <Button id={quali.id} type="primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
