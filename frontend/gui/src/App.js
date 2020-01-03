@@ -31,6 +31,7 @@ import EmpEdit from './components/employment/Edit';
 import Publication_view from './components/publication/Publication_View';
 import PubliAdd from './components/publication/Add';
 import PubliEdit from './components/publication/Edit';
+import AdDetails from './components/publication/additional_details';
 //--------------------------------
 import CSW_view from './components/csw/CSW_view';
 import CSWAdd from './components/csw/Add';
@@ -88,6 +89,7 @@ class App extends Component {
         <PrivateRoute exact path ='/publication' component = {Publication_view}/>
         <PrivateRoute exact path ='/publication/edit/:id' component = {PubliEdit}/>
         <PrivateRoute exact path ='/publication/add' component = {PubliAdd}/>
+        <PrivateRoute exact path ='/publication/ad_details/:id' component = {AdDetails}/>
 
         <PrivateRoute exact path ='/csw' component = {CSW_view}/>
         <PrivateRoute exact path ='/csw/edit/:id' component = {CSWEdit}/>

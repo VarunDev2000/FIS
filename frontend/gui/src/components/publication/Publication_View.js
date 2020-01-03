@@ -48,6 +48,13 @@ class Publication_view extends React.Component{
         //window.open("/qualification/edit","_self");
     }
 
+    adDetailsRedirect = (id) => {
+      history.push(`/publication/ad_details/${id}`);
+      
+      //console.log(e.target.id);
+      //window.open("/qualification/edit","_self");
+  }
+
     
       componentDidMount() {
         this.props.getPublication();
@@ -84,8 +91,9 @@ class Publication_view extends React.Component{
                 <Descriptions.Item label="TITLE" span={3}>{ publi.title }</Descriptions.Item>   
                 <Descriptions.Item label="LEVEL" span={3}>{ publi.level }</Descriptions.Item>
                 <Descriptions.Item label="YEAR" span={3}>{ publi.year }</Descriptions.Item>
-                <Descriptions.Item label="PDF" >
-                  <Button span={3} target="ref" onClick={() => this.popPDF(publi.pdf)}>View</Button></Descriptions.Item>
+                <Descriptions.Item label="ADDITIONAL DETAILS" >
+                <Button onClick={() => this.adDetailsRedirect(publi.id)}>View</Button>
+                </Descriptions.Item>
                 </Descriptions>
                 <Button id = {publi.id} type = "primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
           
