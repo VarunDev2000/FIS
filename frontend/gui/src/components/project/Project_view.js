@@ -45,7 +45,12 @@ class Project_view extends React.Component{
         //window.open("/qualification/edit","_self");
     }
 
-
+    adDetailsRedirect = (id) => {
+      history.push(`/project/ad_details/${id}`);
+      
+      //console.log(e.target.id);
+      //window.open("/qualification/edit","_self");
+  }
     
       componentDidMount() {
         this.props.getProject();
@@ -96,8 +101,8 @@ class Project_view extends React.Component{
             <Descriptions.Item label="PROJECT TITLE" span={3}>{ pro.pro_title }</Descriptions.Item>   
             <Descriptions.Item label="FUNDING AGENT" span={3}>{ pro.funding_agent }</Descriptions.Item>
             <Descriptions.Item label="AMOUNT" span={3}>{ pro.amt }</Descriptions.Item>
-            <Descriptions.Item label="PDF" >
-            <Button span={3} target="ref" onClick={() => this.popPDF(pro.pdf)}>View</Button>
+            <Descriptions.Item label="ADDITIONAL DETAILS" >
+            <Button span={3} target="ref" onClick={() => this.adDetailsRedirect(pro.id)}>View</Button>
             </Descriptions.Item>
             </Descriptions>
             <Button id = {pro.id} type = "primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
@@ -123,8 +128,8 @@ class Project_view extends React.Component{
             <Descriptions.Item label="PROJECT TITLE" span={3}>{ pro.pro_title }</Descriptions.Item>   
             <Descriptions.Item label="FUNDING AGENT" span={3}>{ pro.funding_agent }</Descriptions.Item>
             <Descriptions.Item label="AMOUNT" span={3}>{ pro.amt }</Descriptions.Item>
-            <Descriptions.Item label="PDF" >
-              <Button span={3} target="ref" onClick={() => this.popPDF(pro.pdf)}>View</Button>
+            <Descriptions.Item label="ADDITIONAL DETAILS" >
+              <Button span={3} target="ref" onClick={() => this.adDetailsRedirect(pro.id)}>View</Button>
             </Descriptions.Item>
             </Descriptions>
             <Button id = {pro.id} type = "primary" className="editButton" onClick={this.editRedirect}>Edit</Button>

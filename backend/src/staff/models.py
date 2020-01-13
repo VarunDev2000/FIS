@@ -29,7 +29,7 @@ class staff_detail(models.Model):
     res_address = models.CharField(max_length=1000,default = None,null=False)
     perm_address = models.CharField(max_length=1000,blank=True, null=True,default =None)
     website_url = models.URLField(blank=True, null=True,max_length=1000, default=None)
-
+    profile_pic = models.ImageField(default = None,null=True,upload_to='images/profile')
 
     class Meta:
         verbose_name_plural = "Staff"
@@ -147,9 +147,19 @@ class csw(models.Model):
 class project(models.Model):
     staff = models.ForeignKey(User, on_delete=models.CASCADE,related_name = "project",null=True)
     pro_title = models.CharField(max_length=800,default=None,null=False)
+    pro_type = models.CharField(max_length=800,default=None,null=False)
+    investigator = models.CharField(max_length=800,default=None,null=False)
+    co_inves1 = models.CharField(max_length=800,default=None,blank=True, null=True)
+    co_inves2 = models.CharField(max_length=800,default=None,blank=True, null=True)
+    p_type = models.CharField(max_length=800,default=None,null=False)
     funding_agent = models.CharField(max_length=400,default=None,null=False)
     amt = models.IntegerField(default=None,null=False)
-    pro_type = models.CharField(max_length=800,default=None,null=False)
+    durationfrom = models.CharField(max_length=10,default = None,null=False)
+    durationto = models.CharField(max_length=10,default = None,null=False)
+    department = models.CharField(max_length=800,default=None,null=False)
+    co_dep = models.CharField(max_length=800,default=None,blank=True, null=True)
+    co_inst = models.CharField(max_length=800,default=None,blank=True, null=True)
+    pro_abstract = models.CharField(max_length=1800,default=None,blank=True, null=True)
     pdf = models.FileField(upload_to='project',max_length=400,
     default=None,null=False,validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
 
@@ -169,7 +179,7 @@ class invited_lectures(models.Model):
     programme = models.CharField(max_length=400,default=None,null=False)
     institution = models.CharField(max_length=800,default=None,null=False)
     place = models.CharField(max_length=400,default=None,null=False)
-    date = models.DateField(null=False, default=None)
+    date = models.CharField(max_length=400,default=None,null=False)
 
     class Meta:
         verbose_name_plural = "Invited Lectures"
@@ -180,8 +190,8 @@ class invited_lectures(models.Model):
 class experience_abroad(models.Model):
     staff = models.ForeignKey(User, on_delete=models.CASCADE,related_name = "experience_abroad",null=True)
     nature_of_assignment = models.CharField(max_length=400,default=None,null=False)
-    from_date = models.DateField(null=False, default=None)
-    to_date = models.DateField(null=False, default=None)
+    from_date = models.CharField(max_length=400,default=None,null=False)
+    to_date = models.CharField(max_length=400,default=None,null=False)
     institution = models.CharField(max_length=800,default=None,null=False)
     country = models.CharField(max_length=400,default=None,null=False)
     purp_of_visit = models.CharField(max_length=400,default=None,null=False)
@@ -198,11 +208,11 @@ class book_published(models.Model):
     staff = models.ForeignKey(User, on_delete=models.CASCADE,related_name = "book_published",null=True)
     title = models.CharField(max_length=400,default=None,null=False)
     author = models.CharField(max_length=400,default=None,null=False)
-    co_author1 = models.CharField(max_length=400,default=None,null=True)
-    co_author2 = models.CharField(max_length=800,default=None,null=True)
+    co_author1 = models.CharField(max_length=400,blank=True, null=True)
+    co_author2 = models.CharField(max_length=400,blank=True, null=True)
     publisher = models.CharField(max_length=400,default=None,null=False)
     place_of_publication = models.CharField(max_length=400,default=None,null=False)
-    year_of_publication = models.IntegerField(default=None,null=False)
+    year_of_publication = models.CharField(max_length=400,default=None,null=False)
     edition_no = models.IntegerField(default=None,null=False)
 
     class Meta:
@@ -221,8 +231,8 @@ class ext_and_outreach_prog(models.Model):
     no_of_participants = models.IntegerField(default=None,null=False)
     funded_by = models.CharField(max_length=400,default=None,null=False)
     venue = models.CharField(max_length=400,default=None,null=False)
-    from_date = models.DateField(default=None,null=False)
-    to_date = models.DateField(default=None,null=False)
+    from_date = models.CharField(max_length=400,default=None,null=False)
+    to_date = models.CharField(max_length=400,default=None,null=False)
 
     class Meta:
         verbose_name_plural = "Extension and Outreach Programmes"

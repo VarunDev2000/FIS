@@ -166,39 +166,39 @@ componentWillReceiveProps(props) {
             <Input name = "title" defaultValue = {this.state.title} placeholder="Enter Title" required onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="FIRST AUTOR">
-            <Input name = "first_author" defaultValue = {this.state.first_author} placeholder="Enter First Author" required onChange = {this.onChange} />
+            <Input name = "first_author" required defaultValue = {this.state.first_author} placeholder="Enter First Author" required onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="CORRESPONDING AUTHOR">
             <Input name = "corres_author" defaultValue = {this.state.corres_author} placeholder="Enter Corresponding Author" onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="ALL AUTHOR'S INCLUDING THE ABOVE IN ORDER">
-            <Input name = "all_auth_inorder" defaultValue = {this.state.all_auth_inorder} placeholder="" onChange = {this.onChange} />
+            <Input name = "all_auth_inorder" required defaultValue = {this.state.all_auth_inorder} placeholder="" onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="JOURNAL NAME">
-            <Input name = "journal_name" defaultValue = {this.state.journal_name} placeholder="Enter Journal Name" required onChange = {this.onChange} />
+            <Input name = "journal_name" required defaultValue = {this.state.journal_name} placeholder="Enter Journal Name" required onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="VOLUME">
             <Input type = "number" name = "volume" required defaultValue = {this.state.volume} placeholder="" onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="ISSUE">
-            <Input type = "number" name = "issue" defaultValue = {this.state.issue} placeholder="" onChange = {this.onChange} />
+            <Input type = "number" name = "issue" required defaultValue = {this.state.issue} placeholder="" onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="YEAR">
-          <select required className = "selectClass" name="year" defaultValue = {this.state.year} required onChange = {this.onChange}>
+          <select required className = "selectClass" required name="year" defaultValue = {this.state.year} required onChange = {this.onChange}>
             <option disabled value="DEFAULT"> </option>
             {year}
           </select> </Form.Item>
           <Form.Item label="PAGE NO">
-            <Input name = "page_no" placeholder="Enter Page No" defaultValue = {this.state.page_no} required onChange = {this.onChange} />
+            <Input name = "page_no" required placeholder="Enter Page No" defaultValue = {this.state.page_no} required onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="PUBLISHER">
             <Input name = "publisher" placeholder="Enter Publisher Name"  defaultValue = {this.state.publisher} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="IMPACT FACTOR IN THE YEAR OF PUBLICATION">
-            <Input type = "number" name = "impact_factor" defaultValue = {this.state.impact_factor} placeholder="Enter Impact Factor" required onChange = {this.onChange} />
+            <Input type = "number" required name = "impact_factor" defaultValue = {this.state.impact_factor} placeholder="Enter Impact Factor" required onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="IS IT A REFEREED JOURNAL?">
-          <select name="ref_journal" defaultValue = {this.state.ref_journal} onChange = {this.onChange}>
+          <select name="ref_journal" required defaultValue = {this.state.ref_journal} onChange = {this.onChange}>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>

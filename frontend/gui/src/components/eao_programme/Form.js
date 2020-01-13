@@ -58,34 +58,35 @@ onSubmit = e => {
       <div>
         <CustomLayout>
         <Form onSubmit ={this.onSubmit}>
-          <Form.Item label="TYPE OF THE PROGRAMME">
+          <Form.Item label="* TYPE OF THE PROGRAMME">
           <select name="type_of_prog" onChange = {this.onChange}>
             <option value="extension">EXTENSION</option>
             <option value="outreach">OUTREACH</option>
           </select></Form.Item>
-          <Form.Item label="TITLE OF THE PROGRAMME">
+          <Form.Item label="* TITLE OF THE PROGRAMME">
             <Input name = "title_of_prog" placeholder="Enter Title of book" required onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="YOUR ROLE">
+          <Form.Item label="* YOUR ROLE">
           <Input name = "your_role" placeholder="Enter Author Name" required onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="CROSS SECTION OF PARTICIPANTS">
+          <Form.Item label="* CROSS SECTION OF PARTICIPANTS">
           <Input name = "cross_sec_of_participants" placeholder="Cross Section of Participants" required onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="NO OF PARTICIPANTS">
-          <Input name = "no_of_participants" placeholder="Enter No of Participants"  required onChange = {this.onChange} />
+          <Form.Item label="* NO OF PARTICIPANTS">
+          <Input type="number" name = "no_of_participants" placeholder="Enter No of Participants"  required onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="FUNDED BY">
+          <Form.Item label="* FUNDED BY">
             <Input name = "funded_by" placeholder="" required onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="VENUE">
+          <Form.Item label="* VENUE">
             <Input name = "venue" placeholder="Enter Venue" required onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="FROM">
-            <input type = "date" name = "from_date" required onChange = {this.onChange} ></input>
-          </Form.Item>
-          <Form.Item label="TO">
-            <input type = "date" name = "to_date" required onChange = {this.onChange} ></input>
+          <Form.Item label="* DURATION">
+            <label>From</label>{'\u00A0'}{'\u00A0'}
+            <input type = "date" required name="from_date" onChange={this.onChange}></input>
+            {'\u00A0'}{'\u00A0'}
+            <label>To</label>{'\u00A0'}{'\u00A0'}           
+            <input type = "date" required name="to_date" onChange={this.onChange}></input>
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType = "submit">{this.props.btnText}</Button>

@@ -33,9 +33,16 @@ onFileChange = e => {
 }
 
 popPDF(url) {
-    var ref = window.open(url,"thePop","menubar=1,resizable=1,scrollbars=1,status=1,height=1920,width=1020,top=0")
-    ref.focus();
+  if(url != null)
+  {
+  var ref = window.open(url,"thePop","menubar=1,resizable=1,scrollbars=1,status=1,height=1920,width=1020,top=0")
+  ref.focus();
   }
+
+  else{
+    alert("No PDF to Show!!")
+  }
+}
 
 
 componentDidMount()

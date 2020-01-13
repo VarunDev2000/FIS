@@ -4,6 +4,7 @@ pip install django-cors-headers
 pip install djangorestframework
 pip install django-rest-knox
 pip install django-cleanup
+pip install Pillow
 
 SUPERUSER:
 

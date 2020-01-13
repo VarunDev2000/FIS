@@ -40,6 +40,7 @@ import CSWEdit from './components/csw/Edit';
 import Project_view from './components/project/Project_view';
 import ProAdd from './components/project/Add';
 import ProEdit from './components/project/Edit';
+import ProAdDetails from './components/project/additional_details';
 //--------------------------------
 import LecAdd from './components/invited_lectures/Add';
 //--------------------------------
@@ -98,6 +99,7 @@ class App extends Component {
         <PrivateRoute exact path ='/project' component = {Project_view}/>
         <PrivateRoute exact path ='/project/edit/:id' component = {ProEdit}/>
         <PrivateRoute exact path ='/project/add' component = {ProAdd}/>
+        <PrivateRoute exact path ='/project/ad_details/:id' component = {ProAdDetails}/>
 
         <PrivateRoute exact path ='/invited_lectures/add' component = {LecAdd}/>
         

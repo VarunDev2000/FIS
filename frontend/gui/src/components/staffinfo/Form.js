@@ -95,6 +95,9 @@ onSubmit = e => {
             <option value="Ms.">Ms.</option>
           </select>
           </Form.Item>
+          <Form.Item label = "ADD PROFILE PIC">
+          <input type="file" name="pic" accept="image/*"/>
+          </Form.Item>
           <Form.Item label="NAME">
             <Input name = "name" placeholder="Enter name" required onChange = {this.onChange} />
           </Form.Item>

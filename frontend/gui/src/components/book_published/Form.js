@@ -33,7 +33,7 @@ onChange = e => {
 
 onSubmit = e => {
 
-  e.preventDefault();
+  //e.preventDefault();
     
   if(this.props.type === 'add')
   {
@@ -53,14 +53,20 @@ onSubmit = e => {
 }
 
   render() {
+    const year = [];
+
+    for (let i = 1950;i <= (new Date().getFullYear());i++) {
+      year.push(<option key = {i} value = {i}>{i}</option>)
+    }
+
     return (
       <div>
         <CustomLayout>
         <Form onSubmit ={this.onSubmit}>
-          <Form.Item label="TITLE OF BOOK">
+          <Form.Item label="* TITLE OF BOOK">
             <Input name = "title" placeholder="Enter Title of book" required onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="AUTHOR">
+          <Form.Item label="* AUTHOR">
           <Input name = "author" placeholder="Enter Author Name" required onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="CO AUTHOR-1">
@@ -69,17 +75,20 @@ onSubmit = e => {
           <Form.Item label="CO AUTHOR-2">
           <Input name = "co_author2" placeholder=""  onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="PUBLISHER">
+          <Form.Item label="* PUBLISHER">
             <Input name = "publisher" placeholder="Enter Publisher Name" required onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="PLACE OF PUBLICATION">
+          <Form.Item label="* PLACE OF PUBLICATION">
             <Input name = "place_of_publication" placeholder="Place of Publication" required onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="YEAR OF PUBLICATION">
-            <Input name = "year_of_publication" placeholder="Year of Publication" required onChange = {this.onChange} />
+          <Form.Item label="* YEAR OF PUBLICATION">
+            <select required className = "selectClass" name="year_of_publication" required defaultValue={'DEFAULT'} onChange = {this.onChange}>
+              <option disabled value="DEFAULT"> </option>
+              {year}
+            </select>
           </Form.Item>
-          <Form.Item label="EDITION NO">
-            <Input name = "edition_no" placeholder="Enter Edition No" required onChange = {this.onChange} />
+          <Form.Item label="* EDITION NO">
+            <Input type = "number" name = "edition_no" placeholder="Enter Edition No" required onChange = {this.onChange} />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType = "submit">{this.props.btnText}</Button>

@@ -50,25 +50,25 @@ onSubmit = e => {
       <div>
         <CustomLayout>
         <Form onSubmit ={this.onSubmit}>
-          <Form.Item label="LEVEL">
+          <Form.Item label="* LEVEL">
           <select name="level" onChange = {this.onChange}>
             <option value="international">INTERNATIONAL</option>
             <option value="national">NATIONAL</option>
           </select>
           </Form.Item>
-          <Form.Item label="TOPIC">
+          <Form.Item label="* TOPIC">
             <Input name = "topic" placeholder="Enter Topic" required onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="PROGRAMME">
+          <Form.Item label="* PROGRAMME">
             <Input name = "programme" placeholder="Programme name" required onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="INSTITUTION/ORGANIZATION">
+          <Form.Item label="* INSTITUTION/ORGANIZATION">
             <Input name = "institution" placeholder="Enter Institution Name" required onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="PLACE ">
+          <Form.Item label="* PLACE ">
             <Input name = "place" placeholder="Enter Place Name" required onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="DATE">
+          <Form.Item label="* DATE">
             <input type = "date" name = "date" required onChange = {this.onChange} ></input>
           </Form.Item>
           <Form.Item>
