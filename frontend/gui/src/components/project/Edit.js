@@ -69,17 +69,31 @@ onFileChange = e => {
 }
 
 popPDF(url) {
-    var ref = window.open(url,"thePop","menubar=1,resizable=1,scrollbars=1,status=1,height=1920,width=1020,top=0")
-    ref.focus();
+  if(url != null)
+  {
+  var ref = window.open(url,"thePop","menubar=1,resizable=1,scrollbars=1,status=1,height=1920,width=1020,top=0")
+  ref.focus();
   }
 
+  else{
+    alert("No PDF Available!!")
+  }
+}
+
 onSubmit = (e) => {
+
+  e.preventDefault();
+
+  if(this.state.durationfrom > this.state.durationto)
+  {
+    alert("Invalid Duration");
+  }
+
+  else{
   
   this.setState({
       disabled : true
   })
-  
-  e.preventDefault();
 
   const id = this.props.match.params.id;
   let form_data = new FormData();
@@ -94,7 +108,7 @@ onSubmit = (e) => {
   form_data.append('co_inves2', this.state.co_inves2);
   form_data.append('p_type', this.state.p_type);
   form_data.append('funding_agent', this.state.funding_agent);
-  form_data.append('amt', this.state.amt);  
+  form_data.append('amt', this.state.amt === null ? '' : this.state.amt);  
   form_data.append('durationfrom', this.state.durationfrom);
   form_data.append('durationto', this.state.durationto);
   form_data.append('department', this.state.department);
@@ -113,6 +127,7 @@ onSubmit = (e) => {
   setTimeout( function(){
     window.open("/project","_self")
   }, 1000 );
+}
 };
 
 
@@ -169,18 +184,18 @@ componentWillReceiveProps(props) {
             <option value="on_going">ON GOING</option>
             <option value="completed">COMPLETED</option>
         </select><br/><br/>
-          <Form.Item label="* PROJECT TITLE">
+          <Form.Item label="PROJECT TITLE">
           <Input name = "pro_title" placeholder="Enter Project Title" defaultValue={pro.pro_title} required onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="* PROJECT TYPE">
+          <Form.Item label="PROJECT TYPE">
           <select name="p_type" onChange = {this.dropdowndef} defaultValue={pro.p_type}> 
             <option value="Research">RESEARCH</option>
             <option value="Infra Structure">INFRA STRUCTURE</option>
             <option value="Consultancy">CONSULTANCY</option>
           </select>
           </Form.Item>
-          <Form.Item label="* PRINCIPLE INVESTIGATOR/COORDINATOR">
-          <Input name = "investigator" placeholder="Enter Investigator Name" defaultValue={pro.investigator} required onChange = {this.onChange} />
+          <Form.Item label="PRINCIPLE INVESTIGATOR/COORDINATOR">
+          <Input name = "investigator" placeholder="Enter Investigator Name" defaultValue={pro.investigator}  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="CO-INVESTIGATOR1">
           <Input name = "co_inves1"  onChange = {this.onChange} defaultValue={pro.co_inves1}/>
@@ -188,22 +203,22 @@ componentWillReceiveProps(props) {
           <Form.Item label="CO-INVESTIGATOR2">
           <Input name = "co_inves2"  onChange = {this.onChange} defaultValue={pro.co_inves2}/>
           </Form.Item>
-          <Form.Item label="* FUNDING AGENT">
-          <Input name = "funding_agent" placeholder="Enter Funding Agent" defaultValue={pro.funding_agent} required onChange = {this.onChange} />
+          <Form.Item label="FUNDING AGENT">
+          <Input name = "funding_agent" placeholder="Enter Funding Agent" defaultValue={pro.funding_agent}  onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="* AMOUNT">
-          <Input type="number" name = "amt" placeholder="Enter Amount" defaultValue={pro.amt} required onChange = {this.onChange} />
+          <Form.Item label="AMOUNT">
+          <Input type="number" name = "amt" placeholder="Enter Amount" defaultValue={pro.amt}  onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="* DURATION">
+          <Form.Item label="DURATION">
             <label>From</label>{'\u00A0'}{'\u00A0'}
             <input type = "date" required name="durationfrom" defaultValue={pro.durationfrom} onChange={this.onChange}></input>
             {'\u00A0'}{'\u00A0'}
             <label>To</label>{'\u00A0'}{'\u00A0'}           
             <input type = "date" required name="durationto" defaultValue={pro.durationto} onChange={this.onChange}></input>
           </Form.Item>
-          <Form.Item label="* DEPARTMENT">
+          <Form.Item label="DEPARTMENT">
             <select name="department" defaultValue={pro.department} onChange = {this.dropdowndef}>
-            <option disabled value="DEFAULT"> -- select an option -- </option>
+            <option value=""> -- select an option -- </option>
             <option value="ADDITIONAL CONTROLLER OF EXAMINATION">ADDITIONAL CONTROLLER OF EXAMINATION</option>
             <option value="Administrative Office">Administrative Office</option>
             <option value="Alagappa College of Technology">Alagappa College of Technology</option>
@@ -342,7 +357,7 @@ componentWillReceiveProps(props) {
           </Form.Item>
           <Form.Item label="CO-DEPARTMENT">
             <select name="co_dep" defaultValue={pro.co_dep} onChange = {this.dropdowndef}>
-            <option disabled value="DEFAULT"> -- select an option -- </option>
+            <option value=""> -- select an option -- </option>
             <option value="ADDITIONAL CONTROLLER OF EXAMINATION">ADDITIONAL CONTROLLER OF EXAMINATION</option>
             <option value="Administrative Office">Administrative Office</option>
             <option value="Alagappa College of Technology">Alagappa College of Technology</option>

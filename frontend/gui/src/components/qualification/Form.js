@@ -10,18 +10,18 @@ class CustomForm extends React.Component {
   state = {
     deg_form : null,
     redirect : false,
-    level: '-',
-    degree: '-',
-    branch: '-',
+    level: '',
+    degree: '',
+    branch: '',
     institution: '',
     university: '',
-    durationfrom: '-',
-    durationto: '-',
-    class_obtained: '-',
+    durationfrom: '',
+    durationto: '',
+    class_obtained: '',
     title_of_thesis: '',
     research_area: '',
     faculty: '',
-    department: '-',
+    department: '',
     viva: '',
     degree_type: '',
 }
@@ -58,10 +58,20 @@ onSubmit = e => {
 
     const quali = {level,degree,branch,institution,university,durationfrom,durationto,class_obtained,degree_type}
     
+    var d_f = parseInt(durationfrom, 10);
+    var d_t = parseInt(durationto, 10);
+
+    if(d_f > d_t || durationfrom === "" || durationto === "")
+    {
+      alert("Invalid Duration");
+    }
+
+    else{
     //console.log(quali);
     this.props.addQualification(quali);
     //this.props.history.push('/qualification');
     window.open('/qualification',"_self");
+    }
   }
 
   else if(this.props.type === 'add' && this.state.deg_form === 'research')
@@ -70,14 +80,24 @@ onSubmit = e => {
 
     const quali = {degree,title_of_thesis,research_area,faculty,department,institution,university,durationfrom,durationto,viva,degree_type}
     
+    var d_f = parseInt(durationfrom, 10);
+    var d_t = parseInt(durationto, 10);
+    
+    if(d_f > d_t || durationfrom === "" || durationto === "")
+    {
+      alert("Invalid Duration");
+    }
+
+    else{
     //console.log(quali);
     this.props.addQualification(quali);
     //this.props.history.push('/qualification');
     window.open('/qualification',"_self");
+    }
   }
 
   else{
-    console.log("submit");
+    console.log("Error");
   }
 }
 
@@ -104,7 +124,7 @@ onSubmit = e => {
         degreetype === 'ug_pg' ? (
           <div>
           <Form.Item label="LEVEL">
-          <select name="level" defaultValue={'DEFAULT'} required onChange = {this.dropdowndef}>
+          <select name="level" defaultValue={'DEFAULT'}  onChange = {this.dropdowndef}>
             <option disabled value="DEFAULT"> -- select an option -- </option> 
             <option value="UNDER GRADUATE">UNDER GRADUATE</option>
             <option value="POST GRADUATE">POST GRADUATE</option>
@@ -116,7 +136,7 @@ onSubmit = e => {
           </select>
           </Form.Item>
           <Form.Item label="DEGREE">
-          <select name="degree" defaultValue={'DEFAULT'} required onChange = {this.dropdowndef}>
+          <select name="degree" defaultValue={'DEFAULT'}  onChange = {this.dropdowndef}>
             <option disabled value="DEFAULT"> -- select an option -- </option>
             <option value="AMIE.">AMIE.</option>
             <option value="ATSO I.">ATSO I.</option>
@@ -180,7 +200,7 @@ onSubmit = e => {
           </select>
           </Form.Item>
           <Form.Item label="BRANCH">
-          <select name="branch" defaultValue={'DEFAULT'} required onChange = {this.dropdowndef}>
+          <select name="branch" defaultValue={'DEFAULT'}  onChange = {this.dropdowndef}>
             <option disabled value="DEFAULT"> -- select an option -- </option>
             <option value="AERONAUTICAL ENGINEERING">AERONAUTICAL ENGINEERING</option>
             <option value="AGRICULTURE AND IRRIGATION ENGG">AGRICULTURE AND IRRIGATION ENGG</option>
@@ -241,23 +261,23 @@ onSubmit = e => {
           </select>
           </Form.Item>
           <Form.Item label="INSTITUTION">
-            <Input name = "institution" placeholder="Institution" required onChange = {this.onChange} />
+            <Input name = "institution" placeholder="Institution"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="UNIVERSITY">
-            <Input name = "university" placeholder="University" required onChange = {this.onChange} />
+            <Input name = "university" placeholder="University"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="DURATION">
-          <label>From</label> <select required className = "selectClass" name="durationfrom" required defaultValue={'DEFAULT'} onChange = {this.dropdowndef}>
+          <label>From</label> <select className = "selectClass" name="durationfrom" defaultValue={'DEFAULT'} onChange = {this.dropdowndef}>
             <option disabled value="DEFAULT"> </option>
             {year}
           </select> {'\u00A0'}{'\u00A0'}
-          <label>To</label> <select required className = "selectClass" name="durationto" required defaultValue={'DEFAULT'} onChange = {this.dropdowndef}>
+          <label>To</label> <select className = "selectClass" name="durationto" defaultValue={'DEFAULT'} onChange = {this.dropdowndef}>
             <option disabled value="DEFAULT"> </option>
             {year}
           </select>
           </Form.Item>
           <Form.Item label="CLASS OBTAINED">
-            <select name="class_obtained" required defaultValue={'DEFAULT'} onChange = {this.dropdowndef}>
+            <select name="class_obtained"  defaultValue={'DEFAULT'} onChange = {this.dropdowndef}>
               <option disabled value="DEFAULT"> -- select an option -- </option>
               <option value="First Class with Distinction">First Class with Distinction</option>
               <option value="Honors">Honors</option>
@@ -274,7 +294,7 @@ onSubmit = e => {
         degreetype === 'research' ? (
           <div>
           <Form.Item label="DEGREE">
-            <select name="degree" required defaultValue={'DEFAULT'} onChange = {this.dropdowndef}>
+            <select name="degree"  defaultValue={'DEFAULT'} onChange = {this.dropdowndef}>
               <option disabled value="DEFAULT"> -- select an option -- </option>
               <option value="Ph.D">Ph.D</option>
               <option value="Postdoctral Research">Postdoctral Research</option>
@@ -283,13 +303,13 @@ onSubmit = e => {
             </select>
           </Form.Item>
           <Form.Item label="TITLE OF THESIS">
-            <textarea name = "title_of_thesis" placeholder="Title of thesis" required onChange = {this.onChange}></textarea>
+            <textarea name = "title_of_thesis" placeholder="Title of thesis"  onChange = {this.onChange}></textarea>
           </Form.Item>
           <Form.Item label="RESEARCH AREA">
-          <Input name = "research_area" placeholder="Enter Your Research Area" required onChange = {this.onChange} />
+          <Input name = "research_area" placeholder="Enter Your Research Area"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="FACULTY">
-            <Input name = "faculty" placeholder="Enter Faculty" required onChange = {this.onChange} />
+            <Input name = "faculty" placeholder="Enter Faculty"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="DEPARTMENT">
             <select name="department" defaultValue={'DEFAULT'} onChange = {this.dropdowndef}>
@@ -431,10 +451,10 @@ onSubmit = e => {
           </select>
           </Form.Item>
           <Form.Item label="INSTITUTION">
-            <Input name = "institution" placeholder="Institution" required onChange = {this.onChange} />
+            <Input name = "institution" placeholder="Institution"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="UNIVERSITY">
-            <Input name = "university" placeholder="University" required onChange = {this.onChange} />
+            <Input name = "university" placeholder="University"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="DURATION">
             <label>From</label> <select required className = "selectClass" name="durationfrom" required defaultValue={'DEFAULT'} onChange = {this.dropdowndef}>
@@ -447,7 +467,7 @@ onSubmit = e => {
           </select>
           </Form.Item>
           <Form.Item label="VIVA">
-            <Input name = "viva" placeholder="Viva" required onChange = {this.onChange} />
+            <Input name = "viva" placeholder="Viva"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item>
           <Button type="primary" htmlType = "submit">{this.props.btnText}</Button>

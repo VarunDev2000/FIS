@@ -26,26 +26,32 @@ onChange = e => {
   this.setState({
     [e.target.name]: e.target.value
   });
-  console.log(e.target.value);
 }
 
 
 onSubmit = e => {
 
-  //e.preventDefault();
-    
+  e.preventDefault();
+
+  if(this.state.from_date > this.state.to_date)
+  {
+    alert("Invalid Duration");
+  }
+
+  else{
   if(this.props.type === 'add')
   {
   const {nature_of_assignment,from_date,to_date,institution,country,purp_of_visit,funding_agency} = this.state;
 
   const exp = {nature_of_assignment,from_date,to_date,institution,country,purp_of_visit,funding_agency};
     
-    console.log(exp);
-    this.props.addExp(exp);
+  this.props.addExp(exp);
+  window.open('/experience_abroad',"_self");
   }
 
   else{
-    console.log("submit");
+    console.log("Error");
+  }
   }
 }
 
@@ -54,23 +60,23 @@ onSubmit = e => {
       <div>
         <CustomLayout>
         <Form onSubmit ={this.onSubmit}>
-          <Form.Item label="* NATURE OF ASSIGNMENT">
+          <Form.Item label="NATURE OF ASSIGNMENT">
             <Input name = "nature_of_assignment" placeholder="Enter Nature of Assignment" required onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="* DURATION">
+          <Form.Item label="DURATION">
             <label>From</label>{'\u00A0'}{'\u00A0'}
             <input type = "date" required name="from_date" onChange={this.onChange}></input>
             {'\u00A0'}{'\u00A0'}
             <label>To</label>{'\u00A0'}{'\u00A0'}           
             <input type = "date" required name="to_date" onChange={this.onChange}></input>
           </Form.Item>
-          <Form.Item label="* INSTITUTION/ORGANIZATION">
-            <Input name = "institution" placeholder="Enter Institution Name" required onChange = {this.onChange} />
+          <Form.Item label="INSTITUTION/ORGANIZATION">
+            <Input name = "institution" placeholder="Enter Institution Name" onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="* COUNTRY">
-            <Input name = "country" placeholder="Country Name" required onChange = {this.onChange} />
+          <Form.Item label="COUNTRY">
+            <Input name = "country" placeholder="Country Name" onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="* PURPOSE OF VISIT ">
+          <Form.Item label="PURPOSE OF VISIT ">
             <select name="purp_of_visit" onChange = {this.onChange}>
               <option value="Others">Others</option>
               <option value="Paper Presentation in Conference">Paper Presentation in Conference</option>
@@ -83,9 +89,9 @@ onSubmit = e => {
               <option value="University Exchange Programme">University Exchange Programme</option>
             </select>
           </Form.Item>
-          <Form.Item label="* FUNDING AGENCY ">
-            <Input name = "funding_agency" placeholder="Funding Agency Name" required onChange = {this.onChange} />
-          </Form.Item>
+          <Form.Item label="FUNDING AGENCY ">
+            <Input name = "funding_agency" placeholder="Funding Agency Name" onChange = {this.onChange} />
+          </Form.Item><br/>
           <Form.Item>
             <Button type="primary" htmlType = "submit">{this.props.btnText}</Button>
           </Form.Item>

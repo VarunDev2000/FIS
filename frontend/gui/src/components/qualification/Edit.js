@@ -62,11 +62,19 @@ onSubmit = e => {
   
       const quali = {level,degree,branch,institution,university,durationfrom,durationto,class_obtained,degree_type}
       
+      var d_f = parseInt(durationfrom, 10);
+      var d_t = parseInt(durationto, 10);
+  
+      if(d_f > d_t || durationfrom === "" || durationto === "")
+      {
+        alert("Invalid Duration");
+      }
+      else{
       //console.log(quali);
       this.props.editQualification(quali,id);
       //history.push('/qualification');
       window.open('/qualification',"_self");
-      
+      }
     }
   
     else if(this.state.degree_type === 'research')
@@ -75,15 +83,25 @@ onSubmit = e => {
   
       const quali = {degree,title_of_thesis,research_area,faculty,department,institution,university,durationfrom,durationto,viva,degree_type}
       
+      var d_f = parseInt(durationfrom, 10);
+      var d_t = parseInt(durationto, 10);
+  
+      if(d_f > d_t || durationfrom === "" || durationto === "")
+      {
+        alert("Invalid Duration");
+      }
+      else{
       //console.log(quali);
       this.props.editQualification(quali,id);
       localStorage.removeItem('id');
       //history.push('/qualification');
       //this.props.history.push('/qualification');
       window.open('/qualification',"_self");
+      }
     }
   
     else{
+      console.log("Error");
     }
 }
 
@@ -165,8 +183,8 @@ componentWillReceiveProps(props) {
         quali.degree_type === 'ug_pg' ? (
           <div key = {quali.id}>
           <Form.Item label="LEVEL">
-          <select name="level" defaultValue={this.state.level} required onChange = {this.onChange}>
-            <option disabled value="DEFAULT"> -- select an option -- </option> 
+          <select name="level" defaultValue={this.state.level}  onChange = {this.onChange}>
+            <option disabled value="">None</option> 
             <option value="UNDER GRADUATE">UNDER GRADUATE</option>
             <option value="POST GRADUATE">POST GRADUATE</option>
             <option value="DOCTORATE">DOCTORATE</option>
@@ -177,8 +195,8 @@ componentWillReceiveProps(props) {
           </select>
           </Form.Item>
           <Form.Item label="DEGREE">
-          <select name="degree" defaultValue={this.state.degree} required onChange = {this.onChange}>
-            <option disabled value="DEFAULT"> -- select an option -- </option>
+          <select name="degree" defaultValue={this.state.degree}  onChange = {this.onChange}>
+            <option disabled value="">None</option>
             <option value="AMIE.">AMIE.</option>
             <option value="ATSO I.">ATSO I.</option>
             <option value="B.A">B.A</option>
@@ -241,8 +259,8 @@ componentWillReceiveProps(props) {
           </select>
           </Form.Item>
           <Form.Item label="BRANCH">
-          <select name="branch" defaultValue={this.state.branch} required onChange = {this.onChange}>
-            <option disabled value="DEFAULT"> -- select an option -- </option>
+          <select name="branch" defaultValue={this.state.branch}  onChange = {this.onChange}>
+            <option disabled value="">None</option>
             <option value="AERONAUTICAL ENGINEERING">AERONAUTICAL ENGINEERING</option>
             <option value="AGRICULTURE AND IRRIGATION ENGG">AGRICULTURE AND IRRIGATION ENGG</option>
             <option value="APPAREL TECHNOLOGY">APPAREL TECHNOLOGY</option>
@@ -301,23 +319,23 @@ componentWillReceiveProps(props) {
             <option value="TEXTILE TECHNOLOGY">TEXTILE TECHNOLOGY</option>
           </select></Form.Item>
           <Form.Item label="INSTITUTION">
-            <Input  name = "institution" placeholder="Institution" required defaultValue = {quali.institution} onChange = {this.onChange} />
+            <Input  name = "institution" placeholder="Institution"  defaultValue = {quali.institution} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="UNIVERSITY">
-            <Input name = "university" placeholder="University" required defaultValue = {quali.university} onChange = {this.onChange} />
+            <Input name = "university" placeholder="University"  defaultValue = {quali.university} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="DURATION">
-          <label>From</label> <select defaultValue = {this.state.durationfrom} required className = "selectClass" name="durationfrom" required onChange = {this.onChange}>
-            <option disabled value="DEFAULT"> </option>
+          <label>From</label> <select  className = "selectClass" name="durationfrom" required defaultValue={this.state.durationfrom} onChange = {this.onChange}>
+            <option disabled value="">None</option>
             {year}
-          </select> {'\u00A0'}{'\u00A0'}
-          <label>To</label> <select defaultValue = {this.state.durationto} required className = "selectClass" name="durationto" required  onChange = {this.onChange}>
-            <option disabled value="DEFAULT"> </option>
+            </select> {'\u00A0'}{'\u00A0'}
+            <label>To</label> <select  className = "selectClass" name="durationto" required defaultValue={this.state.durationto} onChange = {this.onChange}>
+            <option disabled value="">None</option>
             {year}
           </select></Form.Item>
           <Form.Item label="CLASS OBTAINED">
-          <select name="class_obtained" required defaultValue={this.state.class_obtained} onChange = {this.onChange}>
-              <option disabled value="DEFAULT"> -- select an option -- </option>
+          <select name="class_obtained"  defaultValue={this.state.class_obtained} onChange = {this.onChange}>
+              <option disabled value="">None</option>
               <option value="First Class with Distinction">First Class with Distinction</option>
               <option value="Honors">Honors</option>
               <option value="First Class">First Class</option>
@@ -331,8 +349,8 @@ componentWillReceiveProps(props) {
         ) : (
           <div key = {quali.id}>
           <Form.Item label="DEGREE">
-          <select name="degree" required defaultValue={this.state.degree} onChange = {this.onChange}>
-              <option disabled value="DEFAULT"> -- select an option -- </option>
+          <select name="degree"  defaultValue={this.state.degree} onChange = {this.onChange}>
+              <option disabled value="">None</option>
               <option value="Ph.D">Ph.D</option>
               <option value="Postdoctral Research">Postdoctral Research</option>
               <option value="M.S (By Research)">M.S (By Research)</option>
@@ -340,17 +358,17 @@ componentWillReceiveProps(props) {
             </select>
           </Form.Item>
           <Form.Item label="TITLE OF THESIS">
-          <textarea name = "title_of_thesis" placeholder="Title of thesis" required defaultValue = {quali.title_of_thesis} onChange = {this.onChange}></textarea>
+          <textarea name = "title_of_thesis" placeholder="Title of thesis"  defaultValue = {quali.title_of_thesis} onChange = {this.onChange}></textarea>
           </Form.Item>
           <Form.Item label="RESEARCH AREA">
-          <Input name = "research_area" placeholder="Enter Your Research Area" required defaultValue = {quali.research_area} onChange = {this.onChange} />
+          <Input name = "research_area" placeholder="Enter Your Research Area"  defaultValue = {quali.research_area} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="FACULTY">
-            <Input name = "faculty" placeholder="Enter Faculty" required defaultValue = {quali.faculty} onChange = {this.onChange} />
+            <Input name = "faculty" placeholder="Enter Faculty"  defaultValue = {quali.faculty} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="DEPARTMENT">
           <select name="department" defaultValue={this.state.department} onChange = {this.onChange}>
-            <option disabled value="DEFAULT"> -- select an option -- </option>
+            <option disabled value="">None</option>
             <option value="ADDITIONAL CONTROLLER OF EXAMINATION">ADDITIONAL CONTROLLER OF EXAMINATION</option>
             <option value="Administrative Office">Administrative Office</option>
             <option value="Alagappa College of Technology">Alagappa College of Technology</option>
@@ -487,22 +505,22 @@ componentWillReceiveProps(props) {
             <option value="Others">Others</option>
           </select></Form.Item>
           <Form.Item label="INSTITUTION">
-            <Input name = "institution" placeholder="Institution" required defaultValue = {quali.institution} onChange = {this.onChange} />
+            <Input name = "institution" placeholder="Institution"  defaultValue = {quali.institution} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="UNIVERSITY">
-            <Input name = "university" placeholder="University" required defaultValue = {quali.university} onChange = {this.onChange} />
+            <Input name = "university" placeholder="University" defaultValue = {quali.university} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="DURATION">
-          <label>From</label> <select required className = "selectClass" name="durationfrom" required defaultValue={this.state.durationfrom} onChange = {this.onChange}>
-            <option disabled value="DEFAULT"> </option>
+          <label>From</label> <select  className = "selectClass" name="durationfrom" required defaultValue={this.state.durationfrom} onChange = {this.onChange}>
+            <option disabled value="">None</option>
             {year}
             </select> {'\u00A0'}{'\u00A0'}
-            <label>To</label> <select required className = "selectClass" name="durationto" required defaultValue={this.state.durationto} onChange = {this.onChange}>
-            <option disabled value="DEFAULT"> </option>
+            <label>To</label> <select  className = "selectClass" name="durationto" required defaultValue={this.state.durationto} onChange = {this.onChange}>
+            <option disabled value="">None</option>
             {year}
           </select></Form.Item>
           <Form.Item label="VIVA">
-            <Input name = "viva" placeholder="Viva" required defaultValue = {quali.viva} onChange = {this.onChange} />
+            <Input name = "viva" placeholder="Viva"  defaultValue = {quali.viva} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item>
           <Button type="primary" htmlType = "submit">Submit</Button>

@@ -4,7 +4,7 @@ import Form from './Form'
 class EAOAdd extends React.Component{
     render(){
         return (
-            <Form type = 'add' btnText = 'Add'/>
+            <Form type = 'add' btnText = 'Submit'/>
         )
     }
 }

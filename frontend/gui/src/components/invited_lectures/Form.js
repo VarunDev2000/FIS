@@ -9,7 +9,7 @@ class CustomForm extends React.Component {
 
   state = {
     redirect : false,
-    level: 'international',
+    level: 'International',
     programme: '',
     institution: '',
     place: '',
@@ -30,18 +30,20 @@ onChange = e => {
 
 onSubmit = e => {
   
+  e.preventDefault();
+  
   if(this.props.type === 'add')
   {
   const {level,topic,programme,institution,place,date} = this.state;
 
   const lec = {level,topic,programme,institution,place,date};
-    
-    console.log(lec);
-    this.props.addLecture(lec);
+  
+  this.props.addLecture(lec);
+  window.open('/invited_lectures',"_self");
   }
 
   else{
-    console.log("submit");
+    console.log("Error");
   }
 }
 
@@ -50,27 +52,27 @@ onSubmit = e => {
       <div>
         <CustomLayout>
         <Form onSubmit ={this.onSubmit}>
-          <Form.Item label="* LEVEL">
+          <Form.Item label="LEVEL">
           <select name="level" onChange = {this.onChange}>
-            <option value="international">INTERNATIONAL</option>
-            <option value="national">NATIONAL</option>
+            <option value="International">INTERNATIONAL</option>
+            <option value="National">NATIONAL</option>
           </select>
           </Form.Item>
-          <Form.Item label="* TOPIC">
+          <Form.Item label="TOPIC">
             <Input name = "topic" placeholder="Enter Topic" required onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="* PROGRAMME">
-            <Input name = "programme" placeholder="Programme name" required onChange = {this.onChange} />
+          <Form.Item label="PROGRAMME">
+            <Input name = "programme" placeholder="Programme name" onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="* INSTITUTION/ORGANIZATION">
-            <Input name = "institution" placeholder="Enter Institution Name" required onChange = {this.onChange} />
+          <Form.Item label="INSTITUTION/ORGANIZATION">
+            <Input name = "institution" placeholder="Enter Institution Name" onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="* PLACE ">
-            <Input name = "place" placeholder="Enter Place Name" required onChange = {this.onChange} />
+          <Form.Item label="PLACE ">
+            <Input name = "place" placeholder="Enter Place " onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="* DATE">
+          <Form.Item label="DATE">
             <input type = "date" name = "date" required onChange = {this.onChange} ></input>
-          </Form.Item>
+          </Form.Item><br/>
           <Form.Item>
             <Button type="primary" htmlType = "submit">{this.props.btnText}</Button>
           </Form.Item>

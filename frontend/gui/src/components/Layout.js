@@ -109,22 +109,22 @@ export class CustomLayout extends React.Component{
                     <span>ACADEMIC RESEARCH</span>
                     </Menu.Item>  
 
-                    <Menu.Item key="9" onClick = {this.changePage.bind(this,'/invited_lectures/add')}>
+                    <Menu.Item key="9" onClick = {this.changePage.bind(this,'/invited_lectures')}>
                     <Icon type="solution" />
                     <span>INVITED LECTURES</span>
                     </Menu.Item>  
 
-                    <Menu.Item key="10" onClick = {this.changePage.bind(this,'/experience_abroad/add')}>
+                    <Menu.Item key="10" onClick = {this.changePage.bind(this,'/experience_abroad')}>
                     <Icon type="rise" />
                     <span>EXPERIENCE ABROAD</span>
                     </Menu.Item> 
 
-                    <Menu.Item key="11" onClick = {this.changePage.bind(this,'/book_published/add')}>
+                    <Menu.Item key="11" onClick = {this.changePage.bind(this,'/book_published')}>
                     <Icon type="book" />
                     <span>BOOKS PUBLISHED</span>
                     </Menu.Item> 
 
-                    <Menu.Item key="12" onClick = {this.changePage.bind(this,'/eao_programme/add')}>
+                    <Menu.Item key="12" onClick = {this.changePage.bind(this,'/eao_programme')}>
                     <Icon type="exception" />
                     <span>EXTENSION AND OUTREACH PROGRAMME</span>
                     </Menu.Item>  

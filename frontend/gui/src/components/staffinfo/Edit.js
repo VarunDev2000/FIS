@@ -40,9 +40,18 @@ static propTypes = {
 }
 
 onChange = e => {
-  this.setState({
-    [e.target.name]: e.target.value
-  });
+  if(e.target.value === "")
+  {
+    this.setState({
+      [e.target.name]: null
+    });
+  }
+
+  else{
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
 }
 
 delete = (e) => {
@@ -129,6 +138,7 @@ onSubmit = e => {
         <Form onSubmit = {this.onSubmit}>
         <Form.Item label="SALUTATION">
           <select name = "salutation" defaultValue = {ginfo.salutation} onChange = {this.onChange}>
+            <option value="">None</option>
             <option value="Dr">Dr</option>
             <option value="Dr.">Dr.</option>
             <option value="Prof.">Prof.</option>
@@ -138,32 +148,34 @@ onSubmit = e => {
           </select>
           </Form.Item>
           <Form.Item label="NAME">
-            <Input name = "name" placeholder="Enter name" defaultValue = {ginfo.name} required onChange = {this.onChange} />         
+            <Input name = "name" placeholder="Enter name" defaultValue = {ginfo.name}  onChange = {this.onChange} />         
           </Form.Item>
           <Form.Item label="GENDER">
             <select name = "gender" defaultValue={ginfo.gender} onChange = {this.onChange}>
+            <option value="">None</option>
             <option value="Other">OTHER</option>
             <option value="Male">MALE</option>
             <option value="Female">FEMALE</option>
           </select>
           </Form.Item>
           <Form.Item label="DOB">
-            <input type = "date" name = "dob"  required defaultValue = {ginfo.dob} onChange = {this.onChange} ></input>
+            <input type = "date" name = "dob"   defaultValue = {ginfo.dob} onChange = {this.onChange} ></input>
           </Form.Item>
           <Form.Item label="FATHER/HUSBAND NAME">
-            <Input name = "fath_hus_name" placeholder="Fath or Hus name" required defaultValue = {ginfo.fath_hus_name} onChange = {this.onChange} />
+            <Input name = "fath_hus_name" placeholder="Fath or Hus name"  defaultValue = {ginfo.fath_hus_name} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="PERSON WITH DISABILITY">
           <select name = "disability"  defaultValue={ginfo.disability} onChange = {this.onChange}>
+            <option value="">None</option>
             <option value="yes">YES</option>
             <option value="no">NO</option>
           </select>
           </Form.Item>
           <Form.Item label="OFFICIAL MAIL">
-          <Input type = "email" name = "official_mail" placeholder="Enter Official Mail" defaultValue = {ginfo.official_mail} required onChange = {this.onChange} />         
+          <Input type = "email" name = "official_mail" placeholder="Enter Official Mail" defaultValue = {ginfo.official_mail}  onChange = {this.onChange} />         
           </Form.Item>
           <Form.Item label="PERSONAL MAIL">
-          <Input type = "email" name = "personal_mail" placeholder="Enter Personal Mail" defaultValue = {ginfo.personal_mail} required onChange = {this.onChange} />         
+          <Input type = "email" name = "personal_mail" placeholder="Enter Personal Mail" defaultValue = {ginfo.personal_mail}  onChange = {this.onChange} />         
           </Form.Item>
           <Form.Item label="AADHAR">
             <Input type = "number" name = "aadhar" placeholder="Aadhar no"   defaultValue = {ginfo.aadhar} onChange = {this.onChange} />
@@ -172,13 +184,14 @@ onSubmit = e => {
             <Input type = "number" name = "pan" placeholder="Pan card no"   defaultValue = {ginfo.pan} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="MOBILE NO">
-            <Input type = "number" name = "mobile_no" placeholder="Mobile"   required defaultValue = {ginfo.mobile_no} onChange = {this.onChange} />
+            <Input type = "number" name = "mobile_no" placeholder="Mobile"    defaultValue = {ginfo.mobile_no} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="RESIDENCE PHONE NO">
-            <Input type = "number" name = "residence_ph_no" placeholder="Residence"  required defaultValue = {ginfo.residence_ph_no} onChange = {this.onChange} />
+            <Input type = "number" name = "residence_ph_no" placeholder="Residence"   defaultValue = {ginfo.residence_ph_no} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="COMMUNITY">
           <select name = "community" defaultValue = {ginfo.community} onChange = {this.onChange}>
+            <option value="">None</option>
             <option value="Other community">OTHER COMMUNITY</option>
             <option value="Scheduled Tribe">SCHEDULED TRIBE</option>
             <option value="Scheduled Caste">SCHEDULED CASTE</option>
@@ -190,13 +203,13 @@ onSubmit = e => {
             <Input name = "caste" placeholder="Caste"  defaultValue = {ginfo.caste} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="INTERCOM NO 1">
-            <Input type = "number" name = "intercom1" required defaultValue = {ginfo.intercom1} onChange = {this.onChange} />
+            <Input type = "number" name = "intercom1"  defaultValue = {ginfo.intercom1} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="INTERCOM NO 2">
-            <Input type = "number" name = "intercom2" required defaultValue = {ginfo.intercom2} onChange = {this.onChange} />
+            <Input type = "number" name = "intercom2"  defaultValue = {ginfo.intercom2} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="RESIDENTIAL ADDRESS">
-            <Input name = "res_address" placeholder="Address"  required defaultValue = {ginfo.res_address} onChange = {this.onChange} />
+            <Input name = "res_address" placeholder="Address"   defaultValue = {ginfo.res_address} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="PERMANENT ADDRESS">
             <Input name = "perm_address" placeholder="Address"  defaultValue = {ginfo.perm_address} onChange = {this.onChange} />
@@ -210,7 +223,7 @@ onSubmit = e => {
         </Form>
 
       </div>
-      ) : (<h1><center>ERROR!</center></h1>)
+      ) : (<h1></h1>)
       }
       </CustomLayout>
     );

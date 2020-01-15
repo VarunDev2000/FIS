@@ -36,19 +36,28 @@ import AdDetails from './components/publication/additional_details';
 import CSW_view from './components/csw/CSW_view';
 import CSWAdd from './components/csw/Add';
 import CSWEdit from './components/csw/Edit';
+import AdDetails_CSW from './components/csw/additional_details';
 //--------------------------------
 import Project_view from './components/project/Project_view';
 import ProAdd from './components/project/Add';
 import ProEdit from './components/project/Edit';
 import ProAdDetails from './components/project/additional_details';
 //--------------------------------
+import Lecture_view from './components/invited_lectures/Lecture_view';
 import LecAdd from './components/invited_lectures/Add';
+import LecEdit from './components/invited_lectures/Edit';
 //--------------------------------
+import Exp_view from './components/experience_abroad/EA_view';
 import ExpAdd from './components/experience_abroad/Add';
+import ExpEdit from './components/experience_abroad/Edit';
 //--------------------------------
+import Book_view from './components/book_published/Book_view';
 import BookPubliAdd from './components/book_published/Add';
+import BookPubliEdit from './components/book_published/Edit';
 //--------------------------------
+import EAO_view from './components/eao_programme/EAO_view';
 import EAOAdd from './components/eao_programme/Add';
+import EAOEdit from './components/eao_programme/Edit';
 //--------------------------------
 import { LoadUser } from './actions/auth';
 
@@ -95,18 +104,28 @@ class App extends Component {
         <PrivateRoute exact path ='/csw' component = {CSW_view}/>
         <PrivateRoute exact path ='/csw/edit/:id' component = {CSWEdit}/>
         <PrivateRoute exact path ='/csw/add' component = {CSWAdd}/>
+        <PrivateRoute exact path ='/csw/ad_details/:id' component = {AdDetails_CSW}/>
+
 
         <PrivateRoute exact path ='/project' component = {Project_view}/>
         <PrivateRoute exact path ='/project/edit/:id' component = {ProEdit}/>
         <PrivateRoute exact path ='/project/add' component = {ProAdd}/>
         <PrivateRoute exact path ='/project/ad_details/:id' component = {ProAdDetails}/>
 
+        <PrivateRoute exact path ='/invited_lectures' component = {Lecture_view}/>
+        <PrivateRoute exact path ='/invited_lectures/edit/:id' component = {LecEdit}/>
         <PrivateRoute exact path ='/invited_lectures/add' component = {LecAdd}/>
         
+        <PrivateRoute exact path ='/experience_abroad' component = {Exp_view}/>
+        <PrivateRoute exact path ='/experience_abroad/edit/:id' component = {ExpEdit}/>
         <PrivateRoute exact path ='/experience_abroad/add' component = {ExpAdd}/>
 
+        <PrivateRoute exact path ='/book_published' component = {Book_view}/>
+        <PrivateRoute exact path ='/book_published/edit/:id' component = {BookPubliEdit}/>
         <PrivateRoute exact path ='/book_published/add' component = {BookPubliAdd}/>
 
+        <PrivateRoute exact path ='/eao_programme' component = {EAO_view}/>
+        <PrivateRoute exact path ='/eao_programme/edit/:id' component = {EAOEdit}/>
         <PrivateRoute exact path ='/eao_programme/add' component = {EAOAdd}/>
         
         </Switch>

@@ -25,7 +25,7 @@ class ProAdDetails extends React.Component{
       }
 
       else{
-        alert("No PDF to Show!!")
+        alert("No PDF Available!!")
       }
     }
     

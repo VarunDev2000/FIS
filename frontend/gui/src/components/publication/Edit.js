@@ -50,9 +50,18 @@ delete = (e) => {
 }
 
 onChange = e => {
-  this.setState({
-    [e.target.name]: e.target.value
-  });
+  if(e.target.value === "")
+  {
+    this.setState({
+      [e.target.name]: ""
+    });
+  }
+
+  else{
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
 }
 
 onFileChange = e => {
@@ -63,9 +72,16 @@ onFileChange = e => {
 }
 
 popPDF(url) {
-    var ref = window.open(url,"thePop","menubar=1,resizable=1,scrollbars=1,status=1,height=1920,width=1020,top=0")
-    ref.focus();
+  if(url != null)
+  {
+  var ref = window.open(url,"thePop","menubar=1,resizable=1,scrollbars=1,status=1,height=1920,width=1020,top=0")
+  ref.focus();
   }
+
+  else{
+    alert("No PDF Available!!")
+  }
+}
 
 onSubmit = (e) => {
 
@@ -82,19 +98,25 @@ onSubmit = (e) => {
     form_data.append('pdf', this.state.file, this.state.file.name);
   }
   form_data.append('title', this.state.title);
-  form_data.append('level', this.state.level);
+  form_data.append('level',this.state.level);
   form_data.append('year', this.state.year);
   form_data.append('first_author ', this.state.first_author );
   form_data.append('corres_author ', this.state.corres_author );
   form_data.append('all_auth_inorder ', this.state.all_auth_inorder );
   form_data.append('journal_name', this.state.journal_name);
-  form_data.append('volume', this.state.volume);
-  form_data.append('issue', this.state.issue);
+  form_data.append('volume', this.state.volume === null ? '' : this.state.volume);
+  form_data.append('issue',this.state.issue === null ? '' : this.state.issue);
   form_data.append('page_no', this.state.page_no);
   form_data.append('publisher', this.state.publisher);
-  form_data.append('impact_factor', this.state.impact_factor);
+  //form_data.append('impact_factor', this.state.impact_factor);
   form_data.append('ref_journal', this.state.ref_journal);
   
+  /*
+  for (var pair of form_data.entries()) {
+    console.log(pair[0]+ ', ' + pair[1]); 
+  }
+  */
+
   this.props.editPublication(form_data,id);
 
   setTimeout( function(){
@@ -166,39 +188,40 @@ componentWillReceiveProps(props) {
             <Input name = "title" defaultValue = {this.state.title} placeholder="Enter Title" required onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="FIRST AUTOR">
-            <Input name = "first_author" required defaultValue = {this.state.first_author} placeholder="Enter First Author" required onChange = {this.onChange} />
+            <Input name = "first_author"  defaultValue = {this.state.first_author} placeholder="Enter First Author"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="CORRESPONDING AUTHOR">
             <Input name = "corres_author" defaultValue = {this.state.corres_author} placeholder="Enter Corresponding Author" onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="ALL AUTHOR'S INCLUDING THE ABOVE IN ORDER">
-            <Input name = "all_auth_inorder" required defaultValue = {this.state.all_auth_inorder} placeholder="" onChange = {this.onChange} />
+            <Input name = "all_auth_inorder"  defaultValue = {this.state.all_auth_inorder} placeholder="" onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="JOURNAL NAME">
-            <Input name = "journal_name" required defaultValue = {this.state.journal_name} placeholder="Enter Journal Name" required onChange = {this.onChange} />
+            <Input name = "journal_name"  defaultValue = {this.state.journal_name} placeholder="Enter Journal Name"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="VOLUME">
-            <Input type = "number" name = "volume" required defaultValue = {this.state.volume} placeholder="" onChange = {this.onChange} />
+            <Input type = "number" name = "volume"  defaultValue = {this.state.volume} placeholder="" onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="ISSUE">
-            <Input type = "number" name = "issue" required defaultValue = {this.state.issue} placeholder="" onChange = {this.onChange} />
+            <Input type = "number" name = "issue"  defaultValue = {this.state.issue} placeholder="" onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="YEAR">
-          <select required className = "selectClass" required name="year" defaultValue = {this.state.year} required onChange = {this.onChange}>
+          <select  className = "selectClass"  name="year" defaultValue = {this.state.year}  onChange = {this.onChange}>
             <option disabled value="DEFAULT"> </option>
             {year}
           </select> </Form.Item>
           <Form.Item label="PAGE NO">
-            <Input name = "page_no" required placeholder="Enter Page No" defaultValue = {this.state.page_no} required onChange = {this.onChange} />
+            <Input name = "page_no"  placeholder="Enter Page No" defaultValue = {this.state.page_no}  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="PUBLISHER">
             <Input name = "publisher" placeholder="Enter Publisher Name"  defaultValue = {this.state.publisher} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="IMPACT FACTOR IN THE YEAR OF PUBLICATION">
-            <Input type = "number" required name = "impact_factor" defaultValue = {this.state.impact_factor} placeholder="Enter Impact Factor" required onChange = {this.onChange} />
+            <Input  name = "impact_factor" defaultValue = {this.state.impact_factor} placeholder="Enter Impact Factor"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="IS IT A REFEREED JOURNAL?">
-          <select name="ref_journal" required defaultValue = {this.state.ref_journal} onChange = {this.onChange}>
+          <select name="ref_journal"  defaultValue = {this.state.ref_journal} onChange = {this.onChange}>
+            <option disabled value=""> -- select an option -- </option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>

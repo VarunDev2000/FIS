@@ -22,7 +22,7 @@ class CustomForm extends React.Component {
     page_no: '',
     publisher: '',
     impact_factor: '',
-    ref_journal: 'Yes',
+    ref_journal: '',
     pdf: '',
     file : null,
     disabled : false,
@@ -48,49 +48,53 @@ onFileChange = e => {
 
 
 onSubmit = (e) => {
-  
-  this.setState({
-    disabled : true
-  })
+
   e.preventDefault();
 
-  let form_data = new FormData();
-  if(this.state.filechanged == true)
+  if(this.state.year === "")
   {
-  form_data.append('pdf', this.state.file, this.state.file.name);
+    alert("Year Field can't be Empty!!");
   }
-  form_data.append('title', this.state.title);
-  form_data.append('level', this.state.level);
-  form_data.append('year', this.state.year);
-  form_data.append('first_author ', this.state.first_author );
-  form_data.append('corres_author ', this.state.corres_author );
-  form_data.append('all_auth_inorder ', this.state.all_auth_inorder );
-  form_data.append('journal_name', this.state.journal_name);
-  form_data.append('volume', this.state.volume);
-  form_data.append('issue', this.state.issue);
-  form_data.append('page_no', this.state.page_no);
-  form_data.append('publisher', this.state.publisher);
-  form_data.append('impact_factor', this.state.impact_factor);
-  form_data.append('ref_journal', this.state.ref_journal);
-  
-  /*display values in console
-  
-  for (var pair of form_data.entries()) {
-    console.log(pair[0]+ ' : ' + pair[1]); 
+  else{
+    this.setState({
+      disabled : true
+    })
+
+    let form_data = new FormData();
+    if(this.state.filechanged == true)
+    {
+    form_data.append('pdf', this.state.file, this.state.file.name);
+    }
+    form_data.append('title', this.state.title);
+    form_data.append('level', this.state.level);
+    form_data.append('year', this.state.year);
+    form_data.append('first_author ', this.state.first_author );
+    form_data.append('corres_author ', this.state.corres_author );
+    form_data.append('all_auth_inorder ', this.state.all_auth_inorder );
+    form_data.append('journal_name', this.state.journal_name);
+    form_data.append('volume', this.state.volume);
+    form_data.append('issue', this.state.issue);
+    form_data.append('page_no', this.state.page_no);
+    form_data.append('publisher', this.state.publisher);
+    form_data.append('impact_factor', this.state.impact_factor);
+    form_data.append('ref_journal', this.state.ref_journal);
+    
+    /*display values in console
+    
+    for (var pair of form_data.entries()) {
+      console.log(pair[0]+ ' : ' + pair[1]); 
+    }
+
+    for (var value of form_data.values()) {
+      console.log(value);
+    }
+    */
+    this.props.addPublication(form_data);
+    
+    setTimeout( function(){
+      window.open("/publication","_self")
+    }, 1000 );
   }
-
-  for (var value of form_data.values()) {
-    console.log(value);
-  }
-  */
-
-  this.props.addPublication(form_data);
-
-  
-  setTimeout( function(){
-    window.open("/publication","_self")
-  }, 1000 );
-  
 };
 
 /*
@@ -134,7 +138,7 @@ onSubmit = e => {
             <Input name = "title" placeholder="Enter Title" required onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="FIRST AUTOR">
-            <Input name = "first_author" placeholder="Enter First Author" required onChange = {this.onChange} />
+            <Input name = "first_author" placeholder="Enter First Author"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="CORRESPONDING AUTHOR">
             <Input name = "corres_author" placeholder="Enter Corresponding Author" onChange = {this.onChange} />
@@ -143,30 +147,31 @@ onSubmit = e => {
             <Input name = "all_auth_inorder" placeholder="" onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="JOURNAL NAME">
-            <Input name = "journal_name" placeholder="Enter Journal Name" required onChange = {this.onChange} />
+            <Input name = "journal_name" placeholder="Enter Journal Name"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="VOLUME">
-            <Input type = "number" name = "volume" required placeholder="" onChange = {this.onChange} />
+            <Input type = "number" name = "volume"  placeholder="" onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="ISSUE">
             <Input type = "number" name = "issue" placeholder="" onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="YEAR">
-          <select required className = "selectClass" name="year" required defaultValue={'DEFAULT'} onChange = {this.onChange}>
+          <select  className = "selectClass" name="year"  defaultValue={'DEFAULT'} onChange = {this.onChange}>
             <option disabled value="DEFAULT"> </option>
             {year}
           </select> </Form.Item>
           <Form.Item label="PAGE NO">
-            <Input name = "page_no" placeholder="Enter Page No" required onChange = {this.onChange} />
+            <Input name = "page_no" placeholder="Enter Page No"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="PUBLISHER">
             <Input name = "publisher" placeholder="Enter Publisher Name"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="IMPACT FACTOR IN THE YEAR OF PUBLICATION">
-            <Input type = "number" name = "impact_factor" placeholder="Enter Impact Factor" required onChange = {this.onChange} />
+            <Input name = "impact_factor" placeholder="Enter Impact Factor"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="IS IT A REFEREED JOURNAL?">
-          <select name="ref_journal" onChange = {this.onChange}>
+          <select name="ref_journal" defaultValue={'DEFAULT'} onChange = {this.onChange}>
+            <option disabled value="DEFAULT"> -- select an option -- </option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>

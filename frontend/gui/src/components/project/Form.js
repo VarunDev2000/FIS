@@ -63,15 +63,24 @@ onFileChange = e => {
 
 
 onSubmit = (e) => {
+
+  e.preventDefault();
+
+  if(this.state.durationfrom > this.state.durationto)
+  {
+    alert("Invalid Duration");
+  }
+
+  else{
+
   this.setState({
     disabled : true
   })
 
-  e.preventDefault();
-
   if(this.props.type === 'add' && (this.state.pro_form === 'on_going' || this.state.pro_form === 'completed'))
   {
   let form_data = new FormData();
+
   if(this.state.filechanged == true)
   {
   form_data.append('pdf', this.state.file, this.state.file.name);
@@ -106,7 +115,7 @@ onSubmit = (e) => {
 
   else{
   }
-
+  }
 };
 
 /*
@@ -145,18 +154,18 @@ onSubmit = e => {
             <option value="completed">COMPLETED</option>
         </select><br/><br/>
           <div>
-          <Form.Item label="* PROJECT TITLE">
+          <Form.Item label="PROJECT TITLE">
           <Input name = "pro_title" placeholder="Enter Project Title" required onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="* PROJECT TYPE">
+          <Form.Item label="PROJECT TYPE">
           <select name="p_type" onChange = {this.dropdowndef}>
             <option value="Research">RESEARCH</option>
             <option value="Infra Structure">INFRA STRUCTURE</option>
             <option value="Consultancy">CONSULTANCY</option>
           </select>
           </Form.Item>
-          <Form.Item label="* PRINCIPLE INVESTIGATOR/COORDINATOR">
-          <Input name = "investigator" placeholder="Enter Investigator Name" required onChange = {this.onChange} />
+          <Form.Item label="PRINCIPLE INVESTIGATOR/COORDINATOR">
+          <Input name = "investigator" placeholder="Enter Investigator Name"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="CO-INVESTIGATOR1">
           <Input name = "co_inves1"  onChange = {this.onChange} />
@@ -164,20 +173,20 @@ onSubmit = e => {
           <Form.Item label="CO-INVESTIGATOR2">
           <Input name = "co_inves2"  onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="* FUNDING AGENT">
-          <Input name = "funding_agent" placeholder="Enter Funding Agent" required onChange = {this.onChange} />
+          <Form.Item label="FUNDING AGENT">
+          <Input name = "funding_agent" placeholder="Enter Funding Agent"  onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="* AMOUNT">
-          <Input type="number" name = "amt" placeholder="Enter Amount" required onChange = {this.onChange} />
+          <Form.Item label="AMOUNT">
+          <Input type="number" name = "amt" placeholder="Enter Amount"  onChange = {this.onChange} />
           </Form.Item>
-          <Form.Item label="* DURATION">
+          <Form.Item label="DURATION">
             <label>From</label>{'\u00A0'}{'\u00A0'}
             <input type = "date" required name="durationfrom" onChange={this.onChange}></input>
             {'\u00A0'}{'\u00A0'}
             <label>To</label>{'\u00A0'}{'\u00A0'}           
             <input type = "date" required name="durationto" onChange={this.onChange}></input>
           </Form.Item>
-          <Form.Item label="* DEPARTMENT">
+          <Form.Item label="DEPARTMENT">
             <select name="department" defaultValue={'DEFAULT'} onChange = {this.dropdowndef}>
             <option disabled value="DEFAULT"> -- select an option -- </option>
             <option value="ADDITIONAL CONTROLLER OF EXAMINATION">ADDITIONAL CONTROLLER OF EXAMINATION</option>
@@ -461,7 +470,7 @@ onSubmit = e => {
           <Form.Item label="PROJECT ABSTRACT">
             <textarea name = "pro_abstract" onChange = {this.onChange}></textarea>
           </Form.Item>
-          <Form.Item label="* FILE">
+          <Form.Item label="FILE">
             <input type="file" name="pdf" accept="application/pdf" onChange = {this.onFileChange}></input>
           </Form.Item>
           <Form.Item>

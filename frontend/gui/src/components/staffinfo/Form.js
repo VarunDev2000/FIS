@@ -24,22 +24,22 @@ class CustomForm extends React.Component {
 
   state = {
     redirect : false,
-    salutation:'Dr',
+    salutation:'',
     name: '',
-    gender: 'Other',
+    gender: '',
     dob: '',
     fath_hus_name: '',
     official_mail: '',
     personal_mail: '',
     aadhar: null,
-    disability:'yes',
+    disability:'',
     pan: null,
-    mobile_no: '',
-    residence_ph_no: '',
-    intercom1: '',
-    intercom2: '',
+    mobile_no: null,
+    residence_ph_no: null,
+    intercom1: null,
+    intercom2: null,
     caste: '',
-    community: 'Other community',
+    community: '',
     res_address: '',
     perm_address: '',
     website_url: '',
@@ -86,7 +86,8 @@ onSubmit = e => {
         <CustomLayout>
         <Form onSubmit = {this.props.handleSubmit(() => this.onSubmit(this))}>
           <Form.Item label="SALUTATION">
-          <select name = "salutation" onChange = {this.onChange}>
+          <select name = "salutation" onChange = {this.onChange} defaultValue={'DEFAULT'}>
+            <option value="DEFAULT" disabled>Select an option</option>
             <option value="Dr">Dr</option>
             <option value="Dr.">Dr.</option>
             <option value="Prof.">Prof.</option>
@@ -99,23 +100,25 @@ onSubmit = e => {
           <input type="file" name="pic" accept="image/*"/>
           </Form.Item>
           <Form.Item label="NAME">
-            <Input name = "name" placeholder="Enter name" required onChange = {this.onChange} />
+            <Input name = "name" placeholder="Enter name"  required onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="GENDER">
-            <select name = "gender" onChange = {this.onChange}>
+            <select name = "gender" onChange = {this.onChange} defaultValue={'DEFAULT'}>
+            <option value="DEFAULT" disabled>Select an option</option>
             <option value="Other">OTHER</option>
             <option value="Male">MALE</option>
             <option value="Female">FEMALE</option>
           </select>
           </Form.Item>
           <Form.Item label="DOB">
-            <input type = "date" name = "dob" required onChange = {this.onChange} ></input>
+            <input type = "date" required name = "dob"  onChange = {this.onChange} ></input>
           </Form.Item>
           <Form.Item label="FATHER/HUSBAND NAME">
-            <Input name = "fath_hus_name" placeholder="Fath or Hus name" required onChange = {this.onChange} />
+            <Input name = "fath_hus_name" placeholder="Fath or Hus name"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="PERSON WITH DISABILITY">
-          <select name = "disability" onChange = {this.onChange}>
+          <select name = "disability" onChange = {this.onChange} defaultValue={'DEFAULT'}>
+            <option value="DEFAULT" disabled>Select an option</option>
             <option value="yes">YES</option>
             <option value="no">NO</option>
           </select>
@@ -129,7 +132,7 @@ onSubmit = e => {
                 value={official_mail}
                 component={renderField}
                 validate={[ email ]}
-                required
+                
               />
           </Form.Item>
           <Form.Item label="PERSONAL MAIL">
@@ -150,13 +153,14 @@ onSubmit = e => {
             <Input type = "number" name = "pan" placeholder="Pan card no"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="MOBILE NO">
-            <Input type = "number" name = "mobile_no" placeholder="Mobile" required onChange = {this.onChange} />
+            <Input type = "number" name = "mobile_no" placeholder="Mobile"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="RESIDENCE PHONE NO">
-            <Input type = "number" name = "residence_ph_no" placeholder="Residence" required onChange = {this.onChange} />
+            <Input type = "number" name = "residence_ph_no" placeholder="Residence"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="COMMUNITY">
-          <select name = "community" onChange = {this.onChange}>
+          <select name = "community" onChange = {this.onChange}  defaultValue={'DEFAULT'}>
+            <option value="DEFAULT" disabled>Select an option</option>
             <option value="Other community">OTHER COMMUNITY</option>
             <option value="Scheduled Tribe">SCHEDULED TRIBE</option>
             <option value="Scheduled Caste">SCHEDULED CASTE</option>
@@ -168,13 +172,13 @@ onSubmit = e => {
             <Input name = "caste" placeholder="Caste"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="INTERCOM NO 1">
-            <Input type = "number" name = "intercom1" required onChange = {this.onChange} />
+            <Input type = "number" name = "intercom1"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="INTERCOM NO 2">
-            <Input type = "number" name = "intercom2" required onChange = {this.onChange} />
+            <Input type = "number" name = "intercom2"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="RESIDENTIAL ADDRESS">
-            <Input name = "res_address" placeholder="Address" required onChange = {this.onChange} />
+            <Input name = "res_address" placeholder="Address"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="PERMANENT ADDRESS">
             <Input name = "perm_address" placeholder="Address"  onChange = {this.onChange} />
