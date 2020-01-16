@@ -75,35 +75,35 @@ class Dashboard extends React.Component{
       </div>
     </label>
     <input id='9' type='checkbox'/>
-    <label htmlFor='9' onClick = {() => this.changePage("9",'/invited_lectures/add')}>
+    <label htmlFor='9' onClick = {() => this.changePage("9",'/invited_lectures')}>
       <div>
         <div className='circle'><span className="glyphicon glyphicon-envelope"></span></div>
         <span>Invited Lectures</span>
       </div>
     </label>
     <input id='10' type='checkbox'/>
-    <label htmlFor='10' onClick = {() => this.changePage("10",'/experience_abroad/add')}>
+    <label htmlFor='10' onClick = {() => this.changePage("10",'/experience_abroad')}>
       <div>
         <div className='circle'><span className="glyphicon glyphicon-plane"></span></div>
         <span>Experience Abroad</span>
       </div>
     </label>
     <input id='11' type='checkbox'/>
-    <label htmlFor='11' onClick = {() => this.changePage("11",'/book_published/add')}>
+    <label htmlFor='11' onClick = {() => this.changePage("11",'/book_published')}>
       <div>
         <div className='circle'><span className="glyphicon glyphicon-star"></span></div>
         <span>Book Published</span>
       </div>
     </label>
     <input id='12' type='checkbox'/>
-    <label htmlFor='12' onClick = {() => this.changePage("12",'/eao_programme/add')}>
+    <label htmlFor='12' onClick = {() => this.changePage("12",'/eao_programme')}>
       <div>
         <div className='circle'><span className="glyphicon glyphicon-book"></span></div>
         <span>Ext & Outreach Prog</span>
       </div>
     </label>
     <input id='13' type='checkbox'/>
-    <label htmlFor='13' onClick = {() => this.changePage.bind("13",'#')}>
+    <label htmlFor='13' onClick = {() => this.changePage("13",'/achievements')}>
       <div>
         <div className='circle'><span className="glyphicon glyphicon-certificate"></span></div>
         <span>Achievements</span>

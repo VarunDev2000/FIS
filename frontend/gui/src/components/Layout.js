@@ -129,7 +129,7 @@ export class CustomLayout extends React.Component{
                     <span>EXTENSION AND OUTREACH PROGRAMME</span>
                     </Menu.Item>  
 
-                    <Menu.Item key="13" onClick = {this.changePage.bind(this,'#')}>
+                    <Menu.Item key="13" onClick = {this.changePage.bind(this,'/achievements')}>
                     <Icon type="alert" />
                     <span>ACHIEVEMENTS</span>
                     </Menu.Item>   

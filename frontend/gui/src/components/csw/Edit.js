@@ -275,7 +275,10 @@ componentWillReceiveProps(props) {
     return (
       <div>
         <CustomLayout>
-        <Form onSubmit ={this.onSubmit}>
+        <Form key = {csw.id} onSubmit ={this.onSubmit}>
+        <div align="right">
+          <Button type="danger" htmlType = "submit" onClick = {this.delete}>Delete</Button>
+        </div>
         {
         csw_len > 0 ? (
           cswtype === 'organized' ? (

@@ -173,12 +173,12 @@ componentWillReceiveProps(props) {
         {
         quali_len > 0 ? (
         <div>
+        <Form onSubmit ={this.onSubmit}>
 
         <div align="right">
           <Button type="danger" htmlType = "submit" onClick = {this.delete}>Delete</Button>
         </div>
-
-        <Form onSubmit ={this.onSubmit}>
+        
         {
         quali.degree_type === 'ug_pg' ? (
           <div key = {quali.id}>

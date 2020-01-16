@@ -248,3 +248,26 @@ class ext_and_outreach_prog(models.Model):
     def __str__(self):
         return self.staff.username+"'s extension and outreach programme"
 
+
+class achievements(models.Model):
+    staff = models.ForeignKey(User, on_delete=models.CASCADE,related_name = "achievements",null=True)
+    title = models.CharField(max_length=400,default=None,blank=True, null=True)
+    institution = models.CharField(max_length=400,default=None,blank=True, null=True)
+    country = models.CharField(max_length=400,default=None,blank=True, null=True)
+    year = models.CharField(max_length=800,default=None,blank=True, null=True)
+    details = models.CharField(max_length=800,default=None,blank=True, null=True)
+    level = models.CharField(max_length=400,default=None,blank=True, null=True)
+    body = models.CharField(max_length=400,default=None,blank=True, null=True)
+    capacity = models.CharField(max_length=400,default=None,blank=True, null=True)
+    from_date = models.CharField(max_length=400,default=None,blank=True, null=True)
+    to_date = models.CharField(max_length=400,default=None,blank=True, null=True)
+    patent_no = models.CharField(max_length=400,default=None,blank=True, null=True)
+    date = models.CharField(max_length=400,default=None,blank=True, null=True)
+    file_no = models.CharField(max_length=400,default=None,blank=True, null=True)
+    ach_type = models.CharField(max_length=400,default=None,blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "Achievements"
+
+    def __str__(self):
+        return self.staff.username+"'s Achievements"

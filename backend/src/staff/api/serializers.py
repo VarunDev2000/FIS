@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from staff.models import (staff_detail,qualification,area_of_spec_and_mem,
 employment,publication,csw,project,invited_lectures,experience_abroad,
-book_published,ext_and_outreach_prog
+book_published,ext_and_outreach_prog,achievements
 )
 
 class staff_detail_serializer(serializers.ModelSerializer):
@@ -66,3 +66,8 @@ class EAO_Programme_serializer(serializers.ModelSerializer):
         model = ext_and_outreach_prog
         fields = '__all__'
 
+
+class Achievement_serializer(serializers.ModelSerializer):
+    class Meta:
+        model = achievements
+        fields = '__all__'

@@ -2,12 +2,13 @@ from rest_framework import viewsets,permissions
 from .serializers import (staff_detail_serializer,qualification_serializer,
 spec_and_mem_serializer,employment_serializer,publication_serializer,
 csw_serializer,project_serializer,invited_lectures_serializer,
-experience_abroad_serializer,book_published_serializer,EAO_Programme_serializer
+experience_abroad_serializer,book_published_serializer,EAO_Programme_serializer,
+Achievement_serializer,
 )
 
 from staff.models import (staff_detail,qualification,area_of_spec_and_mem,
 employment,publication,csw,project,invited_lectures,experience_abroad,
-book_published,ext_and_outreach_prog
+book_published,ext_and_outreach_prog,achievements
 )
 
 
@@ -192,6 +193,24 @@ class EAO_Programme_ViewSet(viewsets.ModelViewSet):
     
     def get_queryset(self):
         return ext_and_outreach_prog.objects.filter(staff = self.request.user)
+        #return staff_detail.objects.all()
+
+    def perform_create(self,serializer):
+        serializer.save(staff = self.request.user)
+
+
+
+class Achievement_ViewSet(viewsets.ModelViewSet):
+    
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    
+
+    serializer_class = Achievement_serializer
+    
+    def get_queryset(self):
+        return achievements.objects.filter(staff = self.request.user)
         #return staff_detail.objects.all()
 
     def perform_create(self,serializer):

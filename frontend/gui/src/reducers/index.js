@@ -13,6 +13,7 @@ import invited_lectures from './invited_lectures';
 import experience_abroad from './experience_abroad';
 import book_published from './book_published';
 import eao_programme from './eao_programme';
+import achievements from './achievements';
 
 
 export default combineReducers({
@@ -30,4 +31,5 @@ export default combineReducers({
     experience_abroad,
     book_published,
     eao_programme,
+    achievements,
 });

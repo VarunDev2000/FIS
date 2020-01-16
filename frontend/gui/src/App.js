@@ -59,6 +59,10 @@ import EAO_view from './components/eao_programme/EAO_view';
 import EAOAdd from './components/eao_programme/Add';
 import EAOEdit from './components/eao_programme/Edit';
 //--------------------------------
+import Ach_view from './components/achievements/Ach_view';
+import AchAdd from './components/achievements/Add';
+import AchEdit from './components/achievements/Edit';
+//--------------------------------
 import { LoadUser } from './actions/auth';
 
 
@@ -127,6 +131,10 @@ class App extends Component {
         <PrivateRoute exact path ='/eao_programme' component = {EAO_view}/>
         <PrivateRoute exact path ='/eao_programme/edit/:id' component = {EAOEdit}/>
         <PrivateRoute exact path ='/eao_programme/add' component = {EAOAdd}/>
+
+        <PrivateRoute exact path ='/achievements' component = {Ach_view}/>
+        <PrivateRoute exact path ='/achievements/edit/:id' component = {AchEdit}/>
+        <PrivateRoute exact path ='/achievements/add' component = {AchAdd}/>
         
         </Switch>
         </Router>

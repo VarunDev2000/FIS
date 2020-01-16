@@ -2,7 +2,7 @@ from rest_framework.routers import DefaultRouter
 from staff.api.views import (StaffinfoViewSet,QualificationinfoViewSet,
 Area_of_spec_and_mem_ViewSet,Employment_ViewSet,Publication_ViewSet,
 CSW_ViewSet,Project_ViewSet,Invited_Lectures_ViewSet,Experience_Abroad_ViewSet,
-Book_Published_ViewSet,EAO_Programme_ViewSet
+Book_Published_ViewSet,EAO_Programme_ViewSet,Achievement_ViewSet,
 )
 
 
@@ -18,6 +18,7 @@ router.register(r'invited_lectures', Invited_Lectures_ViewSet, basename='Invited
 router.register(r'experience_abroad', Experience_Abroad_ViewSet, basename='Experience Abroad')
 router.register(r'book_published', Book_Published_ViewSet, basename='Book Published')
 router.register(r'eao_programme', EAO_Programme_ViewSet, basename='Extension and Outreach Programme')
+router.register(r'achievements', Achievement_ViewSet, basename='Achievements')
 
 urlpatterns = router.urls
 
