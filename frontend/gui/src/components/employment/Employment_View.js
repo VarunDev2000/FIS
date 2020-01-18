@@ -108,6 +108,7 @@ class Employment_view extends React.Component{
         <Descriptions.Item label="FROM" span={3}>{ emp.from_date }</Descriptions.Item>
         <Descriptions.Item label="DEPARTMENT/CENTRE" span={3}>{ emp.department }</Descriptions.Item>
         <Descriptions.Item label="CAMPUS" span={3}>{emp.campus}</Descriptions.Item>
+        <Descriptions.Item label="SCALE OF PAY" span={3}>{emp.scale_of_pay}</Descriptions.Item>
         <Descriptions.Item label="PRESENT PAY" span={3}>{emp.present_pay}</Descriptions.Item>
         <Descriptions.Item label="NATURE OF APPOINTMENT" span={3}>{emp.nature_of_app}</Descriptions.Item>       
         </Descriptions>
@@ -134,11 +135,9 @@ class Employment_view extends React.Component{
         <div key = {emp.id}>
         <Descriptions bordered>
         <Descriptions.Item label="DESIGNATION" span={3}>{ emp.designation }</Descriptions.Item>   
-        <Descriptions.Item label="FROM" span={3}>{ emp.from_date }</Descriptions.Item>
-        <Descriptions.Item label="TO" span={3}>{ emp.to_date }</Descriptions.Item>
+        <Descriptions.Item label="DURATION" span={3}>{ emp.from_date + " To " + emp.to_date }</Descriptions.Item>
         <Descriptions.Item label="DEPARTMENT/CENTRE" span={3}>{ emp.department }</Descriptions.Item>
         <Descriptions.Item label="CAMPUS" span={3}>{emp.campus}</Descriptions.Item>
-        <Descriptions.Item label="PRESENT PAY" span={3}>{emp.present_pay}</Descriptions.Item>
         <Descriptions.Item label="NATURE OF APPOINTMENT" span={3}>{emp.nature_of_app}</Descriptions.Item>       
         </Descriptions>        
         <Button id={emp.id} type="primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
@@ -167,6 +166,7 @@ class Employment_view extends React.Component{
         <Descriptions bordered>
         <Descriptions.Item label="POSITION" span={3}>{ emp.position }</Descriptions.Item>   
         <Descriptions.Item label="DEPARTMENT/CENTRE" span={3}>{ emp.department }</Descriptions.Item>
+        <Descriptions.Item label="FROM" span={3}>{ emp.from_date }</Descriptions.Item>
         </Descriptions>
         <Button id={emp.id} type="primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
         <br/>
@@ -194,6 +194,7 @@ class Employment_view extends React.Component{
         <Descriptions bordered>
         <Descriptions.Item label="POSITION" span={3}>{ emp.position }</Descriptions.Item>   
         <Descriptions.Item label="DEPARTMENT/CENTRE" span={3}>{ emp.department }</Descriptions.Item>
+        <Descriptions.Item label="DURATION" span={3}>{ emp.from_date + " To " + emp.to_date}</Descriptions.Item>
         </Descriptions>
         <Button id={emp.id} type="primary" className="editButton" onClick={this.editRedirect}>Edit</Button>
         <br/>

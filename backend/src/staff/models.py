@@ -79,19 +79,20 @@ class area_of_spec_and_mem(models.Model):
 
 class employment(models.Model):
     staff = models.ForeignKey(User, on_delete=models.CASCADE,related_name = "employment",null=True)
-    designation = models.CharField(max_length=400,null=True)
-    from_date = models.DateField( default=None,null=True)
-    to_date = models.DateField( default=None,null=True)
-    department = models.CharField(max_length=400, default=None,null=True)
-    campus = models.CharField(max_length=400, default=None,null=True)
-    present_pay = models.IntegerField(default=None,null=True)
-    nature_of_app = models.CharField(max_length=400, default=None,null=True)
-    position = models.CharField(max_length=400, default=None,null=True)
-    position_type = models.CharField(max_length=400, default=None, null=True)
-    institution = models.CharField(max_length=400, default=None,null=True)
-    years = models.CharField(max_length=400, default=None,null=True)
-    exp_type = models.CharField(max_length=400, default=None, null=True)
-    emp_type = models.CharField(max_length=200, default=None, null=False)
+    designation = models.CharField(max_length=400,blank=True, null=True)
+    from_date = models.DateField( default=None,blank=True, null=True)
+    to_date = models.DateField( default=None,blank=True, null=True)
+    department = models.CharField(max_length=400, default=None,blank=True, null=True)
+    campus = models.CharField(max_length=400, default=None,blank=True, null=True)
+    scale_of_pay = models.CharField(max_length=400, default=None,blank=True, null=True)
+    present_pay = models.IntegerField(default=None,blank=True, null=True)
+    nature_of_app = models.CharField(max_length=400, default=None,blank=True, null=True)
+    position = models.CharField(max_length=400, default=None,blank=True, null=True)
+    position_type = models.CharField(max_length=400, default=None, blank=True, null=True)
+    institution = models.CharField(max_length=400, default=None,blank=True, null=True)
+    years = models.CharField(max_length=400, default=None,blank=True, null=True)
+    exp_type = models.CharField(max_length=400, default=None, blank=True, null=True)
+    emp_type = models.CharField(max_length=200, default=None, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "Employment details"

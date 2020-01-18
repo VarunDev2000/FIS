@@ -317,7 +317,8 @@ componentWillReceiveProps(props) {
             <option value="STRUCTURAL ENGINEERING">STRUCTURAL ENGINEERING</option>
             <option value="TAMIL">TAMIL</option>
             <option value="TEXTILE TECHNOLOGY">TEXTILE TECHNOLOGY</option>
-          </select></Form.Item>
+          </select>
+          </Form.Item>
           <Form.Item label="INSTITUTION">
             <Input  name = "institution" placeholder="Institution"  defaultValue = {quali.institution} onChange = {this.onChange} />
           </Form.Item>
@@ -503,7 +504,8 @@ componentWillReceiveProps(props) {
             <option value="Workshop - MIT">Workshop - MIT</option>
             <option value="Youth Red Cross">Youth Red Cross</option>
             <option value="Others">Others</option>
-          </select></Form.Item>
+          </select>
+          </Form.Item>
           <Form.Item label="INSTITUTION">
             <Input name = "institution" placeholder="Institution"  defaultValue = {quali.institution} onChange = {this.onChange} />
           </Form.Item>

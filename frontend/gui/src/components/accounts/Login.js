@@ -43,6 +43,14 @@ export class Login extends Component{
         });
     }
 
+    componentDidMount() {
+      document.body.classList.add("login_body");
+    }
+  
+    componentWillUnmount() {
+      document.body.classList.remove("login_body");
+    }
+
     componentDidUpdate(prevProps)
     {
       if (this.props.count !== prevProps.count)

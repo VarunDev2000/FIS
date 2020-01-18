@@ -134,10 +134,6 @@ onSubmit = e => {
       <div key = {ginfo.id}>
 
         <Form onSubmit = {this.onSubmit}>
-
-        <div align="right">
-          <Button type="danger" htmlType = "submit" onClick = {this.delete}>Delete</Button>
-        </div>
         
         <Form.Item label="SALUTATION">
           <select name = "salutation" defaultValue = {ginfo.salutation} onChange = {this.onChange}>

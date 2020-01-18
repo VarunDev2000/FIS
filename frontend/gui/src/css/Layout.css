@@ -6,9 +6,12 @@
     color:white;
 }
 .ant-menu{
-    background-color: #111;
+    background: #111;
 }
-
+.login_body
+{
+    background-color: #f0f2f5;
+}
 .ant-descriptions-item-content
 {
     background-color: #fafafa;
