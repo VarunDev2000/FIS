@@ -272,3 +272,41 @@ class achievements(models.Model):
 
     def __str__(self):
         return self.staff.username+"'s Achievements"
+
+
+class research(models.Model):
+    staff = models.ForeignKey(User, on_delete=models.CASCADE,related_name = "research",null=True)
+    reg_no = models.CharField(max_length=400,default=None,blank=True, null=True)
+    name_of_scholar = models.CharField(max_length=400,default=None,blank=True, null=True)
+    title = models.CharField(max_length=400,default=None,blank=True, null=True)
+    status = models.CharField(max_length=800,default=None,blank=True, null=True)
+    capacity = models.CharField(max_length=800,default=None,blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "Research"
+
+    def __str__(self):
+        return self.staff.username+"'s Research"
+
+
+class research_table(models.Model):
+    staff = models.OneToOneField(User, on_delete=models.CASCADE,related_name = "research_table",null=True)
+    phd_reg_no = models.CharField(max_length=400,default=None,blank=True, null=True)
+    phd_s_g = models.CharField(max_length=400,default=None,blank=True, null=True)
+    phd_s_o = models.CharField(max_length=400,default=None,blank=True, null=True)
+    phd_js_g = models.CharField(max_length=400,default=None,blank=True, null=True)
+    phd_js_o = models.CharField(max_length=400,default=None,blank=True, null=True)
+    ms_s_g = models.CharField(max_length=400,default=None,blank=True, null=True)
+    ms_s_o = models.CharField(max_length=400,default=None,blank=True, null=True)
+    ms_js_g = models.CharField(max_length=400,default=None,blank=True, null=True)
+    ms_js_o = models.CharField(max_length=400,default=None,blank=True, null=True)
+    me_s_g = models.CharField(max_length=400,default=None,blank=True, null=True)
+    me_s_o = models.CharField(max_length=400,default=None,blank=True, null=True)
+    msc_s_g = models.CharField(max_length=400,default=None,blank=True, null=True)
+    msc_s_o = models.CharField(max_length=400,default=None,blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "Research Table"
+
+    def __str__(self):
+        return self.staff.username+"'s Research Table"

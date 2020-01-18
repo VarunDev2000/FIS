@@ -43,9 +43,10 @@ export class DashboardLayout extends React.Component{
                         <Icon type="user"/>
                         { user ? `Welcome ${user.username}`:"" }</strong>
                         </Menu.Item>
-                        <Menu.Item key="2" style={{float: 'right'}} onClick= {this.props.logout} >Logout</Menu.Item>
-                        <Menu.Item key="3" style={{float: 'right'}} onClick={() => this.changePage1("c_pass",'/change-password')} >Change Password</Menu.Item>
-                        <Menu.Item key="4" style={{float: 'right'}} onClick={() => this.changePage1("4",'/')}  >
+                        <Menu.Item key="2"  onClick={() => this.changePage1("2",'/report')}><Icon type="file-pdf" />REPORT</Menu.Item>
+                        <Menu.Item key="3" style={{float: 'right'}} onClick= {this.props.logout} >Logout</Menu.Item>
+                        <Menu.Item key="4" style={{float: 'right'}} onClick={() => this.changePage1("c_pass",'/change-password')} >Change Password</Menu.Item>
+                        <Menu.Item key="5" style={{float: 'right'}} onClick={() => this.changePage1("4",'/')}  >
                         <Icon type="home" />
                         </Menu.Item>
                         </Menu>

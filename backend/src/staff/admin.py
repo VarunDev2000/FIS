@@ -1,7 +1,7 @@
 from django.contrib import admin
 from . models import (staff_detail,qualification,area_of_spec_and_mem,employment,
 publication,csw,project,invited_lectures,experience_abroad,book_published,
-ext_and_outreach_prog,achievements)
+ext_and_outreach_prog,achievements,research,research_table)
 
 admin.site.register(staff_detail)
 admin.site.register(qualification)
@@ -15,5 +15,7 @@ admin.site.register(experience_abroad)
 admin.site.register(book_published)
 admin.site.register(ext_and_outreach_prog)
 admin.site.register(achievements)
+admin.site.register(research)
+admin.site.register(research_table)
 
 

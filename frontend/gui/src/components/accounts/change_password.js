@@ -4,7 +4,6 @@ import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
 import PropTypes, { shape } from 'prop-types'; 
 import { changePass } from '../../actions/auth';
-import * as Yup from 'yup';
 
 export class changePassword extends Component{
     state = {

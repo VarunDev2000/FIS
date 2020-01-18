@@ -9,6 +9,8 @@ import history from './components/common/history'
 
 import Dashboard from './components/Dashboard/Dashboard';
 //--------------------------------
+import Report_Index from './components/Report/Report_Index'
+//--------------------------------
 import changePassword from './components/accounts/change_password'
 //--------------------------------
 import Generalinfo from './components/staffinfo/Generalinfo';
@@ -80,6 +82,8 @@ class App extends Component {
         <Route exact path ='/login' component = {Login}/>
         
         <PrivateRoute exact path ='/' component = {Dashboard}/>
+
+        <PrivateRoute exact path ='/report' component = {Report_Index}/>
 
         <PrivateRoute exact path ='/change-password' component = {changePassword}/>
 
