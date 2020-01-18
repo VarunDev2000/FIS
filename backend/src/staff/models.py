@@ -32,7 +32,7 @@ class staff_detail(models.Model):
     profile_pic = models.ImageField(default = None,null=True,upload_to='images/profile')
 
     class Meta:
-        verbose_name_plural = "Staff"
+        verbose_name_plural = "Staff Details"
 
     def __str__(self):
         return self.name

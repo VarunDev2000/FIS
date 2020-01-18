@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
+import { Card, CardImg,CardBody } from 'reactstrap';
 import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
@@ -30,7 +31,13 @@ class Edit extends React.Component {
     website_url: '',
     disability: '',
     intercom1: '',
-    intercom2: ''
+    intercom2: '',
+    profile_pic: '',
+
+    file : null,
+    disabled : false,
+    filechanged : false,
+    delete_profile_pic : false,
 }
 
 static propTypes = {
@@ -39,11 +46,61 @@ static propTypes = {
   deleteStaffinfo: PropTypes.func.isRequired,
 }
 
+deleteProfilePicture = e =>{
+  e.preventDefault();
+  const id = this.props.match.params.id;
+  var conf = window.confirm("Do you want to delete ?");
+  if (conf === true) {
+
+    let form_data = new FormData();
+    form_data.append('profile_pic', "");
+    form_data.append('salutation', this.state.salutation);
+    form_data.append('name', this.state.name);
+    form_data.append('gender', this.state.gender);
+    form_data.append('dob', this.state.dob);
+    form_data.append('fath_hus_name ', this.state.fath_hus_name );
+    form_data.append('official_mail ', this.state.official_mail );
+    form_data.append('personal_mail ', this.state.personal_mail );
+    form_data.append('aadhar', this.state.aadhar === null ? "" : this.state.aadhar);
+    form_data.append('pan', this.state.pan === null ? "" : this.state.pan);
+    form_data.append('mobile_no', this.state.mobile_no === null ? "" : this.state.mobile_no);
+    form_data.append('residence_ph_no', this.state.residence_ph_no === null ? "" : this.state.residence_ph_no);
+    form_data.append('caste', this.state.caste);
+    form_data.append('community', this.state.community);
+    form_data.append('res_address', this.state.res_address);
+    form_data.append('perm_address', this.state.perm_address);
+    form_data.append('website_url', this.state.website_url);
+    form_data.append('disability', this.state.disability);
+    form_data.append('intercom1', this.state.intercom1 === null ? "" : this.state.intercom1);
+    form_data.append('intercom2', this.state.intercom2 === null ? "" : this.state.intercom2);
+
+    for (var pair of form_data.entries()) {
+      console.log(pair[0]+ ' - ' + pair[1]); 
+
+    }
+    this.props.editStaffinfo(form_data,id);
+    window.open('/generalinfo',"_self");
+  } 
+}
+
+
+popIMAGE(url) {
+  if(url != null)
+  {
+  var ref = window.open(url,"thePop","menubar=1,resizable=1,scrollbars=1,status=1,height=1920,width=1020,top=0")
+  ref.focus();
+  }
+
+  else{
+    alert("Profile Picture Unavailable!!")
+  }
+}
+
 onChange = e => {
   if(e.target.value === "")
   {
     this.setState({
-      [e.target.name]: null
+      [e.target.name]: ""
     });
   }
 
@@ -52,6 +109,14 @@ onChange = e => {
       [e.target.name]: e.target.value
     });
   }
+}
+
+
+onFileChange = e => {
+  this.setState({
+    file : e.target.files[0],
+    filechanged : true
+  });
 }
 
 delete = (e) => {
@@ -67,22 +132,60 @@ delete = (e) => {
 
 
 onSubmit = e => {
-  
+
   e.preventDefault();
   const id = this.props.match.params.id;
 
+  let form_data = new FormData();
+
+  if(this.state.filechanged == true)
+  {
+    this.setState({
+      disabled : true
+    })
+    form_data.append('profile_pic', this.state.file, this.state.file.name);
+  }
+
+  form_data.append('salutation', this.state.salutation);
+  form_data.append('name', this.state.name);
+  form_data.append('gender', this.state.gender);
+  form_data.append('dob', this.state.dob);
+  form_data.append('fath_hus_name ', this.state.fath_hus_name );
+  form_data.append('official_mail ', this.state.official_mail );
+  form_data.append('personal_mail ', this.state.personal_mail );
+  form_data.append('aadhar', this.state.aadhar === null ? "" : this.state.aadhar);
+  form_data.append('pan', this.state.pan === null ? "" : this.state.pan);
+  form_data.append('mobile_no', this.state.mobile_no === null ? "" : this.state.mobile_no);
+  form_data.append('residence_ph_no', this.state.residence_ph_no === null ? "" : this.state.residence_ph_no);
+  form_data.append('caste', this.state.caste);
+  form_data.append('community', this.state.community);
+  form_data.append('res_address', this.state.res_address);
+  form_data.append('perm_address', this.state.perm_address);
+  form_data.append('website_url', this.state.website_url);
+  form_data.append('disability', this.state.disability);
+  form_data.append('intercom1', this.state.intercom1 === null ? "" : this.state.intercom1);
+  form_data.append('intercom2', this.state.intercom2 === null ? "" : this.state.intercom2);
+
+  
+ /*
   const {salutation,name,gender,dob,fath_hus_name,official_mail,personal_mail,aadhar,
     pan,mobile_no,residence_ph_no,caste,community,res_address,perm_address,
     website_url,disability,intercom1,intercom2} = this.state;
 
   const s_info = {salutation,name,gender,dob,fath_hus_name,official_mail,personal_mail,aadhar,
     pan,mobile_no,residence_ph_no,caste,community,res_address,perm_address,
-    website_url,disability,intercom1,intercom2};
+    website_url,disability,intercom1,intercom2,profile_pic};
+    
+console.log(s_info)
+*/
 
-    //console.log(s_info)
-    this.props.editStaffinfo(s_info,id);
-    window.open('/generalinfo',"_self");
-    //history.push('/');
+    this.props.editStaffinfo(form_data,id);
+    //window.open('/generalinfo',"_self");
+
+    setTimeout( function(){
+      window.open("/generalinfo","_self")
+    }, 1000 );
+
 }
 
     setStates(props)
@@ -106,7 +209,8 @@ onSubmit = e => {
         website_url : props.generalinfo.website_url,
         disability : props.generalinfo.disability,
         intercom1 : props.generalinfo.intercom1,
-        intercom2 : props.generalinfo.intercom2
+        intercom2 : props.generalinfo.intercom2,
+        profile_pic : props.generalinfo.profile_pic,
       })
     }
 
@@ -116,7 +220,7 @@ onSubmit = e => {
     }
 
     componentWillReceiveProps(props) {
-        this.setStates(this.props);
+        this.setStates(props);
         this.setState({
           g_info : props.generalinfo
         })
@@ -134,7 +238,24 @@ onSubmit = e => {
       <div key = {ginfo.id}>
 
         <Form onSubmit = {this.onSubmit}>
-        
+        <Form.Item label = "CHANGE OR ADD PROFILE PICTURE">
+          <input type="file" name="pic" accept="image/*" onChange = {this.onFileChange}/>
+          <br/>
+          {
+          ginfo.profile_pic != null ? (
+          <div>
+          <label>CURRENT PROFILE PICTURE :</label>
+          <Card>
+              <CardImg top  onClick={() => this.popIMAGE(ginfo.profile_pic)} src={ginfo.profile_pic}></CardImg>
+              <CardBody style={{paddingBottom:"50px"}}>
+              <Button type = "danger" style={{width:"160px"}} onClick={this.deleteProfilePicture}>DELETE</Button>
+              </CardBody>
+          </Card>
+          </div>
+          ) : (null)
+          }
+        </Form.Item>
+        <hr/>
         <Form.Item label="SALUTATION">
           <select name = "salutation" defaultValue = {ginfo.salutation} onChange = {this.onChange}>
             <option value="">None</option>
@@ -217,7 +338,7 @@ onSubmit = e => {
             <Input type = "url" name = "website_url" placeholder="URL"  defaultValue = {ginfo.website_url} onChange = {this.onChange} />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType = "submit">submit</Button>
+            <Button type="primary" htmlType = "submit" disabled = {this.state.disabled}>submit</Button>
           </Form.Item>
         </Form>
 

@@ -65,6 +65,7 @@ export default function(state = initialstate,action)
             localStorage.removeItem('count');
             localStorage.removeItem('s_key');
             localStorage.removeItem('lcount');
+            localStorage.removeItem('username')
 
             return{
                 ...state,

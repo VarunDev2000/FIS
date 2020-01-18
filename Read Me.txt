@@ -19,5 +19,6 @@ python manage.py flush
 npm install formik --save
 npm install -S yup
 npm install --save redux-form
+npm install --save reactstrap react react-dom
 yarn add jspdf
 yarn add @react-pdf/renderer

@@ -82,7 +82,7 @@ onSubmit = e => {
       const {degree,title_of_thesis,research_area,faculty,department,institution,university,durationfrom,durationto,viva,degree_type} = this.state;
   
       const quali = {degree,title_of_thesis,research_area,faculty,department,institution,university,durationfrom,durationto,viva,degree_type}
-      
+      console.log(quali)
       var d_f = parseInt(durationfrom, 10);
       var d_t = parseInt(durationto, 10);
   

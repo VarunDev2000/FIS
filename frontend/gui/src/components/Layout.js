@@ -47,12 +47,15 @@ export class CustomLayout extends React.Component{
         history.push(url)
     }
 
-  
-
     render(){
         const { isAuthenticated,user } = this.props.auth;
         var s_key = localStorage.getItem('s_key');
         var s_key_list = [s_key]
+
+        isAuthenticated ? (
+            localStorage.setItem('username',this.props.auth.user.username)
+            //console.log("Success")
+        ) : (console.log(""))
 
         const authLinks = (
             <Layout className="layout" >

@@ -31,18 +31,23 @@ class CustomForm extends React.Component {
     fath_hus_name: '',
     official_mail: '',
     personal_mail: '',
-    aadhar: null,
+    aadhar: '',
     disability:'',
-    pan: null,
-    mobile_no: null,
-    residence_ph_no: null,
-    intercom1: null,
-    intercom2: null,
+    pan: '',
+    mobile_no: '',
+    residence_ph_no: '',
+    intercom1: '',
+    intercom2: '',
     caste: '',
     community: '',
     res_address: '',
     perm_address: '',
     website_url: '',
+    profile_pic: '',
+
+    file : null,
+    disabled : false,
+    filechanged : false,
 }
 
 static propTypes = {
@@ -55,11 +60,48 @@ onChange = e => {
   });
 }
 
+onFileChange = e => {
+  this.setState({
+    file : e.target.files[0],
+    filechanged : true
+  });
+}
+
 onSubmit = e => {
   
   //e.preventDefault();
   if(this.props.type === 'add')
   {
+    this.setState({
+      disabled : true
+    })
+
+    let form_data = new FormData();
+    if(this.state.filechanged == true)
+    {
+    form_data.append('profile_pic', this.state.file, this.state.file.name);
+    }
+    form_data.append('salutation', this.state.salutation);
+    form_data.append('name', this.state.name);
+    form_data.append('gender', this.state.gender);
+    form_data.append('dob', this.state.dob);
+    form_data.append('fath_hus_name ', this.state.fath_hus_name );
+    form_data.append('official_mail ', this.state.official_mail );
+    form_data.append('personal_mail ', this.state.personal_mail );
+    form_data.append('aadhar', this.state.aadhar);
+    form_data.append('pan', this.state.pan);
+    form_data.append('mobile_no', this.state.mobile_no);
+    form_data.append('residence_ph_no', this.state.residence_ph_no);
+    form_data.append('caste', this.state.caste);
+    form_data.append('community', this.state.community);
+    form_data.append('res_address', this.state.res_address);
+    form_data.append('perm_address', this.state.perm_address);
+    form_data.append('website_url', this.state.website_url);
+    form_data.append('disability', this.state.disability);
+    form_data.append('intercom1', this.state.intercom1);
+    form_data.append('intercom2', this.state.intercom2);
+
+    /*
   const {salutation,name,gender,dob,fath_hus_name,official_mail,personal_mail,aadhar,
     pan,mobile_no,residence_ph_no,caste,community,res_address,perm_address,
     website_url,disability,intercom1,intercom2} = this.state;
@@ -67,11 +109,17 @@ onSubmit = e => {
   const s_info = {salutation,name,gender,dob,fath_hus_name,official_mail,personal_mail,aadhar,
     pan,mobile_no,residence_ph_no,caste,community,res_address,perm_address,
     website_url,disability,intercom1,intercom2};
+    */
     
     //console.log(s_info);
-    this.props.addStaffinfo(s_info);
-    //history.push('/');
-    window.open('/generalinfo',"_self");
+    this.props.addStaffinfo(form_data);
+
+    //window.open('/generalinfo',"_self");
+
+    setTimeout( function(){
+      window.open("/generalinfo","_self")
+    }, 1000 );
+    
   }
 
   else{
@@ -85,6 +133,10 @@ onSubmit = e => {
       <div>
         <CustomLayout>
         <Form onSubmit = {this.props.handleSubmit(() => this.onSubmit(this))}>
+        <Form.Item label = "ADD PROFILE PICTURE">
+          <input type="file" name="pic" accept="image/*" onChange = {this.onFileChange}/>
+        </Form.Item>
+        <hr/>
           <Form.Item label="SALUTATION">
           <select name = "salutation" onChange = {this.onChange} defaultValue={'DEFAULT'}>
             <option value="DEFAULT" disabled>Select an option</option>
@@ -95,9 +147,6 @@ onSubmit = e => {
             <option value="Mrs.">Mrs.</option>
             <option value="Ms.">Ms.</option>
           </select>
-          </Form.Item>
-          <Form.Item label = "ADD PROFILE PIC">
-          <input type="file" name="pic" accept="image/*"/>
           </Form.Item>
           <Form.Item label="NAME">
             <Input name = "name" placeholder="Enter name"  required onChange = {this.onChange} />
@@ -187,7 +236,7 @@ onSubmit = e => {
             <Input type = "url" name = "website_url" placeholder="URL"  onChange = {this.onChange} />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType = "submit">{this.props.btnText}</Button>
+            <Button type="primary" disabled = {this.state.disabled} htmlType = "submit">{this.props.btnText}</Button>
           </Form.Item>
         </Form>
         </CustomLayout>

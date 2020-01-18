@@ -1,10 +1,12 @@
 import React from 'react';
 import { Descriptions,Button } from 'antd';
+import { Card, CardImg, CardTitle,CardBody } from 'reactstrap';
 import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
 import { getStaffinfo } from '../../actions/generalinfo';
 import history from '../common/history'
+import user_pic from './user.png';
 
 class Generalinfo extends React.Component{
 
@@ -54,6 +56,7 @@ class Generalinfo extends React.Component{
 
     render(){
       var numRows = localStorage.getItem('length');
+      var username = localStorage.getItem('username');
       
     return (
       <CustomLayout>
@@ -63,7 +66,27 @@ class Generalinfo extends React.Component{
       ) : (
       this.props.generalinfo.map(ginfo => (
               <div key = {'staffinfo'+ginfo.id}>
+              {
+              ginfo.profile_pic != null ? (
+              <Card>
+                <CardImg top width="10%" src={ginfo.profile_pic}></CardImg>
+                <CardBody>
+                  <CardTitle>{username}</CardTitle>
+                </CardBody>
+              </Card>
+              ) : (
+                <Card>
+                <CardImg top width="10%" src={user_pic}></CardImg>
+                <CardBody>
+                  <CardTitle>{username}</CardTitle>
+                </CardBody>
+              </Card>
+              )
+              }
+              <br/><br/>
+              <center>
               <h2>INFORMATION</h2><br/>
+              </center>
               <Descriptions bordered>
               <Descriptions.Item label="GENDER" span={3}>{ ginfo.gender }</Descriptions.Item>
               <Descriptions.Item label="DOB" span={3}>{ ginfo.dob }</Descriptions.Item>
