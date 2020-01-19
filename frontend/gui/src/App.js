@@ -65,6 +65,11 @@ import Ach_view from './components/achievements/Ach_view';
 import AchAdd from './components/achievements/Add';
 import AchEdit from './components/achievements/Edit';
 //--------------------------------
+import Research_view from './components/research/Research_view';
+import ResearchEdit from './components/research/Edit';
+import ResearchAdd from './components/research/Add';
+import ResearchTableEdit from './components/research/Edit_Table';
+//--------------------------------
 import { LoadUser } from './actions/auth';
 
 
@@ -139,6 +144,11 @@ class App extends Component {
         <PrivateRoute exact path ='/achievements' component = {Ach_view}/>
         <PrivateRoute exact path ='/achievements/edit/:id' component = {AchEdit}/>
         <PrivateRoute exact path ='/achievements/add' component = {AchAdd}/>
+
+        <PrivateRoute exact path ='/research' component = {Research_view}/>
+        <PrivateRoute exact path ='/research/edit/:id' component = {ResearchEdit}/>
+        <PrivateRoute exact path ='/research/add' component = {ResearchAdd}/>
+        <PrivateRoute exact path ='/research/edit_table/:id' component = {ResearchTableEdit}/>
         
         </Switch>
         </Router>

@@ -68,7 +68,7 @@ class Dashboard extends React.Component{
       </div>
     </label>
     <input id='8' type='checkbox'/>
-    <label htmlFor='8' onClick = {() => this.changePage("8",'#')}>
+    <label htmlFor='8' onClick = {() => this.changePage("8",'/research')}>
       <div>
         <div className='circle'><span className="glyphicon glyphicon-pencil"></span></div>
         <span>Academic Research</span>

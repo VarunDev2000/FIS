@@ -107,7 +107,7 @@ export class CustomLayout extends React.Component{
                     <span>PROJECT</span>
                     </Menu.Item>  
 
-                    <Menu.Item key="8" onClick = {this.changePage.bind(this,'#')}>
+                    <Menu.Item key="8" onClick = {this.changePage.bind(this,'/research')}>
                     <Icon type="experiment" />
                     <span>ACADEMIC RESEARCH</span>
                     </Menu.Item>  

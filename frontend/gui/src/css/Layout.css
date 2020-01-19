@@ -146,12 +146,12 @@ textarea {
     padding-right: 1px;
 }
 
-table {
+.rep_table {
     border-collapse: collapse;
     width: 100%;
   }
   
-  th, td {
+  .rep_tr {
     text-align: left;
     font-size: large;
     padding-left: 150px;
@@ -161,10 +161,8 @@ table {
     font-weight: bold;
   }
   
-  tr:nth-child(odd){background-color: #f2f2f2}
-  
-  th {
-    color: white;
+  .rep_tr {
+    color: rgb(0, 0, 0);
   }
 
   .report_part {border-style: ridge;}
@@ -175,11 +173,11 @@ table {
       height: 160px;
   }
 
-  .card{
+  .profile_pic_card{
       width: 180px;
   }
 
-  .card-body{
+  .profile_pic_card_body{
       height: 50px;
       padding: 10px;
       padding-right: 100px;
@@ -200,4 +198,28 @@ table {
     background: black; 
     margin-bottom: 50px; 
   }
+  
 
+  table{
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th,td{
+    padding-left: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: larger;
+    border-width: 2px;
+    text-align:center;
+  }
+
+
+  .bolder{
+    font-weight: bolder;
+    text-align: center;
+  }
+
+  .edit_input{
+      width: 100px;
+  }

@@ -81,22 +81,22 @@ class Report_Index extends React.Component{
                 </Form.Item>
                 <br/>
                 <Form.Item>
-                <table>
-                    <tr>
-                        <td>1) Paper Published in Journals</td>
-                        <td>
+                <table className = "rep_table">
+                    <tr className = "rep_tr">
+                        <td className = "rep_tr">1) Paper Published in Journals</td>
+                        <td className = "rep_tr">
                             <Button type="primary" htmlType = "submit">GENERATE</Button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2) Book Published</td>
-                        <td>
+                    <tr className = "rep_tr">
+                        <td className = "rep_tr">2) Book Published</td>
+                        <td className = "rep_tr">
                             <Button type="primary" htmlType = "submit">GENERATE</Button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>3) Awards Received</td>
-                        <td>
+                    <tr className = "rep_tr">
+                        <td className = "rep_tr">3) Awards Received</td>
+                        <td className = "rep_tr">
                             <Button type="primary" htmlType = "submit">GENERATE</Button>
                         </td>
                     </tr>
@@ -121,52 +121,52 @@ class Report_Index extends React.Component{
                 </Form.Item>
                 <br/>
                 <Form.Item>
-                <table>
-                    <tr>
-                        <td>4) Workshop/Seminar/Conference</td>
-                        <td>
+                <table className = "rep_tr">
+                    <tr className = "rep_tr">
+                        <td className = "rep_tr">4) Workshop/Seminar/Conference</td>
+                        <td className = "rep_tr">
                             <Button type="primary" htmlType = "submit">GENERATE</Button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>5) Paper presented in Workshop/Seminar/Conference</td>
-                        <td>
+                    <tr className = "rep_tr">
+                        <td className = "rep_tr">5) Paper presented in Workshop/Seminar/Conference</td>
+                        <td className = "rep_tr">
                             <Button type="primary" htmlType = "submit">GENERATE</Button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>6) Sponsored Projects Handled</td>
-                        <td>
+                    <tr className = "rep_tr">
+                        <td className = "rep_tr">6) Sponsored Projects Handled</td>
+                        <td className = "rep_tr">
                             <Button type="primary" htmlType = "submit">GENERATE</Button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>7) Patents filed and awarded</td>
-                        <td>
+                    <tr className = "rep_tr">
+                        <td className = "rep_tr">7) Patents filed and awarded</td>
+                        <td className = "rep_tr">
                             <Button type="primary" htmlType = "submit">GENERATE</Button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>8) Spl Representation in Committees and Commissions</td>
-                        <td>
+                    <tr className = "rep_tr">
+                        <td className = "rep_tr">8) Spl Representation in Committees and Commissions</td>
+                        <td className = "rep_tr">
                             <Button type="primary" htmlType = "submit">GENERATE</Button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>9) Invited Lectures</td>
-                        <td>
+                    <tr className = "rep_tr">
+                        <td className = "rep_tr">9) Invited Lectures</td>
+                        <td className = "rep_tr">
                             <Button type="primary" htmlType = "submit">GENERATE</Button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>10) Experience abroad</td>
-                        <td>
+                    <tr className = "rep_tr">
+                        <td className = "rep_tr">10) Experience abroad</td>
+                        <td className = "rep_tr">
                             <Button type="primary" htmlType = "submit">GENERATE</Button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>11) Research Activities</td>
-                        <td>
+                    <tr className = "rep_tr">
+                        <td className = "rep_tr">11) Research Activities</td>
+                        <td className = "rep_tr">
                             <Button type="primary" htmlType = "submit">GENERATE</Button>
                         </td>
                     </tr>

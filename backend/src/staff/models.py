@@ -291,19 +291,19 @@ class research(models.Model):
 
 class research_table(models.Model):
     staff = models.OneToOneField(User, on_delete=models.CASCADE,related_name = "research_table",null=True)
-    phd_reg_no = models.CharField(max_length=400,default=None,blank=True, null=True)
-    phd_s_g = models.CharField(max_length=400,default=None,blank=True, null=True)
-    phd_s_o = models.CharField(max_length=400,default=None,blank=True, null=True)
-    phd_js_g = models.CharField(max_length=400,default=None,blank=True, null=True)
-    phd_js_o = models.CharField(max_length=400,default=None,blank=True, null=True)
-    ms_s_g = models.CharField(max_length=400,default=None,blank=True, null=True)
-    ms_s_o = models.CharField(max_length=400,default=None,blank=True, null=True)
-    ms_js_g = models.CharField(max_length=400,default=None,blank=True, null=True)
-    ms_js_o = models.CharField(max_length=400,default=None,blank=True, null=True)
-    me_s_g = models.CharField(max_length=400,default=None,blank=True, null=True)
-    me_s_o = models.CharField(max_length=400,default=None,blank=True, null=True)
-    msc_s_g = models.CharField(max_length=400,default=None,blank=True, null=True)
-    msc_s_o = models.CharField(max_length=400,default=None,blank=True, null=True)
+    phd_reg_no = models.CharField(max_length=400,default="0",blank=True, null=True)
+    phd_s_g = models.CharField(max_length=400,default="0",blank=True, null=True)
+    phd_s_o = models.CharField(max_length=400,default="0",blank=True, null=True)
+    phd_js_g = models.CharField(max_length=400,default="0",blank=True, null=True)
+    phd_js_o = models.CharField(max_length=400,default="0",blank=True, null=True)
+    ms_s_g = models.CharField(max_length=400,default="0",blank=True, null=True)
+    ms_s_o = models.CharField(max_length=400,default="0",blank=True, null=True)
+    ms_js_g = models.CharField(max_length=400,default="0",blank=True, null=True)
+    ms_js_o = models.CharField(max_length=400,default="0",blank=True, null=True)
+    me_s_g = models.CharField(max_length=400,default="0",blank=True, null=True)
+    me_s_o = models.CharField(max_length=400,default="0",blank=True, null=True)
+    msc_s_g = models.CharField(max_length=400,default="0",blank=True, null=True)
+    msc_s_o = models.CharField(max_length=400,default="0",blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "Research Table"

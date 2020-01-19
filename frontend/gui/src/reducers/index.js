@@ -14,6 +14,8 @@ import experience_abroad from './experience_abroad';
 import book_published from './book_published';
 import eao_programme from './eao_programme';
 import achievements from './achievements';
+import research_table from './research_table';
+import research from './research';
 
 
 export default combineReducers({
@@ -32,4 +34,6 @@ export default combineReducers({
     book_published,
     eao_programme,
     achievements,
+    research_table,
+    research,
 });

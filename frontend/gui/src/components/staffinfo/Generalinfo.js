@@ -68,9 +68,9 @@ class Generalinfo extends React.Component{
               <div key = {'staffinfo'+ginfo.id}>
               {
               ginfo.profile_pic != null ? (
-              <Card>
+              <Card className = "profile_pic_card">
                 <CardImg top width="10%" src={ginfo.profile_pic}></CardImg>
-                <CardBody>
+                <CardBody className = "profile_pic_card_body">
                   <CardTitle>{username}</CardTitle>
                 </CardBody>
               </Card>
