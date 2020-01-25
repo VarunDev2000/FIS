@@ -1,13 +1,13 @@
 import React,{ Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CustomLayout from '../Layout';
+import CustomLayout from '../Admin_Layout';
 import { connect } from 'react-redux';
-import PropTypes, { shape } from 'prop-types'; 
+import PropTypes from 'prop-types'; 
 import { changePass } from '../../actions/auth';
 
-export class changePassword extends Component{
+export class AdminchangePassword extends Component{
     state = {
-        username : '',
+        username : 'AppAdmin',
         oldpassword : '',
         password1 : '',
         password2 : '',
@@ -51,6 +51,13 @@ export class changePassword extends Component{
         });
     }
 
+    componentDidMount() {
+        document.body.classList.add("login_body");
+      }
+    
+    componentWillUnmount() {
+    document.body.classList.remove("login_body");
+    }
     
     componentDidUpdate(prevProps)
     {
@@ -62,7 +69,7 @@ export class changePassword extends Component{
             disabled : true
           })
           alert("Password Changed Successfully");
-          window.open('/',"_self");
+          window.open('/admin/report_generation',"_self");
         }
 
         else if(this.props.err == true)
@@ -155,4 +162,4 @@ const mapStateToProps = state => ({
   count: state.auth.count
 });
 
-export default connect(mapStateToProps,{ changePass })(changePassword);
+export default connect(mapStateToProps,{ changePass })(AdminchangePassword);

@@ -108,29 +108,29 @@ class Research_view extends React.Component{
                 </tr>
                 <tr>
                   <td className="bolder">Ph.D. Scholars</td>
-                  <td>{table.phd_s_g === null || table_count <= 0 ? '0' : table.phd_s_g}</td>
-                  <td>{table.phd_s_o === null || table_count <= 0 ? '0' : table.phd_s_o}</td>
-                  <td>{table.phd_js_g === null || table_count <= 0 ? '0' : table.phd_js_g}</td>
-                  <td>{table.phd_js_o === null || table_count <= 0 ? '0' : table.phd_js_o}</td>
+                  <td>{table.phd_s_g === "" || table_count <= 0 ? '0' : table.phd_s_g}</td>
+                  <td>{table.phd_s_o === "" || table_count <= 0 ? '0' : table.phd_s_o}</td>
+                  <td>{table.phd_js_g === "" || table_count <= 0 ? '0' : table.phd_js_g}</td>
+                  <td>{table.phd_js_o === "" || table_count <= 0 ? '0' : table.phd_js_o}</td>
                 </tr>
                 <tr>
                   <td className="bolder">M.S(By Research) Students</td>
-                  <td>{table.ms_s_g === null || table_count <= 0 ? '0' : table.ms_s_g}</td>
-                  <td>{table.ms_s_o === null || table_count <= 0 ? '0' : table.ms_s_o}</td>
-                  <td>{table.ms_js_g === null || table_count <= 0 ? '0' : table.ms_js_g}</td>
-                  <td>{table.ms_js_o === null || table_count <= 0 ? '0' : table.ms_js_o}</td>
+                  <td>{table.ms_s_g === "" || table_count <= 0 ? '0' : table.ms_s_g}</td>
+                  <td>{table.ms_s_o === "" || table_count <= 0 ? '0' : table.ms_s_o}</td>
+                  <td>{table.ms_js_g === "" || table_count <= 0 ? '0' : table.ms_js_g}</td>
+                  <td>{table.ms_js_o === "" || table_count <= 0 ? '0' : table.ms_js_o}</td>
                 </tr>
                 <tr>
                   <td className="bolder">M.E./ M.Tech. Projects</td>
-                  <td>{table.me_s_g === null || table_count <= 0 ? '0' : table.me_s_g}</td>
-                  <td>{table.me_s_o === null || table_count <= 0 ? '0' : table.me_s_o}</td>
+                  <td>{table.me_s_g === "" || table_count <= 0 ? '0' : table.me_s_g}</td>
+                  <td>{table.me_s_o === "" || table_count <= 0 ? '0' : table.me_s_o}</td>
                   <td>--</td>
                   <td>--</td>
                 </tr>
                 <tr>
                   <td className="bolder">M.Sc./ M.Phil. Projects</td>
-                  <td>{table.msc_s_g === null || table_count <= 0 ? '0' : table.msc_s_g}</td>
-                  <td>{table.msc_s_o === null || table_count <= 0 ? '0' : table.msc_s_o}</td>
+                  <td>{table.msc_s_g === "" || table_count <= 0 ? '0' : table.msc_s_g}</td>
+                  <td>{table.msc_s_o === "" || table_count <= 0 ? '0' : table.msc_s_o}</td>
                   <td>--</td>
                   <td>--</td>
                 </tr>

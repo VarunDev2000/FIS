@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { setTokenTime } from './setLocalStorageTime'
 import history from './history'
 
-const PrivateRoute = ({ component: Component,auth,...rest }) =>(
+const PrivateAdminRoute = ({ component: Component,auth,...rest }) =>(
     <Route {...rest} 
     render={props =>{
         const isAuth = localStorage.getItem('Auth');
@@ -13,12 +13,12 @@ const PrivateRoute = ({ component: Component,auth,...rest }) =>(
         
         if(!isAuth)
         {
-            history.push('/login',"_self");
+            history.push('/admin_login',"_self");
             //return <Redirect to = "/login" />
         }
   
         else{
-            if(username === "AppAdmin")
+            if(username !== "AppAdmin")
             {
                 history.push('/error',"_self");
             }
@@ -33,4 +33,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps)(PrivateRoute);
+export default connect(mapStateToProps)(PrivateAdminRoute);

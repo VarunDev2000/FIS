@@ -110,13 +110,14 @@ componentWillReceiveProps(props) {
       <div>
         <CustomLayout>
         <Form>
-        <label>Ph.D. Supervisor Regi. No :
-        </label>{'\u00A0'}{'\u00A0'}{'\u00A0'}
-        <Input name = "phd_reg_no" className = "edit_input" defaultValue ={this.state.phd_reg_no} onChange = {this.onChange} />
-        <br/><br/>
         {
         id === "0" ? (
             <div>
+
+            <label>Ph.D. Supervisor Regi. No :
+            </label>{'\u00A0'}{'\u00A0'}{'\u00A0'}
+            <Input name = "phd_reg_no" className = "edit_input"  onChange = {this.onChange} />
+            <br/><br/>
             <table border="1">
               <tr>
                 <th rowSpan = "2">Number of</th>
@@ -163,7 +164,60 @@ componentWillReceiveProps(props) {
             <Button  type = "primary" style = {{width:"150px"}} onClick={this.onSubmit}>Submit</Button>
             </div>
             </div>
-        ) : (<h1></h1>)
+        ) : (
+          this.props.research_table.map(table => (
+            <div key="y">
+            <label>Ph.D. Supervisor Regi. No :
+            </label>{'\u00A0'}{'\u00A0'}{'\u00A0'}
+            <Input name = "phd_reg_no" type = "number" defaultValue={table.phd_reg_no} className = "edit_input"  onChange = {this.onChange} />
+            <br/><br/>
+            <table border="1">
+              <tr>
+                <th rowSpan = "2">Number of</th>
+                <th rowSpan = "1" colSpan = "2">As Supervisor:</th>
+                <th rowSpan = "1" colSpan = "2">As joint Supervisor:</th>
+              </tr>
+              <tr>
+                <th rowSpan = "1" colSpan = "1">Guided</th>
+                <th rowSpan = "1" colSpan = "1">OnGoing</th>
+                <th rowSpan = "1" colSpan = "1">Guided</th>
+                <th rowSpan = "1" colSpan = "1">OnGoing</th>
+              </tr>
+              <tr>
+                <td className="bolder">Ph.D. Scholars</td>
+                <td><Input name = "phd_s_g" type = "number" defaultValue={table.phd_s_g == "" ? 0 : table.phd_s_g} className = "edit_input"  onChange = {this.onChange} /></td>
+                <td><Input name = "phd_s_o" type = "number" defaultValue={table.phd_s_o == "" ? 0 : table.phd_s_o} className = "edit_input"  onChange = {this.onChange} /></td>
+                <td><Input name = "phd_js_g" type = "number" defaultValue={table.phd_js_g == "" ? 0 : table.phd_js_g} className = "edit_input"  onChange = {this.onChange} /></td>
+                <td><Input name = "phd_js_o" type = "number" defaultValue={table.phd_js_o == "" ? 0 : table.phd_js_o} className = "edit_input"  onChange = {this.onChange} /></td>
+              </tr>
+              <tr>
+                <td className="bolder">M.S(By Research) Students</td>
+                <td><Input name = "ms_s_g" type = "number" className = "edit_input" defaultValue = {table.ms_s_g == "" ? 0 : table.ms_s_g} onChange = {this.onChange} /></td>
+                <td><Input name = "ms_s_o" type = "number" className = "edit_input" defaultValue = {table.ms_s_o == "" ? 0 : table.ms_s_o} onChange = {this.onChange} /></td>
+                <td><Input name = "ms_js_g" type = "number" className = "edit_input" defaultValue = {table.ms_js_g == "" ? 0 : table.ms_js_g} onChange = {this.onChange} /></td>
+                <td><Input name = "ms_js_o" type = "number" className = "edit_input" defaultValue = {table.ms_js_o == "" ? 0 : table.ms_js_o} onChange = {this.onChange} /></td>
+              </tr>
+              <tr>
+                <td className="bolder">M.E./ M.Tech. Projects</td>
+                <td><Input name = "me_s_g" type = "number" className = "edit_input" defaultValue = {table.me_s_g == "" ? 0 : table.me_s_g} onChange = {this.onChange} /></td>
+                <td><Input name = "me_s_o" type = "number" className = "edit_input" defaultValue = {table.me_s_o == "" ? 0 : table.me_s_o} onChange = {this.onChange} /></td>
+                <td>--</td>
+                <td>--</td>
+              </tr>
+              <tr>
+                <td className="bolder">M.Sc./ M.Phil. Projects</td>
+                <td><Input name = "msc_s_g" type = "number" className = "edit_input" defaultValue = {table.msc_s_g == "" ? 0 : table.msc_s_g} onChange = {this.onChange} /></td>
+                <td><Input name = "msc_s_o" type = "number" className = "edit_input" defaultValue = {table.msc_s_o == "" ? 0 : table.msc_s_o} onChange = {this.onChange} /></td>
+                <td>--</td>
+                <td>--</td>
+              </tr>
+            </table>
+            <br/>
+            <Button id={table.id} type = "primary" style = {{width:"150px"}} onClick={this.onSubmit}>Submit</Button>
+
+            </div>
+            ))
+        )
         }
         </Form>
         </CustomLayout>

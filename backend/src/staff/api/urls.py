@@ -3,7 +3,8 @@ from staff.api.views import (StaffinfoViewSet,QualificationinfoViewSet,
 Area_of_spec_and_mem_ViewSet,Employment_ViewSet,Publication_ViewSet,
 CSW_ViewSet,Project_ViewSet,Invited_Lectures_ViewSet,Experience_Abroad_ViewSet,
 Book_Published_ViewSet,EAO_Programme_ViewSet,Achievement_ViewSet,Research_ViewSet,
-Research_Table_ViewSet
+Research_Table_ViewSet,
+Admin_Publication_ViewSet
 )
 
 
@@ -23,6 +24,8 @@ router.register(r'achievements', Achievement_ViewSet, basename='Achievements')
 router.register(r'research', Research_ViewSet, basename='Research')
 router.register(r'research_table', Research_Table_ViewSet, basename='Research Table')
 
+
+router.register(r'admin_publication', Admin_Publication_ViewSet, basename='admin_publication')
 urlpatterns = router.urls
 
 

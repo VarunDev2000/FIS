@@ -6,6 +6,7 @@ import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
 import { login } from '../../actions/auth';
+import { Input } from 'antd';
 import history from '../common/history';
 
 const required = value => value ? undefined : 'Required'
@@ -20,9 +21,9 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
   </div>
 )
 
-export class Login extends Component{
+export class Admin_Login extends Component{
     state = {
-        username : '',
+        username : 'AppAdmin',
         password : ''
     }
     
@@ -38,14 +39,14 @@ export class Login extends Component{
         this.props.login(this.state.username,this.state.password);
     }
 
-    changePage = (url) => {
-      history.push(url)
-    }
-
     onChange = e =>{
         this.setState({
             [e.target.name] : e.target.value
         });
+    }
+
+    changePage = (url) => {
+      history.push(url)
     }
 
     componentDidMount() {
@@ -62,7 +63,7 @@ export class Login extends Component{
       {
         if(this.props.login_err == true)
         {
-          alert("Emp ID or Password is Wrong");
+          alert("Wrong Password !!");
         }
       }
 
@@ -72,27 +73,20 @@ export class Login extends Component{
     render(){
       
       if(this.props.isAuthenticated){
-        return <Redirect to="/" />;
+        return <Redirect to="/admin/report_generation" />;
       }
       
-      const { username,password } = this.state;
+      const { password } = this.state;
 
         return(
           <div><CustomLayout>
         <div className="col-md-6 m-auto">
         <div className="card card-body mt-5">
-          <h2 className="text-center">STAFF - LOG IN</h2><br/>
+          <h2 className="text-center">ADMIN - LOG IN</h2><br/>
           <form onSubmit = {this.props.handleSubmit(() => this.onSubmit(this))}>
             <div className="form-group">
-              <Field
-                type="text"
-                name="username"
-                onChange={this.onChange}
-                value={username}
-                label="Emp ID"
-                component={renderField}
-                validate={[ required ]}
-              />
+                <label>Username</label>
+                <Input name="username" defaultValue="admin" disabled/>
             </div>
             <div className="form-group">
               <Field
@@ -113,7 +107,7 @@ export class Login extends Component{
               </button>
               <br/>
               <div align="right">
-              <u><a style={{color : "#0066CC"}} onClick={() => this.changePage('/admin_login')}>Admin Login</a></u>
+              <u><a style={{color : "#0066CC"}} onClick={() => this.changePage('/login')}>Staff Login</a></u>
               </div>
             </div>
           </form>
@@ -131,8 +125,8 @@ const mapStateToProps = state => ({
   count: state.auth.count,
 });
 
-Login = connect(mapStateToProps,{ login })(Login);
+Admin_Login = connect(mapStateToProps,{ login })(Admin_Login);
 
 export default reduxForm({
   form: 'Login'
-})(Login);
+})(Admin_Login);

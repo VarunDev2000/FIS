@@ -253,6 +253,19 @@ class Research_Table_ViewSet(viewsets.ModelViewSet):
 
 
 
+#-------------------------FOR ADMIN----------------------------------------------------
+
+class Admin_Publication_ViewSet(viewsets.ModelViewSet):
+    
+    
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+
+    serializer_class = publication_serializer
+    
+    def get_queryset(self):
+        return publication.objects.all()
 
 
 

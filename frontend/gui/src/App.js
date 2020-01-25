@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
 import { Router,Route,Switch } from 'react-router-dom'; 
 import PrivateRoute from './components/common/PrivateRoute';
+import PrivateAdminRoute from './components/common/PrivateAdminRoute';
 import 'antd/dist/antd.css';
 import { Provider } from 'react-redux';
 import store from './store'
 import Login from './components/accounts/Login';
-import history from './components/common/history'
+import Admin_Login from './components/accounts/Admin_Login';
+import history from './components/common/history';
+import Error from './components/common/Error';
 
 import Dashboard from './components/Dashboard/Dashboard';
+//--------------------------------
+import Admin_Report_Index from './components/admin_report/Admin_Report_Index'
 //--------------------------------
 import Report_Index from './components/Report/Report_Index'
 //--------------------------------
 import changePassword from './components/accounts/change_password'
+//--------------------------------
+import AdminchangePassword from './components/accounts/Admin_change_password'
 //--------------------------------
 import Generalinfo from './components/staffinfo/Generalinfo';
 import Add from './components/staffinfo/Add';
@@ -85,12 +92,19 @@ class App extends Component {
         <Router history = {history}>
         <Switch>
         <Route exact path ='/login' component = {Login}/>
+        <Route exact path ='/admin_login' component = {Admin_Login}/>
+
+        <Route exact path ='/error' component = {Error}/>
         
         <PrivateRoute exact path ='/' component = {Dashboard}/>
 
         <PrivateRoute exact path ='/report' component = {Report_Index}/>
 
+        <PrivateAdminRoute exact path ='/admin/report_generation' component = {Admin_Report_Index}/>
+
         <PrivateRoute exact path ='/change-password' component = {changePassword}/>
+
+        <PrivateAdminRoute exact path ='/admin/change-password' component = {AdminchangePassword}/>
 
         <PrivateRoute exact path ='/generalinfo' component = {Generalinfo}/>
         <PrivateRoute exact path ='/generalinfo/edit/:id' component = {Edit}/>
