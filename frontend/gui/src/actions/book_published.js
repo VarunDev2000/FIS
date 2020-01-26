@@ -78,3 +78,17 @@ export const deleteBookPubli = (id) => (dispatch,getState) => {
         console.log("Cannot Delete Data..");
     });
 }
+
+
+export const getAllBookpubli = () => (dispatch,getState) => {
+
+    axios.get('http://127.0.0.1:8000/api/admin_book_published/',tokenConfig(getState))
+    .then(res => {
+            dispatch({
+                type: GET_BOOK_PUBLISHED,
+                payload: res.data
+            });
+    }).catch(err => {
+        console.log("Error fetching Data..");
+    });
+}

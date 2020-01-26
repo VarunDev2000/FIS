@@ -78,3 +78,17 @@ export const deletePublication = (id) => (dispatch,getState) => {
         console.log("Cannot Delete Data..");
     });
 }
+
+
+export const getAllPublication = () => (dispatch,getState) => {
+
+    axios.get('http://localhost:8000/api/admin_publication/',tokenConfig(getState))
+    .then(res => {
+            dispatch({
+                type: GET_PUBLICATION,
+                payload: res.data
+            });
+    }).catch(err => {
+        console.log("Error fetching Data..");
+    });
+}

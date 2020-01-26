@@ -261,6 +261,7 @@ class Admin_Publication_ViewSet(viewsets.ModelViewSet):
     permission_classes = [
         permissions.IsAuthenticated
     ]
+    
 
     serializer_class = publication_serializer
     
@@ -268,7 +269,16 @@ class Admin_Publication_ViewSet(viewsets.ModelViewSet):
         return publication.objects.all()
 
 
+class Admin_Book_Published_ViewSet(viewsets.ModelViewSet):
+    
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
 
+    serializer_class = book_published_serializer
+    
+    def get_queryset(self):
+        return book_published.objects.all()
 
 
 

@@ -328,4 +328,12 @@ textarea {
   }
 
   /*--------------------------------------*/
-  
+
+  iframe{
+    width:100%;
+    height: 1250px;
+  }
+
+  html{
+    scroll-behavior: smooth;
+  }

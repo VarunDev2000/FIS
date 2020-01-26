@@ -18,11 +18,17 @@ const PrivateAdminRoute = ({ component: Component,auth,...rest }) =>(
         }
   
         else{
-            if(username !== "AppAdmin")
+            if(!username)
+            {
+                return <Component {...props}{...rest}/>
+            }
+            else if(username !== "AppAdmin")
             {
                 history.push('/error',"_self");
             }
-            return <Component {...props}{...rest}/>
+            else{
+                return <Component {...props}{...rest}/>
+            }
         }
     }}
     />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form,Button } from 'antd';
 import jsPDF from 'jspdf';
-import CustomLayout from '../Layout';
+import CustomLayout from '../Admin_Layout';
 
 class Report_Index extends React.Component{
 
@@ -10,23 +10,29 @@ class Report_Index extends React.Component{
         to_year : "",
         from_date : "",
         to_date : "",
-        nama:'',
-        pesan:'',
-        tinggi:11.69,
-        lebar:'08.27',
-        judul:'report.pdf',
-        gambar:'https://4.bp.blogspot.com/-89TxYwvuJyA/WxOWE4WkHPI/AAAAAAAAAiM/MBWeo995SbkEC6XQVJmtS_ZeKKZsG6MYgCLcBGAs/s400/lin.png'
+        doc : null,
+        pdfgenerated : false,
     }
 
-    generatePDF(){
-        //e.preventDefault();
-        var name = "varun.pdf"
-        var doc = new jsPDF('p','pt');
-        doc.text(`PDF size:Vadfdfdfdf`, 20, 30)
-        // format: (image_file, 'image_type', X_init, Y_init, X_fin, Y_fin)
-        doc.save(`${name}`)
-      };
+    generatePDF = () =>
+    {
+      var doc = new jsPDF('p','pt','a4');
+      doc.text(20,20,'Hello World');
+  
+      //console.log(doc.output('bloburl'))
+      this.setState({
+          doc : doc.output('bloburl'),
+          pdfgenerated : true
+      })
+      //doc.save("g.pdf");
+    }
 
+    closePDF = () =>
+    {
+        this.setState({
+            pdfgenerated : false
+        })
+    }
     
     onChange = e => {
       this.setState({
@@ -35,7 +41,8 @@ class Report_Index extends React.Component{
     }
 
     onSubmit1 = (e) => {
-        if(this.state.from_year === "" || this.state.to_year === "")
+        if(this.state.from_year === "" || this.state.to_year === "" || 
+        this.state.from_year > this.state.to_year)
         {
             alert("Invalid \"From - To\"")
         }
@@ -45,7 +52,13 @@ class Report_Index extends React.Component{
     }
 
     onSubmit2 = (e) => {
-        alert("Submit 2 Clicked!!")
+        if(this.state.from_date > this.state.to_date)
+        {
+            alert("Invalid \"From Date - To Date\"")
+        }
+        else{
+            alert("Submit 2 Clicked!!")
+        }
     }
 
     render(){
@@ -61,6 +74,17 @@ class Report_Index extends React.Component{
                 <Form >
                 <form onSubmit ={this.onSubmit1}>
                 <h1>GENERATE YOUR REPORT</h1><hr/><br/><br/>
+
+                {
+                this.state.pdfgenerated == true ? (
+                <div>
+                <div align="right">
+                    <Button type="danger" onClick={this.closePDF}>X</Button>
+                </div>
+                <iframe src={this.state.doc}></iframe><br/><br/><br/><br/>
+                </div>
+                ) : (null)
+                }
 
                 <div className = "report_part">
                 <br/><br/>
