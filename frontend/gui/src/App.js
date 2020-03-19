@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Router,Route,Switch } from 'react-router-dom'; 
 import PrivateRoute from './components/common/PrivateRoute';
 import PrivateAdminRoute from './components/common/PrivateAdminRoute';
-import 'antd/dist/antd.css';
 import { Provider } from 'react-redux';
 import store from './store'
 import Login from './components/accounts/Login';

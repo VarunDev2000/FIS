@@ -1,8 +1,7 @@
 import React from 'react';
-import { Descriptions,Button } from 'antd';
-import DashboardLayout from '../DashboardLayout';
 import history from '../common/history';
-import '../../css/Dashboard.css'
+import DashboardLayout from '../DashboardLayout';
+
 
 class Dashboard extends React.Component{
 
@@ -15,101 +14,163 @@ class Dashboard extends React.Component{
     render(){
 
     return (
-      <div>
+    <div>
     <DashboardLayout>
-      <div className='wrapper'>
-    <input id='1' type='checkbox'/>
-    <label htmlFor='1' key="1" onClick = {() => this.changePage("1",'/generalinfo')}>
-      <div>
-        <div className='circle'><span className="glyphicon glyphicon-info-sign"></span></div>
-        <span>General information</span>
-      </div>
-       </label>
-    <input id='2' type='checkbox'/>
-    <label htmlFor='2' onClick = {() => this.changePage("2",'/qualification')}>
-      <div>
-        <div className='circle'><span className="glyphicon glyphicon-education"></span></div>
-        <span>Qualification</span>
-      </div>
-       </label>
-    <input id='3' type='checkbox'/>
-    <label htmlFor='3'onClick = {() => this.changePage("3",'/specialization')}>
-      <div>
-        <div className='circle'><span className="glyphicon glyphicon-briefcase"></span></div>
-        <span>Spec & Membership</span>
-      </div>
-    </label>
-    <input id='4' type='checkbox'/>
-    <label htmlFor='4' onClick = {() => this.changePage("4",'/employment')}>
-      <div>
-        <div className='circle'><span className="glyphicon glyphicon-user"></span></div>
-        <span>Employment details</span>
-      </div>
-    </label>
-    <input id='5' type='checkbox'/>
-    <label htmlFor='5' onClick = {() => this.changePage("5",'/publication')}>
-      <div>
-        <div className='circle'><span className="glyphicon glyphicon-bookmark"></span></div>
-        <span>Publications</span>
-      </div>
-    </label>
-    <input id='6' type='checkbox'/>
-    <label htmlFor='6' onClick = {() => this.changePage("6",'/csw')}>
-      <div>
-        <div className='circle'><span className="glyphicon glyphicon-list-alt"></span></div>
-        <span>Conf/Seminar/Workshop</span>
-      </div>
-    </label>
-    <input id='7' type='checkbox'/>
-    <label htmlFor='7' onClick = {() => this.changePage("7",'/project')}>
-      <div>
-        <div className='circle'><span className="glyphicon glyphicon-euro"></span></div>
-        <span>Sponsored Projects</span>
-      </div>
-    </label>
-    <input id='8' type='checkbox'/>
-    <label htmlFor='8' onClick = {() => this.changePage("8",'/research')}>
-      <div>
-        <div className='circle'><span className="glyphicon glyphicon-pencil"></span></div>
-        <span>Academic Research</span>
-      </div>
-    </label>
-    <input id='9' type='checkbox'/>
-    <label htmlFor='9' onClick = {() => this.changePage("9",'/invited_lectures')}>
-      <div>
-        <div className='circle'><span className="glyphicon glyphicon-envelope"></span></div>
-        <span>Invited Lectures</span>
-      </div>
-    </label>
-    <input id='10' type='checkbox'/>
-    <label htmlFor='10' onClick = {() => this.changePage("10",'/experience_abroad')}>
-      <div>
-        <div className='circle'><span className="glyphicon glyphicon-plane"></span></div>
-        <span>Experience Abroad</span>
-      </div>
-    </label>
-    <input id='11' type='checkbox'/>
-    <label htmlFor='11' onClick = {() => this.changePage("11",'/book_published')}>
-      <div>
-        <div className='circle'><span className="glyphicon glyphicon-star"></span></div>
-        <span>Book Published</span>
-      </div>
-    </label>
-    <input id='12' type='checkbox'/>
-    <label htmlFor='12' onClick = {() => this.changePage("12",'/eao_programme')}>
-      <div>
-        <div className='circle'><span className="glyphicon glyphicon-book"></span></div>
-        <span>Ext & Outreach Prog</span>
-      </div>
-    </label>
-    <input id='13' type='checkbox'/>
-    <label htmlFor='13' onClick = {() => this.changePage("13",'/achievements')}>
-      <div>
-        <div className='circle'><span className="glyphicon glyphicon-certificate"></span></div>
-        <span>Achievements</span>
-      </div>
-    </label>
-  </div>
+
+    <div class="dashboard-div">
+        <div>
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid dashboard-content ">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-header">
+                                <h2 class="pageheader-title">DASHBOARD</h2>
+                               <div class="page-breadcrumb">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="" class="breadcrumb-link">Home /</a></li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ecommerce-widget">
+
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card card-hover1" onClick={() => this.changePage("1",'/generalinfo')}>
+                                    <div class="card-body">
+                                      <center>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1"><i class="fa fa-user-circle-o"></i></h1>
+                                        </div>
+                                        <hr className="hr-color" />
+                                        <p className="dash-p">PROFILE</p>
+                                      </center>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card card-hover2" onClick={() => this.changePage("2",'/employment')}>
+                                <div class="card-body">
+                                      <center>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1"><i class="fa fa-briefcase"></i></h1>
+                                        </div>
+                                        <hr className="hr-color" />
+                                        <p className="dash-p">EMPLOYMENT</p>
+                                      </center>
+                                      </div>
+                                    <div id="sparkline-revenue2"></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card card-hover3" onClick={() => this.changePage("2",'/report')}>
+                                <div class="card-body">
+                                      <center>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1"><i class="fas fa-clipboard-check"></i></h1>
+                                        </div>
+                                        <hr className="hr-color" />
+                                        <p className="dash-p">REPORT</p>
+                                      </center>
+                                      </div>
+                                    <div id="sparkline-revenue2"></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card card-hover4" onClick={() => this.changePage("3",'/change-password')}>
+                                <div class="card-body">
+                                      <center>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1"><i class="fas fa-key"></i></h1>
+                                        </div>
+                                        <hr className="hr-color" />
+                                      <p className="dash-p">CHANGE PASSWORD</p>
+                                      </center>
+                                      </div>
+                                    <div id="sparkline-revenue2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/><br/>
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <h5 class="card-header">Recent Reports</h5>
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive">
+                                            <table class="table" id="dash-table">
+                                                <thead class="bg-light">
+                                                    <tr class="border-0">
+                                                        <th class="border-0">#</th>
+                                                        <th class="border-0">Report</th>
+                                                        <th class="border-0">View</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>
+                                                            <div class="m-r-10"><img src="assets/images/product-pic.jpg" alt="user" class="rounded" width="45"/></div>
+                                                        </td>
+                                                        <td>Product #1 </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>
+                                                            <div class="m-r-10"><img src="assets/images/product-pic-2.jpg" alt="user" class="rounded" width="45"/></div>
+                                                        </td>
+                                                        <td>Product #2 </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+							
+                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <h5 class="card-header"> PieChart</h5>
+                                    <div class="card-body">
+                                        <div class="ct-chart-category ct-golden-section" style={{height: "315px"}}></div>
+                                        <div class="text-center m-t-40">
+                                            <span class="legend-item mr-3">
+                                                    <span class="fa-xs text-primary mr-1 legend-tile"><i class="fa fa-fw fa-square-full "></i></span><span class="legend-text">Man</span>
+                                            </span>
+                                            <span class="legend-item mr-3">
+                                                <span class="fa-xs text-secondary mr-1 legend-tile"><i class="fa fa-fw fa-square-full"></i></span>
+                                            <span class="legend-text">Woman</span>
+                                            </span>
+                                            <span class="legend-item mr-3">
+                                                <span class="fa-xs text-info mr-1 legend-tile"><i class="fa fa-fw fa-square-full"></i></span>
+                                            <span class="legend-text">Accessories</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+								
+								<br/>
+								<div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0"> Graph</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="ct-chart-product ct-golden-section"></div>
+                                    </div>
+                                </div>
+								
+                            </div>
+
+							
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
       </DashboardLayout>
       </div>
     );

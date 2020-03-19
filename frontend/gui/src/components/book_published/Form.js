@@ -82,10 +82,7 @@ onSubmit = e => {
             <Input name = "place_of_publication" placeholder="Place of Publication" onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="YEAR OF PUBLICATION">
-            <select required className = "selectClass" name="year_of_publication" defaultValue={'DEFAULT'} onChange = {this.onChange}>
-              <option disabled value="DEFAULT"> </option>
-              {year}
-            </select>
+            <input type="month" name = "year_of_publication" required onChange = {this.onChange}></input>
           </Form.Item>
           <Form.Item label="EDITION NO">
             <Input name = "edition_no" placeholder="Enter Edition No" onChange = {this.onChange} />

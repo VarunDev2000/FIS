@@ -1,13 +1,151 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    
+body{
+	margin: 0;
+    font-family: "Rubik", sans-serif;
+    font-size: 0.900rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #6c757d;
+    text-align: left;
+    background-color: #edf1f5;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+table{
+    table-layout: fixed;
 }
+
+.table td{
+    padding: 1rem;
+    color: #6c757d;
+    vertical-align: middle;
+}
+
+#dash-table tr:hover{
+    transform: scale(0.96);
+}
+
+.table th{
+    padding: 1rem;
+    color: #6c757d;
+}
+
+.h4,h4{
+    font-size: 18px;
+    font-family: inherit;
+    font-weight: 400;
+    line-height: 1.2;
+    color: inherit;
+}
+
+.user{
+    color: black;
+    font-size:15px;
+    font-weight: 500;
+    font-family: cursive;
+}
+
+.btn{
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.navbar-header
+{
+    padding-left:0px !important;
+}
+
+.nav-items{
+    padding-left: 0.5em;
+    font-size: 15px;
+}
+
+.btn-success{
+    color: #fff;
+    background-color: #36bea6;
+    border-color: #36bea6;
+}
+
+.btn-success:hover {
+    background-color: #4CB2B2;
+    border-color: #4CB2B2;
+ }
+
+ a{
+     color: #ffffff;
+ }
+
+ .dashboard-div{
+     margin: 0.5em;
+ }
+
+ .card{
+     margin: 6px;
+ }
+
+ .card-hover1{
+    background-color: slateblue;
+    color: white;
+}
+
+.card-hover2{
+    background-color: tomato;
+    color: white;
+}
+
+.card-hover3{
+    background-color: yellowgreen;
+    color: white;
+}
+
+.card-hover4{
+    background-color: cornflowerblue;
+    color: white;
+}
+
+.card-hover1:hover {
+    transform: scale(1.1);
+}
+
+.card-hover2:hover {
+    transform: scale(1.1);
+}
+.card-hover3:hover {
+    transform: scale(1.1);
+}
+
+.card-hover4:hover {
+    transform: scale(1.1);
+}
+
+.hr-color{
+    display: block; height: 1px;
+    border: 0; border-top: 1px solid #ccc;
+    margin: 1em 0; padding: 0;
+    width: 100%;
+}
+
+.dash-p{
+    font-size: 20px;
+}
+
+.log_out{
+    color: #6c757d;
+}
+
+.log_out:hover{
+    color: black;
+}
+
+.navbar-brand{
+    text-transform: uppercase;
+}
+
+i {
+    color: white;
+  }
+
+  .label-p{
+      text-align: left;
+      margin-bottom: 7px;
+  }
+

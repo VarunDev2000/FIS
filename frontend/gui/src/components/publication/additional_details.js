@@ -68,7 +68,7 @@ componentWillReceiveProps(props) {
         {
         publi_len > 0 ? (
           <div key = {publi.id}>
-                <Descriptions bordered>
+                <Descriptions bordered id="detailed_table">
                 <Descriptions.Item label="LEVEL" span={3}>{ publi.level }</Descriptions.Item>
                 <Descriptions.Item label="TITLE" span={3}>{ publi.title }</Descriptions.Item>   
                 <Descriptions.Item label="FIRST AUTHOR" span={3}>{ publi.first_author }</Descriptions.Item>

@@ -175,9 +175,6 @@ componentWillReceiveProps(props) {
         {
         publi_len > 0 ? (
         <Form key = {publi.id} onSubmit ={this.onSubmit}>
-        <div align="right">
-          <Button type="danger" htmlType = "submit" onClick = {this.delete}>Delete</Button>
-        </div>
         <Form.Item label="LEVEL">
             <select name="level" defaultValue = {this.state.level} onChange = {this.onChange}>
             <option value="International">International</option>
@@ -206,10 +203,8 @@ componentWillReceiveProps(props) {
             <Input type = "number" name = "issue"  defaultValue = {this.state.issue} placeholder="" onChange = {this.onChange} />
           </Form.Item>
           <Form.Item label="YEAR">
-          <select  className = "selectClass"  name="year" defaultValue = {this.state.year}  onChange = {this.onChange}>
-            <option disabled value="DEFAULT"> </option>
-            {year}
-          </select> </Form.Item>
+          <input type="month" name = "year" required onChange = {this.onChange} defaultValue = {this.state.year}></input>
+           </Form.Item>
           <Form.Item label="PAGE NO">
             <Input name = "page_no"  placeholder="Enter Page No" defaultValue = {this.state.page_no}  onChange = {this.onChange} />
           </Form.Item>
@@ -230,7 +225,7 @@ componentWillReceiveProps(props) {
             <Button span={3} target="ref" onClick={() => this.popPDF(publi.pdf)}>View</Button>
           </Form.Item>
           <Form.Item label="ADD NEW PDF">
-            <input type="file" name="pdf" accept="application/pdf"  onChange = {this.onFileChange}></input>
+            <input type="file" name="pdf" className="file_upload_btn" accept="application/pdf"  onChange = {this.onFileChange}></input>
           </Form.Item>
           <br/>
           <Form.Item>

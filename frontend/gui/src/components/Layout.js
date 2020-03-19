@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
 import { logout } from '../actions/auth';
 import history from './common/history'
-import '../css/Layout.css';
 
-const { Header, Content, Sider } = Layout;
+import './styles/dist/css/style.css'
+import Image from './styles/assets/images/logo-icon.png';
+import './styles/assets/icons/font-awesome/css/font-awesome.min.css'
 
 
 export class CustomLayout extends React.Component{
@@ -47,6 +48,13 @@ export class CustomLayout extends React.Component{
         history.push(url)
     }
 
+    componentDidMount() {
+        document.body.classList.add("skin-default-dark");
+        document.body.classList.add("fixed-layout");
+        document.body.classList.add("mini-sidebar");
+      }
+    
+
     render(){
         const { isAuthenticated,user } = this.props.auth;
         var s_key = localStorage.getItem('s_key');
@@ -58,128 +66,77 @@ export class CustomLayout extends React.Component{
         ) : (console.log(""))
 
         const authLinks = (
-            <Layout className="layout" >
-    
-                <Sider 
-                      style={{
-                        paddingTop:'62px',
-                        overflow: 'auto',
-                        height: '100vh',
-                        position: 'sticky',
-                        top: 0,
-                        left: 0,
-                      }}
-                      trigger={null} collapsible collapsed={this.state.collapsed}>
-                <div className="logo" />
-                <Menu theme="dark" mode="inline" defaultSelectedKeys ={[]} selectedKeys = {s_key_list} >
-                    <Menu.Item key="1" onClick = {this.changePage.bind(this,'/generalinfo')}>
-                    <Icon type="info" />
-                    <span>PERSONAL INFO</span>
-                    </Menu.Item>
-
-                    <Menu.Item key="2" onClick = {this.changePage.bind(this,'/qualification')}>
-                    <Icon type="book" />
-                    <span>QUALIFICATION</span>
-                    </Menu.Item>
-
-                    <Menu.Item key="3" onClick = {this.changePage.bind(this,'/specialization')}>
-                    <Icon type="tool" />
-                    <span>SPECIALIZATION & MEMBERSHIPS</span>
-                    </Menu.Item> 
-
-                    <Menu.Item key="4" onClick = {this.changePage.bind(this,'/employment')}>
-                    <Icon type="file-done" />
-                    <span>EMPLOYMENT DETAILS</span>
-                    </Menu.Item>
-
-                    <Menu.Item key="5" onClick = {this.changePage.bind(this,'/publication')}>
-                    <Icon type="schedule" />
-                    <span>PUBLICATIONS</span>
-                    </Menu.Item>  
-
-                    <Menu.Item key="6" onClick = {this.changePage.bind(this,'/csw')}>
-                    <Icon type="team" />
-                    <span>CONFERENCE/SEMINAR/WORKSHOP</span>
-                    </Menu.Item> 
-
-                    <Menu.Item key="7" onClick = {this.changePage.bind(this,'/project')}>
-                    <Icon type="reconciliation" />
-                    <span>PROJECT</span>
-                    </Menu.Item>  
-
-                    <Menu.Item key="8" onClick = {this.changePage.bind(this,'/research')}>
-                    <Icon type="experiment" />
-                    <span>ACADEMIC RESEARCH</span>
-                    </Menu.Item>  
-
-                    <Menu.Item key="9" onClick = {this.changePage.bind(this,'/invited_lectures')}>
-                    <Icon type="solution" />
-                    <span>INVITED LECTURES</span>
-                    </Menu.Item>  
-
-                    <Menu.Item key="10" onClick = {this.changePage.bind(this,'/experience_abroad')}>
-                    <Icon type="rise" />
-                    <span>EXPERIENCE ABROAD</span>
-                    </Menu.Item> 
-
-                    <Menu.Item key="11" onClick = {this.changePage.bind(this,'/book_published')}>
-                    <Icon type="book" />
-                    <span>BOOKS PUBLISHED</span>
-                    </Menu.Item> 
-
-                    <Menu.Item key="12" onClick = {this.changePage.bind(this,'/eao_programme')}>
-                    <Icon type="exception" />
-                    <span>EXTENSION AND OUTREACH PROGRAMME</span>
-                    </Menu.Item>  
-
-                    <Menu.Item key="13" onClick = {this.changePage.bind(this,'/achievements')}>
-                    <Icon type="alert" />
-                    <span>ACHIEVEMENTS</span>
-                    </Menu.Item>   
-
-                </Menu>
-                </Sider>
-                <Header style={{ padding: "0.00em",position:'fixed',zIndex:1,width:'100%'}}>
-                    <Menu
-                        mode="horizontal"
-                        style={{lineHeight: '60px'}}
-                    >
-                        <Menu.Item key="collapse_button" className="menu_fold_button">
-                        <Icon
-                        className="trigger"
-                        type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                        onClick={this.toggle}
-                        />
-                        </Menu.Item>
-                        <Menu.Item key="1" onClick={() => this.changePage1("1",'/')}><strong>
-                        <Icon type="user"/>
-                        { user ? `Welcome ${user.username}`:"" }</strong>
-                        </Menu.Item>
-                        <Menu.Item key="2"  onClick={() => this.changePage1("2",'/report')}><Icon type="file-pdf" />REPORT</Menu.Item>
-                        <Menu.Item key="3" style={{float: 'right'}} onClick= {this.props.logout} >Logout</Menu.Item>
-                        <Menu.Item key="4" style={{float: 'right'}} onClick={() => this.changePage1("c_pass",'/change-password')} >Change Password</Menu.Item>
-                        <Menu.Item key="5" style={{float: 'right'}} onClick={() => this.changePage1("4",'/')}>
-                        <Icon type="home" />
-                        </Menu.Item>
-                        </Menu>
-                </Header>
-                <br/><br/>
-                <Content style={{ padding: '0 200px' }}>
-                    <br/><br/><br/><br/>
-                    <div id = {s_key} className="innerForm">
-                        {this.props.children} 
+            
+            <div id="main-wrapper">
+            <header className="topbar">
+                <nav className="navbar top-navbar navbar-expand-md navbar-dark">
+                    <div className="navbar-header">
+                        <a className="navbar-brand" href="/">
+                            <b className="user">
+                                <i className="far fa-user"></i>{'\u00A0'}{'\u00A0'}
+                                { user ? `Welcome ${user.username}`:"" }
+                            </b>
+                        </a>
                     </div>
-                    <br/><br/>
-                </Content>
-            </Layout>
+
+                    <div className="navbar-collapse">
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-item dropdown">
+                            </li>
+                        </ul>
+
+                        <ul className="navbar-nav my-lg-0" style={{ paddingRight:"40px",paddingLeft:"40px" }}>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle text-muted waves-effect waves-dark " onClick= {this.props.logout}><p className="log_out">Logout</p></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+            <aside className="left-sidebar">
+            <div className="d-flex no-block nav-text-box align-items-center">
+                <span><img src={Image} alt="elegant admin template"/></span>
+                <a className="waves-effect waves-dark ml-auto hidden-sm-down" href="javascript:void(0)"><i className="ti-menu"></i></a>
+                <a className="nav-toggler waves-effect waves-dark ml-auto hidden-sm-up" href="javascript:void(0)"><i className="ti-menu ti-close"></i></a>
+            </div>
+            
+            <div className="scroll-sidebar">
+                
+                <nav className="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li> <a className="waves-effect waves-dark" href='/qualification' aria-expanded="false"><i className="fas fa-user-graduate"></i><span className="hide-menu">Qualification</span></a></li>
+                        <li> <a className="waves-effect waves-dark" href='/specialization' aria-expanded="false"><i className="fas fa-user-check"></i><span className="hide-menu"></span>Specialization</a></li>
+                        <li> <a className="waves-effect waves-dark" href="/publication" aria-expanded="false"><i className="fas fa-file-signature"></i><span className="hide-menu"></span>Publications</a></li>
+                        <li> <a className="waves-effect waves-dark" href="/csw" aria-expanded="false"><i className="fas fa-chart-pie"></i><span className="hide-menu"></span>Conf/Seminar/Workshop</a></li>
+                        <li> <a className="waves-effect waves-dark" href="/project" aria-expanded="false"><i className="fas fa-project-diagram"></i><span className="hide-menu"></span>Projects</a></li>
+                        <li> <a className="waves-effect waves-dark" href="/research" aria-expanded="false"><i className="fas fa-vial"></i><span className="hide-menu"></span>Research</a></li>
+                        <li> <a className="waves-effect waves-dark" href="/invited_lectures" aria-expanded="false"><i className="fas fa-chalkboard-teacher"></i><span className="hide-menu"></span>Invited Lectures</a></li>
+                        <li> <a className="waves-effect waves-dark" href="/experience_abroad" aria-expanded="false"><i className="fas fa-plane"></i><span className="hide-menu"></span>Experience Abroad</a></li>
+                        <li> <a className="waves-effect waves-dark" href="/book_published" aria-expanded="false"><i className="fa fa-book"></i><span className="hide-menu"></span>Books Published</a></li>
+                        <li> <a className="waves-effect waves-dark" href="/eao_programme" aria-expanded="false"><i className="fa fa-wpforms"></i><span className="hide-menu"></span>EAO Programme</a></li>
+                        <li> <a className="waves-effect waves-dark" href="/achievements" aria-expanded="false"><i className="fa fa-archive"></i><span className="hide-menu"></span>Achievements</a></li>
+                    
+                    </ul>
+                </nav>
+                
+            </div>
+           
+        </aside>
+
+        <div class="page-wrapper">
+            {this.props.children} 
+        </div>
+        </div>
         );
 
         const guestLinks = (
-            <Layout className="layout">
-                    <div style={{ position:'relative',padding: 95,bottom:'20px'}}>
-                        {this.props.children} 
-                    </div>
-            </Layout>
+
+            <div id="main-wrapper">
+                <div class="page-wrapper">
+                    {this.props.children} 
+                </div>
+            </div>
         );
 
 

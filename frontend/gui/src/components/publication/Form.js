@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
 import { addPublication } from '../../actions/publication';
 
+import '../styles/assets2/css/style.css'
+import '../styles/assets2/fonts/material-icon/css/material-design-iconic-font.min.css'
 
 class CustomForm extends React.Component {
 
@@ -29,9 +31,6 @@ class CustomForm extends React.Component {
     filechanged : false,
 }
 
-static propTypes = {
-  addPublication: PropTypes.func.isRequired
-}
 
 onChange = e => {
   this.setState({
@@ -117,6 +116,7 @@ onSubmit = e => {
 }
 */
 
+
   render() {
     const year = [];
 
@@ -127,62 +127,45 @@ onSubmit = e => {
     return (
       <div>
         <CustomLayout>
-        <Form onSubmit ={this.onSubmit}>
-          <Form.Item label="LEVEL">
-            <select name="level" onChange = {this.onChange}>
-            <option value="International">International</option>
-            <option value="National">National</option>
-            </select>
-          </Form.Item>
-          <Form.Item label="TITLE">
-            <Input name = "title" placeholder="Enter Title" required onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="FIRST AUTOR">
-            <Input name = "first_author" placeholder="Enter First Author"  onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="CORRESPONDING AUTHOR">
-            <Input name = "corres_author" placeholder="Enter Corresponding Author" onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="ALL AUTHOR'S INCLUDING THE ABOVE IN ORDER">
-            <Input name = "all_auth_inorder" placeholder="" onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="JOURNAL NAME">
-            <Input name = "journal_name" placeholder="Enter Journal Name"  onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="VOLUME">
-            <Input type = "number" name = "volume"  placeholder="" onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="ISSUE">
-            <Input type = "number" name = "issue" placeholder="" onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="YEAR">
-          <select  className = "selectClass" name="year"  defaultValue={'DEFAULT'} onChange = {this.onChange}>
-            <option disabled value="DEFAULT"> </option>
-            {year}
-          </select> </Form.Item>
-          <Form.Item label="PAGE NO">
-            <Input name = "page_no" placeholder="Enter Page No"  onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="PUBLISHER">
-            <Input name = "publisher" placeholder="Enter Publisher Name"  onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="IMPACT FACTOR IN THE YEAR OF PUBLICATION">
-            <Input name = "impact_factor" placeholder="Enter Impact Factor"  onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="IS IT A REFEREED JOURNAL?">
-          <select name="ref_journal" defaultValue={'DEFAULT'} onChange = {this.onChange}>
-            <option disabled value="DEFAULT"> -- select an option -- </option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-          </select>
-          </Form.Item>
-          <Form.Item label="FILE">
-            <input type="file" name="pdf" accept="application/pdf" onChange = {this.onFileChange}></input>
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType = "submit" disabled = {this.state.disabled}>{this.props.btnText}</Button>
-          </Form.Item>
-        </Form>
+        <div class="main">
+	<center>
+        <div class="container">
+            <form onSubmit ={this.onSubmit} class="appointment-form" id="appointment-form">
+                <h2>Add Publication</h2>
+                <div class="form-group-1">
+                <select name="level" onChange = {this.onChange}>
+                  <option value="International">International</option>
+                  <option value="National">National</option>
+                </select>
+                    <input name = "title" placeholder="Title" required onChange = {this.onChange} />
+                    <input type="text" name = "first_author" placeholder="First Author"  onChange = {this.onChange} />
+                    <input type="text" name = "corres_author" placeholder="Corresponding Author" onChange = {this.onChange}  />
+                    <input type="text" name = "all_auth_inorder" placeholder="All Authors in Order"  onChange = {this.onChange} />
+                    <input type="text" name = "journal_name" placeholder="Journal Name"  onChange = {this.onChange}  />
+                    <input type = "number" name = "volume"  placeholder="Volume" onChange = {this.onChange}/>
+                    <input type = "number" name = "issue" placeholder="Issue" onChange = {this.onChange} />
+                    <p className="label-p">Year</p>
+                    <input type="month" name = "year" required onChange = {this.onChange}></input>
+                    <input name = "page_no" placeholder="Page No"  onChange = {this.onChange} />
+                    <input name = "publisher" placeholder="Publisher Name"  onChange = {this.onChange} />
+                    <input name = "impact_factor" placeholder="Impact Factor"  onChange = {this.onChange} />
+                    <input type = "number" name = "issue" placeholder="Issue" onChange = {this.onChange} />
+                    <p className="label-p">Is it a Refereed Journal?</p>
+                    <select name="ref_journal" defaultValue={'DEFAULT'} onChange = {this.onChange}>
+                      <option disabled value="DEFAULT"> -- select an option -- </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="form-submit">
+                    <input type="submit" name="submit" disabled = {this.state.disabled} id="submit" class="submit" value="Submit" />
+                </div>
+            </form>
+        </div>
+		</center>
+    </div>
+
+
         </CustomLayout>
       </div>
     );

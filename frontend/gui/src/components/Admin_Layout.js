@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
 import { logout } from '../actions/auth';
 import history from './common/history'
-import '../css/Layout.css';
 
 const { Header, Content, Sider } = Layout;
 

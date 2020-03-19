@@ -4,7 +4,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.core.validators import FileExtensionValidator
-
+from month.models import MonthField
 
 class staff_detail(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,related_name = "staffinfo",null=True)
@@ -111,7 +111,7 @@ class publication(models.Model):
     journal_name = models.CharField(max_length=800,default=None,blank=True, null=True)
     volume = models.IntegerField(blank=True, null=True)
     issue = models.IntegerField(blank=True, null=True)
-    year = models.CharField(max_length=100,default=None,blank=True, null=True)
+    year = models.CharField(max_length = 100,default=None,blank=True, null=True)
     page_no = models.CharField(max_length=300,default=None,blank=True, null=True)
     publisher = models.CharField(max_length=100, null=True,blank =True)
     impact_factor = models.CharField(max_length=100,blank=True, null=True,default=None) 
