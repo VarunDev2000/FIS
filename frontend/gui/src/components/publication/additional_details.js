@@ -83,7 +83,7 @@ componentWillReceiveProps(props) {
                 <Descriptions.Item label="IMPACT FACTOR IN THE YEAR OF PUBLICATION" span={3}>{ publi.impact_factor }</Descriptions.Item>
                 <Descriptions.Item label="IS IT A REFEREED JOURNAL?" span={3}>{ publi.ref_journal }</Descriptions.Item>
                 <Descriptions.Item label="PDF" >
-                  <Button span={3} target="ref" onClick={() => this.popPDF(publi.pdf)}>View</Button></Descriptions.Item>
+                  <Button span={3} target="ref" type="primary" onClick={() => this.popPDF(publi.pdf)}>View</Button></Descriptions.Item>
                 </Descriptions>
           </div>
       ) : (<h1></h1>)

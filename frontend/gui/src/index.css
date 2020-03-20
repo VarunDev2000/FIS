@@ -40,7 +40,7 @@ table{
 .user{
     color: black;
     font-size:15px;
-    font-weight: 500;
+    font-weight: 600;
     font-family: cursive;
 }
 
@@ -62,14 +62,6 @@ table{
     font-size: 15px;
 }
 
-.btn-success{
-    color: #fff;
-    background-color: #36bea6;
-    border-color: #36bea6;
-    padding: 5px;
-    padding-right: 15px;
-    padding-left: 15px;
-}
 
 .btn-success:hover {
     background-color: #4CB2B2;
@@ -150,6 +142,97 @@ i {
     color: white;
   }
 
+.user-icon{
+    color: black;
+}
+
+.user-icon1{
+    color: royalblue;
+    font-size: 15px;
+}
+
+.user-icon2{
+    color: red;
+    font-size: 15px;
+}
+
+.ad-btn{
+    background-color:#4caf50;
+    color: white;
+    border: 1px solid #4caf50;
+    padding: 4px;
+    border-radius: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.danger-profile-btn{
+    position: relative;
+	overflow: hidden;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    border-radius: 3px;
+    background-color:#f1f1f1;
+    color: #484747;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px; 
+}
+
+.danger-profile-btn:hover{
+    background-color: #dad8d8;
+}
+
+.danger-btn{
+    background-color:#ea2d1f;
+    color: white;
+    border: 1px solid #ea2d1f;
+    padding: 4px;
+    border-radius: 3px;
+    padding-left: 10px;
+    padding-right: 10px; 
+}
+
+
+.danger-btn:hover{
+    background-color: red;
+}
+
+.blu-green-btn{
+    background-color:#36bea6;
+    color: white;
+    border: 1px solid #36bea6;
+    padding: 5px;
+    border-radius: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.blu-green-btn:hover{
+    background-color:#3ca894;
+}
+
+.ad-btn:hover{
+    background-color: green;
+}
+
+.ant-descriptions-bordered{
+    margin: 40px;
+    box-shadow: 0px 1px 2px 1px rgba(154, 154, 204, 0.22);
+}
+
+.ant-descriptions-row:hover{
+    transform: scale(1.005);
+}
+
+.ant-descriptions-item-content{
+    background-color: whitesmoke;
+}
+
+
 #myInput{
     background-image: url('searchicon.png');
     background-position: 5px 9px; 
@@ -206,15 +289,6 @@ i {
  }
 
 
- #profileUpload{
-    border-color: white;
-    border: 0px;
-    background-color: white;
-    border-bottom-color: white;
-    box-shadow: none;
-    margin-top: 30px;
-    width: 200px;  
-}
 
 .fileUpload {
 	position: relative;
@@ -222,7 +296,23 @@ i {
     margin-top: 5px;
     margin-bottom: 20px;
     margin-left: -10px;
+    border-radius: 3px;
+    background-color: #f1f1f1;
+    color: #484747;
+    border: 1px solid #e0e0e0;
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px; 
+    width: 100px;
 }
+
+
+.fileUpload:hover{
+    background-color: #dad8d8;
+    border: 1px solid #e0e0e0;
+    color: #484747;
+}
+
 .fileUpload input.upload {
 	position: absolute;
 	top: 0;
@@ -245,4 +335,8 @@ i {
 
 .del{
     margin-top: 6px;
+}
+
+.form-title{
+    color:green;
 }

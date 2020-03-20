@@ -72,8 +72,8 @@ export class CustomLayout extends React.Component{
                     <div className="navbar-header">
                         <a className="navbar-brand" href="/">
                             <b className="user">
-                                <i className="far fa-user"></i>{'\u00A0'}{'\u00A0'}
-                                { user ? `Welcome ${user.username}`:"" }
+                                <i className="fas fa-user-alt user-icon"></i>{'\u00A0'}{'\u00A0'}
+                                { user ? `${user.username}`:"" }
                             </b>
                         </a>
                     </div>

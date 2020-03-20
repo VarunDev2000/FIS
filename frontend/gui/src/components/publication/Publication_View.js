@@ -1,9 +1,11 @@
 import React from 'react';
 import CustomLayout from '../Layout';
+import {Button} from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
 import { getPublication,deletePublication } from '../../actions/publication';
 import history from '../common/history';
+import 'antd/dist/antd.css'
 
 class Publication_view extends React.Component{
 
@@ -131,7 +133,7 @@ class Publication_view extends React.Component{
                                 <li class="breadcrumb-item"><a onClick = {this.changePage.bind(this,'/')}>Dashboard</a></li>
                                 <li class="breadcrumb-item active"></li>
                             </ol>
-                            <button type="button" class="btn btn-success d-none d-lg-block m-l-15" onClick={this.addRedirect}>ADD</button>
+                            <button type="button" class="blu-green-btn" onClick={this.addRedirect}>ADD</button>
                         </div>
                     </div>
                 </div>
@@ -148,7 +150,7 @@ class Publication_view extends React.Component{
                                 <li class="breadcrumb-item"><a onClick = {this.changePage.bind(this,'/')}>Dashboard</a></li>
                                 <li class="breadcrumb-item active"></li>
                             </ol>
-                            <button type="button" class="btn btn-success d-none d-lg-block m-l-15" onClick={this.addRedirect}>ADD</button>
+                            <button type="button" class="blu-green-btn" onClick={this.addRedirect}>ADD</button>
                         </div>
                     </div>
                 </div>
@@ -183,13 +185,17 @@ class Publication_view extends React.Component{
                                                     <td onClick={() => this.adDetailsRedirect(publi.id)}>{ publi.level }</td>
                                                     <td onClick={() => this.adDetailsRedirect(publi.id)}>{ publi.year }</td>
                                                     <td colSpan="2">
-                                                      <button style={{marginLeft:"15%"}} class="btn btn-warning btn-sm" onClick={() => this.adDetailsRedirect(publi.id)}>View</button>
+                                                      <button style={{marginLeft:"15%"}} className="ad-btn" onClick={() => this.adDetailsRedirect(publi.id)}>View</button>
                                                     </td>
-                                                    <td>
-                                                      <button class="btn btn-primary btn-sm" id = {publi.id}  onClick={this.editRedirect.bind(this,publi.id)}>Edit</button>
+                                                    <td style={{paddingLeft:"24px"}}>
+                                                      <span onClick={this.editRedirect.bind(this,publi.id)}>
+                                                        <i className="far fa-edit user-icon1" id = {publi.id}></i>
+                                                      </span>
                                                     </td>
-                                                    <td>
-                                                      <button class="btn btn-danger btn-sm" id = {publi.id}  onClick={this.delete.bind(this,publi.id)}>Delete</button>
+                                                    <td style={{paddingLeft:"34px"}}>
+                                                      <span onClick={this.delete.bind(this,publi.id)}>
+                                                        <i className="fas fa-trash-alt user-icon2" id = {publi.id}></i>
+                                                      </span>
                                                     </td>
                                                   </tr>
                                           )

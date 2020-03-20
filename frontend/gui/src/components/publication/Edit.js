@@ -178,7 +178,7 @@ componentWillReceiveProps(props) {
           <center>
                 <div class="container">
                     <form onSubmit ={this.onSubmit} class="appointment-form" id="appointment-form">
-                        <h2>Edit Publication</h2>
+                        <h2 className="form-title">Edit Publication</h2>
                         <div class="form-group-1">
                         <select name="level"  defaultValue = {this.state.level} onChange = {this.onChange}>
                           <option value="International">International</option>

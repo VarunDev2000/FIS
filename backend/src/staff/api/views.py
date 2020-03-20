@@ -281,6 +281,18 @@ class Admin_Book_Published_ViewSet(viewsets.ModelViewSet):
         return book_published.objects.all()
 
 
+class Admin_Achievements_ViewSet(viewsets.ModelViewSet):
+    
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+
+    serializer_class = Achievement_serializer
+    
+    def get_queryset(self):
+        return achievements.objects.all()
+
+
 
 
 

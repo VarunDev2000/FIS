@@ -77,3 +77,17 @@ export const deleteAchievements = (id) => (dispatch,getState) => {
         console.log("Cannot Delete Data..");
     });
 }
+
+
+export const getAllAchievements = () => (dispatch,getState) => {
+
+    axios.get('http://127.0.0.1:8000/api/admin_achievements/',tokenConfig(getState))
+    .then(res => {
+            dispatch({
+                type: GET_ACHIEVEMENTS,
+                payload: res.data
+            });
+    }).catch(err => {
+        console.log("Error fetching Data..");
+    });
+}

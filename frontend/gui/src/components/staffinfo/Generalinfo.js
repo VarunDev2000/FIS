@@ -80,8 +80,6 @@ this.setState({
 });
 
 
-document.getElementById("uploadFile").value = e.target.files[0].name;
-
   const id = this.state.id;
 
   let form_data = new FormData();
@@ -482,7 +480,7 @@ changePage = (url,e) => {
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button class="btn btn-success" htmlType = "submit">Update Profile</button>
+                                            <button class="blu-green-btn" htmlType = "submit">Update Profile</button>
                                         </div>
                                     </div>
                                 </form>
@@ -503,7 +501,7 @@ changePage = (url,e) => {
                                 <li class="breadcrumb-item"><a onClick = {this.changePage.bind(this,'/')}>Dashboard</a></li>
                                 <li class="breadcrumb-item active"></li>
                             </ol>
-                            <button type="button" class="btn btn-danger d-none d-lg-block m-l-15" onClick={this.delete}>DELETE DETAILS</button>
+                            <button type="button" class="danger-btn" onClick={this.delete}>DELETE</button>
                         </div>
                     </div>
                 </div>
@@ -529,22 +527,20 @@ changePage = (url,e) => {
                                   <hr/>
 
 
-                              <input id="uploadFile" placeholder="Choose Profile Picture" disabled="disabled" />
-
+                              
                               <div class="row">
                                 <div class="col-sm-6">
-                                <div class="fileUpload btn btn-primary">
-                                    <span>Choose</span>
+                                <div class="fileUpload">
+                                    <span>Choose DP</span>
                                     <input type="file" class="upload" accept="image/*" name="profile_photo" onChange={this.onFileChange}/>
                                 </div>
                                 </div>
 
-                                <div class="col-sm-1"></div>
 
                                 {
                                 ginfo.profile_pic != null ? (
-                                <div class="col-sm-4">
-                                    <button type="file" class="btn btn-danger d-none d-lg-block m-l-15 del" name="profile_photo" onClick={this.deleteFile}>Delete</button>
+                                <div class="col-sm-5">
+                                    <button type="file" class="danger-profile-btn" name="profile_photo" onClick={this.deleteFile}>Delete DP</button>
                                 </div>
                                 ):(
                                 <div class="col-sm-4">
@@ -571,7 +567,7 @@ changePage = (url,e) => {
                                       <label for="example-email" class="col-md-12">Gender</label>
                                       <div class="col-md-12">
                                       <select name = "gender" onChange = {this.onChange} defaultValue={ginfo.gender}>
-                                        <option value="DEFAULT" disabled></option>
+                                        <option value="" disabled></option>
                                         <option value="Other">OTHER</option>
                                         <option value="Male">MALE</option>
                                         <option value="Female">FEMALE</option>
@@ -630,7 +626,7 @@ changePage = (url,e) => {
                                       <label for="example-email" class="col-md-12">Community</label>
                                       <div class="col-md-12">
                                       <select name = "community" onChange = {this.onChange}  defaultValue={ginfo.community}>
-                                        <option value="DEFAULT" disabled></option>
+                                        <option value="" disabled></option>
                                         <option value="Other community">OTHER COMMUNITY</option>
                                         <option value="Scheduled Tribe">SCHEDULED TRIBE</option>
                                         <option value="Scheduled Caste">SCHEDULED CASTE</option>
@@ -673,7 +669,7 @@ changePage = (url,e) => {
                                       <label for="example-email" class="col-md-12">Person With Disability?</label>
                                       <div class="col-md-12">
                                       <select name = "disability" onChange = {this.onChange} defaultValue={ginfo.disability}>
-                                        <option value="DEFAULT" disabled></option>
+                                        <option value="" disabled></option>
                                         <option value="yes">YES</option>
                                         <option value="no">NO</option>
                                       </select>
@@ -683,7 +679,7 @@ changePage = (url,e) => {
                                       <label for="example-email" class="col-md-12">Salutation</label>
                                       <div class="col-md-12">
                                       <select name = "salutation" onChange = {this.onChange} defaultValue={ginfo.salutation}>
-                                        <option value="DEFAULT" disabled></option>
+                                        <option value="" disabled></option>
                                         <option value="Dr">Dr</option>
                                         <option value="Dr.">Dr.</option>
                                         <option value="Prof.">Prof.</option>
@@ -701,7 +697,7 @@ changePage = (url,e) => {
                                   </div>
                                   <div class="form-group">
                                       <div class="col-sm-12">
-                                          <button class="btn btn-success" htmlType = "submit">Update Profile</button>
+                                          <button class="blu-green-btn" htmlType = "submit">Update Profile</button>
                                       </div>
                                   </div>
                               </form>

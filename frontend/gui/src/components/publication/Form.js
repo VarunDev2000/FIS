@@ -131,7 +131,7 @@ onSubmit = e => {
 	<center>
         <div class="container">
             <form onSubmit ={this.onSubmit} class="appointment-form" id="appointment-form">
-                <h2>Add Publication</h2>
+                <h2 className="form-title">Add Publication</h2>
                 <div class="form-group-1">
                 <select name="level" onChange = {this.onChange}>
                   <option value="International">International</option>
