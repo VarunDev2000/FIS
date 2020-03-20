@@ -1,12 +1,12 @@
 import React from 'react';
-import { Layout, Menu, Icon } from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
 import { logout } from '../actions/auth';
 import history from './common/history'
 
-const { Header, Content, Sider } = Layout;
-
+import './styles/dist/css/style.css'
+import Image from './styles/assets/images/logo-icon.png';
+import './styles/assets/icons/font-awesome/css/font-awesome.min.css'
 
 export class CustomLayout extends React.Component{
 
@@ -46,6 +46,12 @@ export class CustomLayout extends React.Component{
         history.push(url)
     }
 
+    componentDidMount() {
+        document.body.classList.add("skin-default-dark");
+        document.body.classList.add("fixed-layout");
+        document.body.classList.add("mini-sidebar");
+      }
+
     render(){
         const { isAuthenticated,user } = this.props.auth;
         var s_key = localStorage.getItem('s_key');
@@ -57,39 +63,66 @@ export class CustomLayout extends React.Component{
         ) : (console.log(""))
 
         const authLinks = (
-            <Layout className="layout" >
-
-                <Header style={{ padding: "0.00em",position:'fixed',zIndex:1,width:'100%'}}>
-                    <Menu
-                        mode="horizontal"
-                        style={{lineHeight: '70px'}}
-                    >
-
-                        <Menu.Item key="admin_1" style={{paddingLeft: '45px'}} onClick={() => this.changePage1("1",'/admin/report_generation')}><strong>
-                        <Icon type="user"/>
-                        { user ? "Welcome Admin" : "" }</strong>
-                        </Menu.Item>
-                        <Menu.Item key="admin_2" style={{float: 'right'}} onClick= {this.props.logout} >Logout</Menu.Item>
-                        <Menu.Item key="admin_3" style={{float: 'right'}} onClick={() => this.changePage1("c_pass",'/admin/change-password')} >Change Password</Menu.Item>
-                    </Menu>
-                </Header>
-                <br/><br/>
-                <Content style={{ padding: '0 100px' }}>
-                    <br/><br/><br/><br/>
-                    <div id = {s_key} className="innerForm">
-                        {this.props.children} 
+            <div id="main-wrapper">
+            <header className="topbar">
+                <nav className="navbar top-navbar navbar-expand-md navbar-dark">
+                    <div className="navbar-header">
+                        <a className="navbar-brand" href="/admin/report_generation">
+                            <b className="user">
+                                <i className="far fa-user"></i>{'\u00A0'}{'\u00A0'}
+                                { user ? "Admin":"" }
+                            </b>
+                        </a>
                     </div>
-                    <br/><br/>
-                </Content>
-            </Layout>
+
+                    <div className="navbar-collapse">
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-item dropdown">
+                            </li>
+                        </ul>
+
+                        <ul className="navbar-nav my-lg-0" style={{ paddingRight:"40px",paddingLeft:"40px" }}>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle text-muted waves-effect waves-dark " onClick= {this.props.logout}><p className="log_out">Logout</p></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+            <aside className="left-sidebar">
+            <div className="d-flex no-block nav-text-box align-items-center">
+                <span><img src={Image} alt="elegant admin template"/></span>
+                <a className="waves-effect waves-dark ml-auto hidden-sm-down" href="javascript:void(0)"><i className="ti-menu"></i></a>
+                <a className="nav-toggler waves-effect waves-dark ml-auto hidden-sm-up" href="javascript:void(0)"><i className="ti-menu ti-close"></i></a>
+            </div>
+            
+            <div className="scroll-sidebar">
+                
+                <nav className="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li> <a className="waves-effect waves-dark" href='/admin/report_generation' aria-expanded="false"><i className="fas fa-clipboard-check"></i><span className="hide-menu">Report</span></a></li>
+                        <li> <a className="waves-effect waves-dark" href="/admin/change-password" aria-expanded="false"><i className="fas fa-key"></i><span className="hide-menu">Change Password</span></a></li>
+                    </ul>
+                </nav>
+                
+            </div>
+           
+        </aside>
+
+
+        <div class="page-wrapper">
+            {this.props.children} 
+        </div>
+        </div>
         );
 
         const guestLinks = (
-            <Layout className="layout">
-                    <div style={{ position:'relative',padding: 95,bottom:'20px'}}>
-                        {this.props.children} 
-                    </div>
-            </Layout>
+            <div id="main-wrapper">
+                <div class="page-wrapper">
+                    {this.props.children} 
+                </div>
+            </div>
         );
 
 

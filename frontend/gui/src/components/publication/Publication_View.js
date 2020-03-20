@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button,Icon } from 'antd';
 import CustomLayout from '../Layout';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'; 
@@ -77,6 +76,26 @@ class Publication_view extends React.Component{
       //window.open("/qualification/edit","_self");
   }
 
+    search() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }      
+      }
+    }
+
     
       componentDidMount() {
         this.props.getPublication();
@@ -101,10 +120,21 @@ class Publication_view extends React.Component{
 
       {
       numRows == 0 ? (
-        <div className="heading_div">PUBLICATIONS
-       <Button className="add_button" id="3" onClick={this.addRedirect}>
-          Add
-        </Button>
+        <div class="container-fluid">
+                 <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h4 class="text-themecolor">Publications</h4>
+                    </div>
+                    <div class="col-md-7 align-self-center text-right">
+                        <div class="d-flex justify-content-end align-items-center">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a onClick = {this.changePage.bind(this,'/')}>Dashboard</a></li>
+                                <li class="breadcrumb-item active"></li>
+                            </ol>
+                            <button type="button" class="btn btn-success d-none d-lg-block m-l-15" onClick={this.addRedirect}>ADD</button>
+                        </div>
+                    </div>
+                </div>
         </div>
       ) : (
         <div class="container-fluid">
@@ -127,9 +157,12 @@ class Publication_view extends React.Component{
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h6 class="card-subtitle">All Publications of<code> User</code></h6><br/>
+                            <h6 class="card-subtitle">All Publications of<code> User</code></h6><br/>
+                            
+                              <input type="text" id="myInput" onKeyUp={this.search} placeholder="Search for Title.."/>
+                              
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table class="table" id="myTable">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -143,25 +176,25 @@ class Publication_view extends React.Component{
                                         </thead>
                                         <tbody>
                                         {
-        this.props.publication.map(publi => (
-                <tr>
-                  <td>{i=i+1}</td>
-                  <td colSpan="2" className = "title_td" onClick={() => this.adDetailsRedirect(publi.id)}>{ publi.title }</td>
-                  <td onClick={() => this.adDetailsRedirect(publi.id)}>{ publi.level }</td>
-                  <td onClick={() => this.adDetailsRedirect(publi.id)}>{ publi.year }</td>
-                  <td colSpan="2">
-                    <button style={{marginLeft:"15%"}} class="btn btn-warning btn-sm" onClick={() => this.adDetailsRedirect(publi.id)}>View</button>
-                  </td>
-                  <td>
-                    <button class="btn btn-primary btn-sm" id = {publi.id}  onClick={this.editRedirect.bind(this,publi.id)}>Edit</button>
-                  </td>
-                  <td>
-                    <button class="btn btn-danger btn-sm" id = {publi.id}  onClick={this.delete.bind(this,publi.id)}>Delete</button>
-                  </td>
-                </tr>
-        )
-      )
-      }
+                                          this.props.publication.map(publi => (
+                                                  <tr>
+                                                    <td>{i=i+1}</td>
+                                                    <td colSpan="2" className = "title_td" onClick={() => this.adDetailsRedirect(publi.id)}>{ publi.title }</td>
+                                                    <td onClick={() => this.adDetailsRedirect(publi.id)}>{ publi.level }</td>
+                                                    <td onClick={() => this.adDetailsRedirect(publi.id)}>{ publi.year }</td>
+                                                    <td colSpan="2">
+                                                      <button style={{marginLeft:"15%"}} class="btn btn-warning btn-sm" onClick={() => this.adDetailsRedirect(publi.id)}>View</button>
+                                                    </td>
+                                                    <td>
+                                                      <button class="btn btn-primary btn-sm" id = {publi.id}  onClick={this.editRedirect.bind(this,publi.id)}>Edit</button>
+                                                    </td>
+                                                    <td>
+                                                      <button class="btn btn-danger btn-sm" id = {publi.id}  onClick={this.delete.bind(this,publi.id)}>Delete</button>
+                                                    </td>
+                                                  </tr>
+                                          )
+                                        )
+                                        }
                                         </tbody>
                                     </table>
                                 </div>

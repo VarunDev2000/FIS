@@ -141,17 +141,14 @@ body {
   position: relative; }
 
 .container {
-  width: 70%;
+  width: 85%;
   background: #fff;
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   -o-border-radius: 10px;
   -ms-border-radius: 10px;
-  
-  -moz-box-shadow:    3px 3px 5px 6px #ccc;
-  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
-  box-shadow:         3px 3px 5px 6px #ccc;
+  box-shadow : 0px 1px 2px 1px rgba(154, 154, 204, 0.22);
 }
 
 .appointment-form {
@@ -222,9 +219,9 @@ input[type=checkbox]:not(old):checked + label > span:before {
 
 .submit {
   width: auto;
-  background: #4966b1;
-  color: #fff;
-  padding: 16px 17px;
+  background: green;
+  color: white;
+  padding: 12px 16px;
   font-size: 13px;
   border: none;
   border-radius: 5px;
@@ -239,7 +236,7 @@ input[type=checkbox]:not(old):checked + label > span:before {
   -o-box-shadow: 0px 1px 15px 0px rgba(73, 102, 177, 0.7);
   -ms-box-shadow: 0px 1px 15px 0px rgba(73, 102, 177, 0.7); }
   .submit:hover {
-    background: #3a518d; }
+    background: #006400; }
 
 #confirm_type {
   margin-bottom: 30px; }

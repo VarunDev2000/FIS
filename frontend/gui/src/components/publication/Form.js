@@ -149,7 +149,6 @@ onSubmit = e => {
                     <input name = "page_no" placeholder="Page No"  onChange = {this.onChange} />
                     <input name = "publisher" placeholder="Publisher Name"  onChange = {this.onChange} />
                     <input name = "impact_factor" placeholder="Impact Factor"  onChange = {this.onChange} />
-                    <input type = "number" name = "issue" placeholder="Issue" onChange = {this.onChange} />
                     <p className="label-p">Is it a Refereed Journal?</p>
                     <select name="ref_journal" defaultValue={'DEFAULT'} onChange = {this.onChange}>
                       <option disabled value="DEFAULT"> -- select an option -- </option>
@@ -157,6 +156,7 @@ onSubmit = e => {
                       <option value="No">No</option>
                     </select>
                 </div>
+                <br/>
                 <div class="form-submit">
                     <input type="submit" name="submit" disabled = {this.state.disabled} id="submit" class="submit" value="Submit" />
                 </div>

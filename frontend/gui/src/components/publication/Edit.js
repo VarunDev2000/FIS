@@ -174,64 +174,43 @@ componentWillReceiveProps(props) {
         <CustomLayout>
         {
         publi_len > 0 ? (
-        <Form key = {publi.id} onSubmit ={this.onSubmit}>
-        <Form.Item label="LEVEL">
-            <select name="level" defaultValue = {this.state.level} onChange = {this.onChange}>
-            <option value="International">International</option>
-            <option value="National">National</option>
-            </select>
-          </Form.Item>
-          <Form.Item label="TITLE">
-            <Input name = "title" defaultValue = {this.state.title} placeholder="Enter Title" required onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="FIRST AUTOR">
-            <Input name = "first_author"  defaultValue = {this.state.first_author} placeholder="Enter First Author"  onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="CORRESPONDING AUTHOR">
-            <Input name = "corres_author" defaultValue = {this.state.corres_author} placeholder="Enter Corresponding Author" onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="ALL AUTHOR'S INCLUDING THE ABOVE IN ORDER">
-            <Input name = "all_auth_inorder"  defaultValue = {this.state.all_auth_inorder} placeholder="" onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="JOURNAL NAME">
-            <Input name = "journal_name"  defaultValue = {this.state.journal_name} placeholder="Enter Journal Name"  onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="VOLUME">
-            <Input type = "number" name = "volume"  defaultValue = {this.state.volume} placeholder="" onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="ISSUE">
-            <Input type = "number" name = "issue"  defaultValue = {this.state.issue} placeholder="" onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="YEAR">
-          <input type="month" name = "year" required onChange = {this.onChange} defaultValue = {this.state.year}></input>
-           </Form.Item>
-          <Form.Item label="PAGE NO">
-            <Input name = "page_no"  placeholder="Enter Page No" defaultValue = {this.state.page_no}  onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="PUBLISHER">
-            <Input name = "publisher" placeholder="Enter Publisher Name"  defaultValue = {this.state.publisher} onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="IMPACT FACTOR IN THE YEAR OF PUBLICATION">
-            <Input  name = "impact_factor" defaultValue = {this.state.impact_factor} placeholder="Enter Impact Factor"  onChange = {this.onChange} />
-          </Form.Item>
-          <Form.Item label="IS IT A REFEREED JOURNAL?">
-          <select name="ref_journal"  defaultValue = {this.state.ref_journal} onChange = {this.onChange}>
-            <option disabled value=""> -- select an option -- </option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-          </select>
-          </Form.Item>
-          <Form.Item label="EXISTING PDF">
-            <Button span={3} target="ref" onClick={() => this.popPDF(publi.pdf)}>View</Button>
-          </Form.Item>
-          <Form.Item label="ADD NEW PDF">
-            <input type="file" name="pdf" className="file_upload_btn" accept="application/pdf"  onChange = {this.onFileChange}></input>
-          </Form.Item>
-          <br/>
-          <Form.Item>
-            <Button type="primary" htmlType = "submit" disabled = {this.state.disabled}>Submit</Button>
-          </Form.Item>
-        </Form>
+          <div class="main">
+          <center>
+                <div class="container">
+                    <form onSubmit ={this.onSubmit} class="appointment-form" id="appointment-form">
+                        <h2>Edit Publication</h2>
+                        <div class="form-group-1">
+                        <select name="level"  defaultValue = {this.state.level} onChange = {this.onChange}>
+                          <option value="International">International</option>
+                          <option value="National">National</option>
+                        </select>
+                            <input name = "title" defaultValue = {this.state.title} placeholder="Title" required onChange = {this.onChange} />
+                            <input type="text" name = "first_author" defaultValue = {this.state.first_author} placeholder="First Author"  onChange = {this.onChange} />
+                            <input type="text" name = "corres_author" defaultValue = {this.state.corres_author} placeholder="Corresponding Author" onChange = {this.onChange}  />
+                            <input type="text" name = "all_auth_inorder" defaultValue = {this.state.all_auth_inorder} placeholder="All Authors in Order"  onChange = {this.onChange} />
+                            <input type="text" name = "journal_name" defaultValue = {this.state.journal_name} placeholder="Journal Name"  onChange = {this.onChange}  />
+                            <input type = "number" name = "volume"   defaultValue = {this.state.volume} placeholder="Volume" onChange = {this.onChange}/>
+                            <input type = "number" name = "issue" defaultValue = {this.state.issue} placeholder="Issue" onChange = {this.onChange} />
+                            <p className="label-p">Year</p>
+                            <input type="month" name = "year" defaultValue = {this.state.year} required onChange = {this.onChange}></input>
+                            <input name = "page_no" defaultValue = {this.state.page_no}  placeholder="Page No"  onChange = {this.onChange} />
+                            <input name = "publisher" defaultValue = {this.state.publisher} placeholder="Publisher Name"  onChange = {this.onChange} />
+                            <input name = "impact_factor" defaultValue = {this.state.impact_factor} placeholder="Impact Factor"  onChange = {this.onChange} />
+                            <p className="label-p">Is it a Refereed Journal?</p>
+                            <select name="ref_journal" defaultValue = {this.state.ref_journal} onChange = {this.onChange}>
+                              <option disabled value="DEFAULT"> -- select an option -- </option>
+                              <option value="Yes">Yes</option>
+                              <option value="No">No</option>
+                            </select>
+                        </div>
+                        <br/>
+                        <div class="form-submit">
+                            <input type="submit" name="submit" disabled = {this.state.disabled} id="submit" class="submit" value="Submit" />
+                        </div>
+                    </form>
+                </div>
+            </center>
+            </div>
         ) : (<h1></h1>)
         }
         </CustomLayout>

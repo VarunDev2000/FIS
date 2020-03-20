@@ -46,7 +46,7 @@ class Dashboard extends React.Component{
                                             <h1 class="mb-1"><i class="fa fa-user-circle-o"></i></h1>
                                         </div>
                                         <hr className="hr-color" />
-                                        <p className="dash-p">PROFILE</p>
+                                        <p className="dash-p">MY PROFILE</p>
                                       </center>
                                       </div>
                                 </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form,Button } from 'antd';
+import history from '../common/history';
 import jsPDF from 'jspdf';
 import PropTypes from 'prop-types'; 
 import CustomLayout from '../Admin_Layout';
@@ -63,16 +63,12 @@ class Admin_Report_Index extends React.Component{
 
     generatePDF = (id) =>
     {
-        if(id == "paperjournal")
-        {
-            this.setState({
-                doc : this.GeneratePaperJournalsPDF()
-            })   
-        }
-        this.setState({
-            pdfgenerated : true
-        })
-        window.scrollTo(0, 200) 
+        var iframe = "<iframe width='100%' height='100%' src='" + this.GeneratePaperJournalsPDF() + "'></iframe>"
+
+        var x = window.open();
+        x.document.open();
+        x.document.write(iframe);
+        x.document.close();
     }
 
     closePDF = () =>
@@ -80,6 +76,10 @@ class Admin_Report_Index extends React.Component{
         this.setState({
             pdfgenerated : false
         })
+    }
+
+    changePage = (url,e) => {
+        history.push(url)
     }
     
     onChange = e => {
@@ -89,6 +89,8 @@ class Admin_Report_Index extends React.Component{
     }
 
     onSubmit1 = (e) => {
+        e.preventDefault();
+        
         if(this.state.from_year > this.state.to_year)
         {
             alert("Invalid \"From - To\"")
@@ -99,6 +101,8 @@ class Admin_Report_Index extends React.Component{
     }
 
     onSubmit2 = (e) => {
+        e.preventDefault();
+
         if(this.state.from_date > this.state.to_date)
         {
             alert("Invalid \"From Date - To Date\"")
@@ -124,134 +128,180 @@ class Admin_Report_Index extends React.Component{
 
         return (
             <CustomLayout> 
-                <Form >
+                <div class="container-fluid">
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h4 class="text-themecolor">Generate Report</h4>
+                    </div>
+                    <div class="col-md-7 align-self-center text-right">
+                        <div class="d-flex justify-content-end align-items-center">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a onClick = {this.changePage.bind(this,'/')}>Dashboard</a></li>
+                                <li class="breadcrumb-item active"></li>
+                            </ol>
+                    </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+
                 <form onSubmit ={this.onSubmit1}>
-                <h1>GENERATE REPORT</h1><hr/><br/><br/>
+                  <div class="col-12">
+                      <div class="card">
+                          <div class="card-body">
 
-                {
-                this.state.pdfgenerated == true ? (
-                <div>
-                <div align="right">
-                    <Button type="danger" onClick={this.closePDF}>X</Button>
-                </div>
-                <iframe ref="iframeref" src={this.state.doc}></iframe><br/><br/><br/><br/>
-                </div>
-                ) : (null)
-                }
+                              <br/>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <input class="report-month" type="month" name = "from_year" required onChange = {this.onChange}></input>
+                                </div>
+                                <div class="col-sm-1 to" align="center">TO</div>
+                                <div class="col-sm-5">
+                                    <input  class="report-month" type="month" name = "to_year" required onChange = {this.onChange}></input>
+                                </div>
+                            </div>
+                            
+                            <br/><br/>
 
-                <div className = "report_part">
-                <br/><br/>
+                             <div class="report-table table-responsive">
+                                  <table class="table" id="reportTable1">
+                                      <thead>
+                                          <tr>
+                                              <th>#</th>
+                                              <th colSpan="3">Type</th>
+                                              <th>Report</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td colSpan="3">Paper Published in Journals</td>
+                                            <td style={{paddingLeft:"0px"}}>
+                                                <button id="paperjournal" class="btn report-btn btn-success d-none d-lg-block m-l-15" htmlType = "submit">GENERATE</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td colSpan="3">Book Published</td>
+                                            <td style={{paddingLeft:"0px"}}>
+                                                <button class="btn report-btn btn-success d-none d-lg-block m-l-15" htmlType = "submit">GENERATE</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td colSpan="3">Awards Received</td>
+                                            <td style={{paddingLeft:"0px"}}>
+                                                <button class="btn report-btn btn-success d-none d-lg-block m-l-15" htmlType = "submit">GENERATE</button>
+                                            </td>
+                                        </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  </form>
+              </div>
+    
+            <br/>
 
-                <Form.Item >
-                <center>
-                <label>From</label>{'\u00A0'}{'\u00A0'}
-                <select className = "selectClass" name="from_year" defaultValue={''} onChange = {this.onChange}>
-                    <option value="All">All</option>
-                    {year}
-                </select> {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                <label>To</label>{'\u00A0'}{'\u00A0'}
-                <select className = "selectClass" name="to_year" defaultValue={''} onChange = {this.onChange}>
-                    <option value="All">All</option>
-                    {year}
-                </select>
-                </center>
-                </Form.Item>
-                <br/>
-                <Form.Item>
-                <table className = "rep_table">
-                    <tr className = "rep_tr">
-                        <td className = "rep_tr">1) Paper Published in Journals</td>
-                        <td className = "rep_tr">
-                            <Button type="primary" id="paperjournal" onClick = {this.onSubmit1}>GENERATE</Button>
-                        </td>
-                    </tr>
-                    <tr className = "rep_tr">
-                        <td className = "rep_tr">2) Book Published</td>
-                        <td className = "rep_tr">
-                            <Button type="primary" htmlType = "submit">GENERATE</Button>
-                        </td>
-                    </tr>
-                    <tr className = "rep_tr">
-                        <td className = "rep_tr">3) Awards Received</td>
-                        <td className = "rep_tr">
-                            <Button type="primary" htmlType = "submit">GENERATE</Button>
-                        </td>
-                    </tr>
-                </table>
-                </Form.Item>
-                </div>
-                </form>
-                <br/><br/><br/>
-
+            <div class="row">
                 <form onSubmit ={this.onSubmit2}>
-                <div className = "report_part">
-                <br/><br/>
+                  <div class="col-12">
+                      <div class="card">
+                          <div class="card-body">
 
-                <Form.Item >
-                <center>
-                <label>From</label>{'\u00A0'}{'\u00A0'}
-                    <input type = "date" required name="from_date" onChange={this.onChange}></input>
-                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                <label>To</label>{'\u00A0'}{'\u00A0'}           
-                    <input type = "date" required name="to_date" onChange={this.onChange}></input>
-                </center>
-                </Form.Item>
-                <br/>
-                <Form.Item>
-                <table className = "rep_tr">
-                    <tr className = "rep_tr">
-                        <td className = "rep_tr">4) Workshop/Seminar/Conference</td>
-                        <td className = "rep_tr">
-                            <Button type="primary" htmlType = "submit">GENERATE</Button>
-                        </td>
-                    </tr>
-                    <tr className = "rep_tr">
-                        <td className = "rep_tr">5) Paper presented in Workshop/Seminar/Conference</td>
-                        <td className = "rep_tr">
-                            <Button type="primary" htmlType = "submit">GENERATE</Button>
-                        </td>
-                    </tr>
-                    <tr className = "rep_tr">
-                        <td className = "rep_tr">6) Sponsored Projects Handled</td>
-                        <td className = "rep_tr">
-                            <Button type="primary" htmlType = "submit">GENERATE</Button>
-                        </td>
-                    </tr>
-                    <tr className = "rep_tr">
-                        <td className = "rep_tr">7) Patents filed and awarded</td>
-                        <td className = "rep_tr">
-                            <Button type="primary" htmlType = "submit">GENERATE</Button>
-                        </td>
-                    </tr>
-                    <tr className = "rep_tr">
-                        <td className = "rep_tr">8) Spl Representation in Committees and Commissions</td>
-                        <td className = "rep_tr">
-                            <Button type="primary" htmlType = "submit">GENERATE</Button>
-                        </td>
-                    </tr>
-                    <tr className = "rep_tr">
-                        <td className = "rep_tr">9) Invited Lectures</td>
-                        <td className = "rep_tr">
-                            <Button type="primary" htmlType = "submit">GENERATE</Button>
-                        </td>
-                    </tr>
-                    <tr className = "rep_tr">
-                        <td className = "rep_tr">10) Experience abroad</td>
-                        <td className = "rep_tr">
-                            <Button type="primary" htmlType = "submit">GENERATE</Button>
-                        </td>
-                    </tr>
-                    <tr className = "rep_tr">
-                        <td className = "rep_tr">11) Research Activities</td>
-                        <td className = "rep_tr">
-                            <Button type="primary" htmlType = "submit">GENERATE</Button>
-                        </td>
-                    </tr>
-                </table>
-                </Form.Item>
-                </div>
-                </form>
-                </Form>
+                              <br/>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <input class="report-month" type="month" name = "from_year" required onChange = {this.onChange}></input>
+                                </div>
+                                <div class="col-sm-1 to" align="center">TO</div>
+                                <div class="col-sm-5">
+                                    <input  class="report-month" type="month" name = "to_year" required onChange = {this.onChange}></input>
+                                </div>
+                            </div>
+                            
+                            <br/><br/>
+
+                             <div class="report-table table-responsive">
+                                  <table class="table" id="reportTable1">
+                                      <thead>
+                                          <tr>
+                                              <th>#</th>
+                                              <th colSpan="3">Type</th>
+                                              <th>Report</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                            <td>4</td>
+                                            <td colSpan="3">Workshop/Seminar/Conference</td>
+                                            <td style={{paddingLeft:"0px"}}>
+                                                <button class="btn report-btn btn-success d-none d-lg-block m-l-15" htmlType = "submit">GENERATE</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td colSpan="3">Paper presented in Workshop/Seminar/Conference</td>
+                                            <td style={{paddingLeft:"0px"}}>
+                                                <button class="btn report-btn btn-success d-none d-lg-block m-l-15" htmlType = "submit">GENERATE</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td colSpan="3">Sponsored Projects Handled</td>
+                                            <td style={{paddingLeft:"0px"}}>
+                                                <button class="btn report-btn btn-success d-none d-lg-block m-l-15" htmlType = "submit">GENERATE</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td colSpan="3">Patents filed and awarded</td>
+                                            <td style={{paddingLeft:"0px"}}>
+                                                <button class="btn report-btn btn-success d-none d-lg-block m-l-15" htmlType = "submit">GENERATE</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <td colSpan="3">Spl Representation in Committees and Commissions</td>
+                                            <td style={{paddingLeft:"0px"}}>
+                                                <button class="btn report-btn btn-success d-none d-lg-block m-l-15" htmlType = "submit">GENERATE</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>9</td>
+                                            <td colSpan="3">Invited Lectures</td>
+                                            <td style={{paddingLeft:"0px"}}>
+                                                <button class="btn report-btn btn-success d-none d-lg-block m-l-15" htmlType = "submit">GENERATE</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            <td colSpan="3">Experience abroad</td>
+                                            <td style={{paddingLeft:"0px"}}>
+                                                <button class="btn report-btn btn-success d-none d-lg-block m-l-15" htmlType = "submit">GENERATE</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>11</td>
+                                            <td colSpan="3">Research Activities</td>
+                                            <td style={{paddingLeft:"0px"}}>
+                                                <button class="btn report-btn btn-success d-none d-lg-block m-l-15" htmlType = "submit">GENERATE</button>
+                                            </td>
+                                        </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  </form>
+              </div>
+               
+               
+            </div>
             </CustomLayout>
         )
     }
