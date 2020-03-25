@@ -168,24 +168,33 @@ class Publication_view extends React.Component{
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th colSpan="2">Title</th>
+                                                <th colSpan="3">Title</th>
                                                 <th>Level</th>
                                                 <th>Year</th>
-                                                <th colSpan="2">Additional Details</th>
+                                                <th colSpan="1">More</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         {
-                                          this.props.publication.map(publi => (
+                                          this.props.publication
+                                          .sort(
+                                            function(a, b) {
+                                              var a_year = new Date(a.year)
+                                              var b_year = new Date(b.year)
+
+                                              return a_year - b_year;
+                                            }
+                                          )
+                                          .map(publi => (
                                                   <tr>
                                                     <td>{i=i+1}</td>
-                                                    <td colSpan="2" className = "title_td" onClick={() => this.adDetailsRedirect(publi.id)}>{ publi.title }</td>
+                                                    <td colSpan="3" className = "title_td" onClick={() => this.adDetailsRedirect(publi.id)}>{ publi.title }</td>
                                                     <td onClick={() => this.adDetailsRedirect(publi.id)}>{ publi.level }</td>
                                                     <td onClick={() => this.adDetailsRedirect(publi.id)}>{ publi.year }</td>
-                                                    <td colSpan="2">
-                                                      <button style={{marginLeft:"15%"}} className="ad-btn" onClick={() => this.adDetailsRedirect(publi.id)}>View</button>
+                                                    <td>
+                                                    <button type="button" class="ad-btn1" onClick={() => this.adDetailsRedirect(publi.id)}>View</button>  
                                                     </td>
                                                     <td style={{paddingLeft:"24px"}}>
                                                       <span onClick={this.editRedirect.bind(this,publi.id)}>
